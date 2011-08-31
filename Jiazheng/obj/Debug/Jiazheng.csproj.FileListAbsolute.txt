@@ -1,0 +1,15 @@
+E:\代码\家政管理系统\Jiazheng\bin\Jiazheng.dll
+E:\代码\家政管理系统\Jiazheng\bin\Jiazheng.pdb
+E:\代码\家政管理系统\Jiazheng\bin\Voodoo.Business.dll
+E:\代码\家政管理系统\Jiazheng\bin\Voodoo.dll
+E:\代码\家政管理系统\Jiazheng\bin\MySql.Data.dll
+E:\代码\家政管理系统\Jiazheng\bin\Voodoo.pdb
+E:\代码\家政管理系统\Jiazheng\bin\Voodoo.xml
+E:\代码\家政管理系统\Jiazheng\bin\Voodoo.Business.pdb
+E:\代码\家政管理系统\Jiazheng\obj\Debug\ResolveAssemblyReference.cache
+E:\代码\家政管理系统\Jiazheng\obj\Debug\Jiazheng.dll
+E:\代码\家政管理系统\Jiazheng\obj\Debug\Jiazheng.pdb
+E:\代码\家政管理系统\Jiazheng\bin\en\Voodoo.resources.dll
+E:\代码\家政管理系统\Jiazheng\bin\zh-CHT\Voodoo.resources.dll
+E:\代码\家政管理系统\Jiazheng\bin\System.Data.SQLite.dll
+E:\代码\家政管理系统\Jiazheng\bin\NPOI.dll

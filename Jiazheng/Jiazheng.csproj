@@ -1,0 +1,359 @@
+﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{917F6673-FEA3-4D26-BAFE-2F5426C46A76}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Jiazheng</RootNamespace>
+    <AssemblyName>Jiazheng</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Default.aspx" />
+    <Content Include="favicon.ico" />
+    <Content Include="menu.aspx" />
+    <Content Include="skin\css\base.css" />
+    <Content Include="skin\css\main.css" />
+    <Content Include="skin\css\menu.css" />
+    <Content Include="skin\images\frame\addnews.gif" />
+    <Content Include="skin\images\frame\arr3.gif" />
+    <Content Include="skin\images\frame\arr4.gif" />
+    <Content Include="skin\images\frame\arrfc.gif" />
+    <Content Include="skin\images\frame\arrl.gif" />
+    <Content Include="skin\images\frame\arrr.gif" />
+    <Content Include="skin\images\frame\book.gif" />
+    <Content Include="skin\images\frame\book1.gif" />
+    <Content Include="skin\images\frame\bottombg.gif" />
+    <Content Include="skin\images\frame\file_dir.gif" />
+    <Content Include="skin\images\frame\gtk-del.png" />
+    <Content Include="skin\images\frame\gtk-sadd.png" />
+    <Content Include="skin\images\frame\ico_spider.gif" />
+    <Content Include="skin\images\frame\logo.gif" />
+    <Content Include="skin\images\frame\manage1.gif" />
+    <Content Include="skin\images\frame\menu-ex.png" />
+    <Content Include="skin\images\frame\menuarrow.gif" />
+    <Content Include="skin\images\frame\menubg.gif" />
+    <Content Include="skin\images\frame\menumember.gif" />
+    <Content Include="skin\images\frame\menusearch.gif" />
+    <Content Include="skin\images\frame\menu_bg.gif" />
+    <Content Include="skin\images\frame\menu_bottom.gif" />
+    <Content Include="skin\images\frame\menu_top.gif" />
+    <Content Include="skin\images\frame\part-index.gif" />
+    <Content Include="skin\images\frame\qc.gif" />
+    <Content Include="skin\images\frame\search.gif" />
+    <Content Include="skin\images\frame\sp_bg.gif" />
+    <Content Include="skin\images\frame\topbg.gif" />
+    <Content Include="skin\images\frame\topitembg.gif" />
+    <Content Include="skin\images\frame\wbg.gif" />
+    <Content Include="skin\js\common.js" />
+    <Content Include="skin\js\frame\menu.js" />
+    <Content Include="skin\js\jquery-1.3.2.min.js" />
+    <Content Include="skin\js\jquery.autocomplete.js" />
+    <Content Include="skin\js\My97DatePicker\calendar.js" />
+    <Content Include="skin\js\My97DatePicker\config.js" />
+    <Content Include="skin\js\My97DatePicker\lang\en.js" />
+    <Content Include="skin\js\My97DatePicker\lang\zh-cn.js" />
+    <Content Include="skin\js\My97DatePicker\lang\zh-tw.js" />
+    <Content Include="skin\js\My97DatePicker\My97DatePicker.htm" />
+    <Content Include="skin\js\My97DatePicker\skin\datePicker.gif" />
+    <Content Include="skin\js\My97DatePicker\skin\default\datepicker.css" />
+    <Content Include="skin\js\My97DatePicker\skin\default\img.gif" />
+    <Content Include="skin\js\My97DatePicker\skin\WdatePicker.css" />
+    <Content Include="skin\js\My97DatePicker\skin\whyGreen\bg.jpg" />
+    <Content Include="skin\js\My97DatePicker\skin\whyGreen\datepicker.css" />
+    <Content Include="skin\js\My97DatePicker\skin\whyGreen\img.gif" />
+    <Content Include="skin\js\My97DatePicker\WdatePicker.js" />
+    <Content Include="skin\js\validate.js" />
+    <Content Include="Sys\GropEdit.aspx" />
+    <Content Include="Sys\GropList.aspx" />
+    <Content Include="Sys\RoleEdit.aspx" />
+    <Content Include="Sys\SysPartEdit.aspx" />
+    <Content Include="Sys\SysPartList.aspx" />
+    <Content Include="Top.aspx" />
+    <Content Include="User\UserEdit.aspx" />
+    <Content Include="User\UserList.aspx" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Business\ToolEdit.aspx.cs">
+      <DependentUpon>ToolEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Business\ToolEdit.aspx.designer.cs">
+      <DependentUpon>ToolEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Business\ToolList.aspx.cs">
+      <DependentUpon>ToolList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Business\ToolList.aspx.designer.cs">
+      <DependentUpon>ToolList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Business\WorkTypeEdit.aspx.cs">
+      <DependentUpon>WorkTypeEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Business\WorkTypeEdit.aspx.designer.cs">
+      <DependentUpon>WorkTypeEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Business\WorkTypeList.aspx.cs">
+      <DependentUpon>WorkTypeList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Business\WorkTypeList.aspx.designer.cs">
+      <DependentUpon>WorkTypeList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\CustomerEdit.aspx.cs">
+      <DependentUpon>CustomerEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\CustomerEdit.aspx.designer.cs">
+      <DependentUpon>CustomerEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\CustomerList.aspx.cs">
+      <DependentUpon>CustomerList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\CustomerList.aspx.designer.cs">
+      <DependentUpon>CustomerList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employees\EmployeesEdit.aspx.cs">
+      <DependentUpon>EmployeesEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employees\EmployeesEdit.aspx.designer.cs">
+      <DependentUpon>EmployeesEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employees\EmployeesList.aspx.cs">
+      <DependentUpon>EmployeesList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employees\EmployeesList.aspx.designer.cs">
+      <DependentUpon>EmployeesList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="menu.aspx.cs">
+      <DependentUpon>menu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="menu.aspx.designer.cs">
+      <DependentUpon>menu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PayLog\ZPayLogEdit.aspx.cs">
+      <DependentUpon>ZPayLogEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PayLog\ZPayLogEdit.aspx.designer.cs">
+      <DependentUpon>ZPayLogEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PayLog\ZPayLogList.aspx.cs">
+      <DependentUpon>ZPayLogList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PayLog\ZPayLogList.aspx.designer.cs">
+      <DependentUpon>ZPayLogList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sys\GropEdit.aspx.cs">
+      <DependentUpon>GropEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sys\GropEdit.aspx.designer.cs">
+      <DependentUpon>GropEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sys\GropList.aspx.cs">
+      <DependentUpon>GropList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sys\GropList.aspx.designer.cs">
+      <DependentUpon>GropList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sys\RoleEdit.aspx.cs">
+      <DependentUpon>RoleEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sys\RoleEdit.aspx.designer.cs">
+      <DependentUpon>RoleEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sys\SysPartEdit.aspx.cs">
+      <DependentUpon>SysPartEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sys\SysPartEdit.aspx.designer.cs">
+      <DependentUpon>SysPartEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sys\SysPartList.aspx.cs">
+      <DependentUpon>SysPartList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sys\SysPartList.aspx.designer.cs">
+      <DependentUpon>SysPartList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\Exist.ashx.cs">
+      <DependentUpon>Exist.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\Exit.ashx.cs">
+      <DependentUpon>Exit.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\Suggest.ashx.cs">
+      <DependentUpon>Suggest.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Top.aspx.cs">
+      <DependentUpon>Top.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Top.aspx.designer.cs">
+      <DependentUpon>Top.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\UserEdit.aspx.cs">
+      <DependentUpon>UserEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\UserEdit.aspx.designer.cs">
+      <DependentUpon>UserEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\UserList.aspx.cs">
+      <DependentUpon>UserList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\UserList.aspx.designer.cs">
+      <DependentUpon>UserList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WorkLog\ZWorkLogEdit.aspx.cs">
+      <DependentUpon>ZWorkLogEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WorkLog\ZWorkLogEdit.aspx.designer.cs">
+      <DependentUpon>ZWorkLogEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WorkLog\ZWorkLogList.aspx.cs">
+      <DependentUpon>ZWorkLogList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WorkLog\ZWorkLogList.aspx.designer.cs">
+      <DependentUpon>ZWorkLogList.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Voodoo\Voodoo.csproj">
+      <Project>{CF4C09DC-B002-4A0D-856B-DCD5E3719213}</Project>
+      <Name>Voodoo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Voodoo.Business\Voodoo.Business.csproj">
+      <Project>{45A6CABF-5717-4293-988C-EB1EB1EF480C}</Project>
+      <Name>Voodoo.Business</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="skin\images\frame\Thumbs.db" />
+    <Content Include="Tools\Exist.ashx" />
+    <Content Include="Business\ToolEdit.aspx" />
+    <Content Include="Business\ToolList.aspx" />
+    <Content Include="Business\WorkTypeEdit.aspx" />
+    <Content Include="Business\WorkTypeList.aspx" />
+    <Content Include="Customer\CustomerEdit.aspx" />
+    <Content Include="Employees\EmployeesEdit.aspx" />
+    <Content Include="Employees\EmployeesList.aspx" />
+    <Content Include="PayLog\ZPayLogEdit.aspx" />
+    <Content Include="PayLog\ZPayLogList.aspx" />
+    <Content Include="skin\images\welcom.jpg" />
+    <Content Include="Tools\Suggest.ashx" />
+    <Content Include="Customer\CustomerList.aspx" />
+    <Content Include="Login.aspx" />
+    <Content Include="Tools\Exit.ashx" />
+    <Content Include="welcome.htm" />
+    <Content Include="WorkLog\ZWorkLogEdit.aspx" />
+    <Content Include="WorkLog\ZWorkLogList.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>3481</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
