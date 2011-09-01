@@ -19,7 +19,7 @@ namespace Jiazheng
 
         protected void BindData()
         {
-
+            //
             int id=WS.RequestInt("id",11);
             DataSysDataContext dsd=new DataSysDataContext();
             var menus = from g in dsd.SysPart where g.ParentId == id && g.Display==true && g.MenuGroup.Length>0 select g;
