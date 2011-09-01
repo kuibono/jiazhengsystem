@@ -182,6 +182,14 @@ namespace Voodoo.Business
 				return this.GetTable<ZWorkEmployeesRelation>();
 			}
 		}
+		
+		public System.Data.Linq.Table<ViewUserWorkLog> ViewUserWorkLog
+		{
+			get
+			{
+				return this.GetTable<ViewUserWorkLog>();
+			}
+		}
 	}
 	
 	[Table(Name="dbo.[Group]")]
@@ -2683,6 +2691,231 @@ namespace Voodoo.Business
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.ViewUserWorkLog")]
+	public partial class ViewUserWorkLog
+	{
+		
+		private System.Nullable<int> _EmployeesId;
+		
+		private System.Nullable<decimal> _Salary;
+		
+		private System.Nullable<int> _WorkLogId;
+		
+		private string _UserName;
+		
+		private System.Nullable<int> _SalaryDegree;
+		
+		private string _UserType;
+		
+		private string _WorkContent;
+		
+		private System.Nullable<int> _CustomerId;
+		
+		private string _CustomerName;
+		
+		private System.Nullable<System.DateTime> _WorkTime;
+		
+		private System.Nullable<bool> _IsFinished;
+		
+		private System.Nullable<bool> _IsDelete;
+		
+		public ViewUserWorkLog()
+		{
+		}
+		
+		[Column(Storage="_EmployeesId", DbType="Int")]
+		public System.Nullable<int> EmployeesId
+		{
+			get
+			{
+				return this._EmployeesId;
+			}
+			set
+			{
+				if ((this._EmployeesId != value))
+				{
+					this._EmployeesId = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_Salary", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> Salary
+		{
+			get
+			{
+				return this._Salary;
+			}
+			set
+			{
+				if ((this._Salary != value))
+				{
+					this._Salary = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_WorkLogId", DbType="Int")]
+		public System.Nullable<int> WorkLogId
+		{
+			get
+			{
+				return this._WorkLogId;
+			}
+			set
+			{
+				if ((this._WorkLogId != value))
+				{
+					this._WorkLogId = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_UserName", DbType="NVarChar(50)")]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this._UserName = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_SalaryDegree", DbType="Int")]
+		public System.Nullable<int> SalaryDegree
+		{
+			get
+			{
+				return this._SalaryDegree;
+			}
+			set
+			{
+				if ((this._SalaryDegree != value))
+				{
+					this._SalaryDegree = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_UserType", DbType="NVarChar(50)")]
+		public string UserType
+		{
+			get
+			{
+				return this._UserType;
+			}
+			set
+			{
+				if ((this._UserType != value))
+				{
+					this._UserType = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_WorkContent", DbType="NVarChar(512)")]
+		public string WorkContent
+		{
+			get
+			{
+				return this._WorkContent;
+			}
+			set
+			{
+				if ((this._WorkContent != value))
+				{
+					this._WorkContent = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_CustomerId", DbType="Int")]
+		public System.Nullable<int> CustomerId
+		{
+			get
+			{
+				return this._CustomerId;
+			}
+			set
+			{
+				if ((this._CustomerId != value))
+				{
+					this._CustomerId = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_CustomerName", DbType="NVarChar(50)")]
+		public string CustomerName
+		{
+			get
+			{
+				return this._CustomerName;
+			}
+			set
+			{
+				if ((this._CustomerName != value))
+				{
+					this._CustomerName = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_WorkTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> WorkTime
+		{
+			get
+			{
+				return this._WorkTime;
+			}
+			set
+			{
+				if ((this._WorkTime != value))
+				{
+					this._WorkTime = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_IsFinished", DbType="Bit")]
+		public System.Nullable<bool> IsFinished
+		{
+			get
+			{
+				return this._IsFinished;
+			}
+			set
+			{
+				if ((this._IsFinished != value))
+				{
+					this._IsFinished = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_IsDelete", DbType="Bit")]
+		public System.Nullable<bool> IsDelete
+		{
+			get
+			{
+				return this._IsDelete;
+			}
+			set
+			{
+				if ((this._IsDelete != value))
+				{
+					this._IsDelete = value;
+				}
 			}
 		}
 	}

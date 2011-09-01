@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ZWorkLogEdit.aspx.cs" Inherits="Jiazheng.WorkLog.ZWorkLogEdit" %>
-
+<%@ Import Namespace="Voodoo" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -24,8 +24,24 @@
             $("#txt_WorkHour").isInt();
             $("#txt_PayMoney").isDouble();
             $("#form1").checkForm();
+            $(".salary").isDouble();
 
             $("#txt_HomeName").suggestTable("ZCustomer", "HomeName");
+            
+            $(".user").click(function(){
+                if($(this).attr("checked")==true)
+                {
+                    //$(this).parents("tr").find("input:text").attr("disabled",false)
+                    $("#salary_"+$(this).val()).attr("disabled",false)
+                }
+                else
+                {
+                    //$(this).parents("tr.itemrow").find("input:text").attr("disabled",true)
+                    //$(this).parents("tr.itemrow").find("input:text").val("0.00");
+                    $("#salary_"+$(this).val()).attr("disabled",true)
+                    $("#salary_"+$(this).val()).val("0.00");
+                }
+            })
 
         })
     </script>
@@ -134,22 +150,19 @@
                 服务员工:
             </td>
             <td>
-                <asp:CheckBoxList ID="cbl_EmployeesNames" runat="server" RepeatColumns="4" RepeatDirection="Horizontal"
-                    RepeatLayout="Flow">
-                </asp:CheckBoxList>
-                <table border="1" style="border:solid 1px gray;">
-                    <tr>
-                        <td>保洁员工</td>
+                <table border="0" cellpadding="4" cellspacing="1" class="edittable">
+                    <tr class='editheader'>
+                        <td width="120">保洁员工</td>
                         <td>提成工资</td>
                     </tr>
                     <asp:Repeater ID="list" runat="server">
                         <ItemTemplate>
-                        <tr>
+                        <tr class="itemrow">
                             <td>
-                                <input class="user" type="checkbox" name="users" id="em_<%#Eval("id") %>" value="<%#Eval("id") %>" /><label for="em_<%#Eval("id") %>"><%#Eval("UserName") %></label>
+                                <input class="user" type="checkbox" name="users" id="em_<%#Eval("id") %>" value="<%#Eval("id") %>" <%#Eval("check").ToBoolean()?"checked=checked":"" %> /><label for="em_<%#Eval("id") %>"><%#Eval("UserName") %></label>
                             </td>
                             <td>
-                                <input class="salary" type="text" name="salary" ID="salary_<%#Eval("id") %>" value="" />
+                                <input <%#Eval("check").ToBoolean()?"":"disabled=disabled" %> class="salary" type="text" name="salary" ID="salary_<%#Eval("id") %>" value="<%#Eval("salary") %>" />
                             </td>
                         </tr>
                         </ItemTemplate>
