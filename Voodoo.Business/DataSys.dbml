@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="RoleSys" Class="DataSysDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost\sql2005;Initial Catalog=RoleSys;Persist Security Info=True;User ID=sa" SettingsObjectName="Voodoo.Business.Properties.Settings" SettingsPropertyName="RoleSysConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost;Initial Catalog=RoleSys;Persist Security Info=True;User ID=sa" SettingsObjectName="Voodoo.Business.Properties.Settings" SettingsPropertyName="RoleSysConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.[Group]" Member="Group">
     <Type Name="Group">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -129,6 +129,22 @@
       <Column Name="EmployeesId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="WorkLogId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Salary" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ViewUserWorkLog" Member="ViewUserWorkLog">
+    <Type Name="ViewUserWorkLog">
+      <Column Name="EmployeesId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Salary" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="WorkLogId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SalaryDegree" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UserType" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="WorkContent" Type="System.String" DbType="NVarChar(512)" CanBeNull="true" />
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="WorkTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IsFinished" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

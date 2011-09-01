@@ -42,17 +42,17 @@ namespace Jiazheng.WorkLog
                         //m.MobilePhone.IndexOf(txt_MobilePhone.Text) > -1 &&
                         //m.WorkTime.IndexOf(txt_WorkTime.Text) > -1 &&
                         //m.WorkContent.IndexOf(txt_WorkContent.Text) > -1 &&
-                        m.HomeName.IndexOf(txt_HomeName.Text) > -1 
-                        //m.Address.IndexOf(txt_Address.Text) > -1 &&
-                        //m.WorkHour.IndexOf(txt_WorkHour.Text) > -1 &&
-                        //m.EmployeesIds.IndexOf(txt_EmployeesIds.Text) > -1 &&
-                        //m.EmployeesNames.IndexOf(txt_EmployeesNames.Text) > -1 &&
-                        //m.ToolIds.IndexOf(txt_ToolIds.Text) > -1 &&
-                        //m.PayMoney.IndexOf(txt_PayMoney.Text) > -1 &&
-                        //m.IsDelete.IndexOf(txt_IsDelete.Text) > -1 &&
-                        //m.IsFinished.IndexOf(txt_IsFinished.Text) > -1 &&
-                        //m.Customerappraise.IndexOf(txt_Customerappraise.Text) > -1 &&
-                        //m.Remark.IndexOf(txt_Remark.Text) > -1
+                        m.HomeName.IndexOf(txt_HomeName.Text) > -1
+                    //m.Address.IndexOf(txt_Address.Text) > -1 &&
+                    //m.WorkHour.IndexOf(txt_WorkHour.Text) > -1 &&
+                    //m.EmployeesIds.IndexOf(txt_EmployeesIds.Text) > -1 &&
+                    //m.EmployeesNames.IndexOf(txt_EmployeesNames.Text) > -1 &&
+                    //m.ToolIds.IndexOf(txt_ToolIds.Text) > -1 &&
+                    //m.PayMoney.IndexOf(txt_PayMoney.Text) > -1 &&
+                    //m.IsDelete.IndexOf(txt_IsDelete.Text) > -1 &&
+                    //m.IsFinished.IndexOf(txt_IsFinished.Text) > -1 &&
+                    //m.Customerappraise.IndexOf(txt_Customerappraise.Text) > -1 &&
+                    //m.Remark.IndexOf(txt_Remark.Text) > -1
                     select m;
             pager.RecordCount = l.Count();
             list.DataSource = l;
@@ -78,7 +78,11 @@ namespace Jiazheng.WorkLog
             if (IsPostBack)
             {
                 int[] Ids = WS.RequestString("ids").Split(',').ToIntArray();
-                dsd.ZWorkLog.Delete(p => p.Id.InArray(Ids));
+                foreach (int i in Ids)
+                {
+                    dsd.ZWorkLog.Delete(p => p.Id == i);
+                }
+
             }
 
             base.OnDelete();

@@ -36,10 +36,10 @@ namespace Jiazheng.WorkLog
                 ddl_CustomerId.Items.Add(new ListItem("--新客户--", "0"));
                 ddl_CustomerId.SelectedValue = "0";
 
-                cbl_EmployeesNames.DataSource = from l in dsd.ZEmployees where l.UserType == "保洁" select l;
-                cbl_EmployeesNames.DataTextField = "UserName";
-                cbl_EmployeesNames.DataValueField = "id";
-                cbl_EmployeesNames.DataBind();
+                //cbl_EmployeesNames.DataSource = from l in dsd.ZEmployees where l.UserType == "保洁" select l;
+                //cbl_EmployeesNames.DataTextField = "UserName";
+                //cbl_EmployeesNames.DataValueField = "id";
+                //cbl_EmployeesNames.DataBind();
 
                 var workralation = from r in dsd.ZWorkEmployeesRelation where r.WorkLogId == WS.RequestInt("id") select r;
 
@@ -47,8 +47,9 @@ namespace Jiazheng.WorkLog
                           join
                           ra in workralation
                           on em.Id equals ra.EmployeesId
-
-                          select new { userid = em.Id, em.UserName, check = ra.id > 0, ra.Salary, ra.WorkLogId };
+                          into temp
+                          from h in temp.DefaultIfEmpty()
+                          select new { em.Id, em.UserName, check = h.id !=null, Salary=h.Salary==null?0:h.Salary, WorkLogId=h.WorkLogId==null?0:h.WorkLogId };
 
 
                 list.DataSource = ems;
@@ -71,7 +72,7 @@ namespace Jiazheng.WorkLog
                     txt_WorkHour.Text = m.WorkHour.ToString();
                     //txt_EmployeesIds.Text = m.EmployeesIds.ToString();
                     //txt_EmployeesNames.Text = m.EmployeesNames.ToString();
-                    cbl_EmployeesNames.SetValue(m.EmployeesIds.Split(','));
+                    //cbl_EmployeesNames.SetValue(m.EmployeesIds.Split(','));
                     //txt_ToolIds.Text = m.ToolIds.ToString();
                     cbl_ToolIds.SetValue(m.ToolIds.Split(','));
                     txt_PayMoney.Text = m.PayMoney.ToString();
@@ -109,6 +110,9 @@ namespace Jiazheng.WorkLog
 
         public override void OnEdit()
         {
+            string[] users = WS.RequestString("users").Split(',');
+            string[] salarys = WS.RequestString("salary").Split(',');
+
             int id = WS.RequestInt("id");
             DataSysDataContext dsd = new DataSysDataContext();
             ZWorkLog m = new ZWorkLog();
@@ -117,6 +121,7 @@ namespace Jiazheng.WorkLog
             {
                 m = l.First();
             }
+            m.Sex = rbl_Sex.SelectedValue;
             m.CustomerId = ddl_CustomerId.SelectedValue.ToInt32(0);
             m.CustomerName = txt_CustomerName.Text.TrimDbDangerousChar();
             m.Tel = txt_Tel.Text.TrimDbDangerousChar();
@@ -126,10 +131,10 @@ namespace Jiazheng.WorkLog
             m.HomeName = txt_HomeName.Text.TrimDbDangerousChar();
             m.Address = txt_Address.Text.TrimDbDangerousChar();
             m.WorkHour = txt_WorkHour.Text.ToInt32();
-            m.EmployeesIds = cbl_EmployeesNames.GetValues();
-            m.EmployeesNames = cbl_EmployeesNames.GetTexts();
+            //m.EmployeesIds = cbl_EmployeesNames.GetValues();
+            //m.EmployeesNames = cbl_EmployeesNames.GetTexts();
             m.ToolIds = cbl_ToolIds.GetValues();
-            m.PayMoney = txt_PayMoney.Text.ToInt32();
+            m.PayMoney = txt_PayMoney.Text.ToDecimal();
             m.IsDelete = cb_IsDelete.Checked;
             m.IsFinished = cb_IsFinished.Checked;
             m.Customerappraise = txt_Customerappraise.Text.ToInt32(0);
@@ -199,11 +204,30 @@ namespace Jiazheng.WorkLog
             base.OnEdit();
 
 
-
-
-
             dsd.SubmitChanges();
 
+
+
+            for (int i=0;i<users.Length;i++)
+            {
+                ZWorkEmployeesRelation r = new ZWorkEmployeesRelation();
+                var rl = (from ra in dsd.ZWorkEmployeesRelation where ra.EmployeesId == users[i].ToInt32() && ra.WorkLogId == m.Id select ra).ToList();
+                if (rl.Count > 0)
+                {
+                    r = rl.First();
+                }
+                r.EmployeesId = users[i].ToInt32();
+                r.Salary = salarys[i].ToDecimal();
+                r.WorkLogId = m.Id;
+
+                //判断是否存在
+                if (rl.Count == 0)
+                {
+                    dsd.ZWorkEmployeesRelation.InsertOnSubmit(r);
+                }
+                
+            }
+            dsd.SubmitChanges();
 
 
             Js.AlertAndChangUrl("保存成功！", "ZWorkLogList.aspx");

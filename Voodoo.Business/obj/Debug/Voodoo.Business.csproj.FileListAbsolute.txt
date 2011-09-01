@@ -12,3 +12,17 @@ E:\代码\家政管理系统\Voodoo.Business\bin\Debug\en\Voodoo.resources.dll
 E:\代码\家政管理系统\Voodoo.Business\bin\Debug\zh-CHT\Voodoo.resources.dll
 E:\代码\家政管理系统\Voodoo.Business\bin\Debug\System.Data.SQLite.dll
 E:\代码\家政管理系统\Voodoo.Business\bin\Debug\NPOI.dll
+D:\jiazhengsystem\Voodoo.Business\bin\Debug\Voodoo.Business.dll.config
+D:\jiazhengsystem\Voodoo.Business\bin\Debug\Voodoo.Business.dll
+D:\jiazhengsystem\Voodoo.Business\bin\Debug\Voodoo.Business.pdb
+D:\jiazhengsystem\Voodoo.Business\bin\Debug\Voodoo.dll
+D:\jiazhengsystem\Voodoo.Business\bin\Debug\System.Data.SQLite.dll
+D:\jiazhengsystem\Voodoo.Business\bin\Debug\MySql.Data.dll
+D:\jiazhengsystem\Voodoo.Business\bin\Debug\NPOI.dll
+D:\jiazhengsystem\Voodoo.Business\bin\Debug\Voodoo.pdb
+D:\jiazhengsystem\Voodoo.Business\bin\Debug\Voodoo.xml
+D:\jiazhengsystem\Voodoo.Business\bin\Debug\en\Voodoo.resources.dll
+D:\jiazhengsystem\Voodoo.Business\bin\Debug\zh-CHT\Voodoo.resources.dll
+D:\jiazhengsystem\Voodoo.Business\obj\Debug\ResolveAssemblyReference.cache
+D:\jiazhengsystem\Voodoo.Business\obj\Debug\Voodoo.Business.dll
+D:\jiazhengsystem\Voodoo.Business\obj\Debug\Voodoo.Business.pdb

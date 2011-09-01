@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 10.125" name="DataSys">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 11" name="DataSys">
   <DataContextMoniker Name="/DataSysDataContext" />
   <nestedChildShapes>
     <classShape Id="81233099-5d6a-4b5d-bd21-7a8deee786a7" absoluteBounds="0.5, 0.5, 2, 1.1111067708333333">
@@ -73,6 +73,12 @@
       <DataClassMoniker Name="/DataSysDataContext/ZWorkEmployeesRelation" />
       <nestedChildShapes>
         <elementListCompartment Id="f60f17f9-be41-4a65-b48b-209f94f7f1ad" absoluteBounds="3.64, 8.835, 1.9700000000000002, 0.88834635416666674" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d84e7db7-51e7-46e1-94ac-e1b47c654a85" absoluteBounds="5.875, 8, 2, 2.7973046875">
+      <DataClassMoniker Name="/DataSysDataContext/ViewUserWorkLog" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4ccc3f93-9bed-45b4-a1ef-af756c93d716" absoluteBounds="5.89, 8.46, 1.9700000000000002, 2.2373046875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>
