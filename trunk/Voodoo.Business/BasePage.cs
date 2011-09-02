@@ -227,5 +227,27 @@ namespace Voodoo.Business
         }
         #endregion
 
+        #region 系统参数
+        /// <summary>
+        /// 保存系统参数
+        /// </summary>
+        /// <param name="info"></param>
+        public void SaveSystemInfo(SysInfo info)
+        {
+            Voodoo.IO.XML.SaveSerialize(info, Server.MapPath("~/SystemInfo.Config"));
+        }
+
+        /// <summary>
+        /// 获取系统参数
+        /// </summary>
+        public SysInfo SystemInfo
+        {
+            get
+            {
+                return (SysInfo)Voodoo.IO.XML.DeSerialize(typeof(SysInfo), Voodoo.IO.File.Read(Server.MapPath("~/SystemInfo.Config")));
+            }
+        }
+        #endregion
+
     }
 }

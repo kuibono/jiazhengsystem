@@ -214,6 +214,13 @@
       <DependentUpon>ZPayLogList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Salary\PaySalary.aspx.cs">
+      <DependentUpon>PaySalary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Salary\PaySalary.aspx.designer.cs">
+      <DependentUpon>PaySalary.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Salary\SalaryList.aspx.cs">
       <DependentUpon>SalaryList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -313,6 +320,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="skin\images\frame\Thumbs.db" />
+    <Content Include="Salary\PaySalary.aspx" />
     <Content Include="Salary\SalaryList.aspx" />
     <Content Include="Tools\Exist.ashx" />
     <Content Include="Business\ToolEdit.aspx" />

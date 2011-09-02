@@ -17,6 +17,7 @@
         $(function() {
             $("#txt_PayMoney").isDouble();
             $("#txt_PayHour").isInt();
+            $("#txt_CardNo").cannotnull();
             $("#form1").checkForm();
 
         })
@@ -51,6 +52,14 @@
             <td width="88%">
                 <asp:DropDownList ID="ddl_Saler" runat="server">
                 </asp:DropDownList>
+            </td>
+        </tr>
+        <tr class="itemrow">
+            <td>
+                卡号:
+            </td>
+            <td>
+                <asp:TextBox ID="txt_CardNo" runat="server"></asp:TextBox>
             </td>
         </tr>
         <tr class="itemrow">
