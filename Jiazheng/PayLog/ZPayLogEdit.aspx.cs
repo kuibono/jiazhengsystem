@@ -46,6 +46,7 @@ namespace Jiazheng.PayLog
                     txt_PayMoney.Text = m.PayMoney.ToString();
                     txt_PayHour.Text = m.PayHour.ToString();
                     ddl_Saler.SelectedValue = m.EmployeesId.ToString();
+                    txt_CardNo.Text = m.CardNo;
                 }
 
 
@@ -61,6 +62,11 @@ namespace Jiazheng.PayLog
 
         public override void OnEdit()
         {
+            if (ddl_Cus.SelectedValue == "0" || ddl_Saler.SelectedValue == "0")
+            {
+                Js.AlertAndGoback("客户和售卡人必选");
+            }
+
             int id = WS.RequestInt("id");
             DataSysDataContext dsd = new DataSysDataContext();
             ZPayLog m = new ZPayLog();
@@ -69,13 +75,13 @@ namespace Jiazheng.PayLog
             {
                 m = l.First();
             }
-            m.UserId = ddl_Cus.SelectedValue.ToInt32();
+            m.UserId = ddl_Cus.SelectedValue.ToInt32(0);
             m.UserName = ddl_Cus.SelectedItem.Text;
             m.OperUserId = Opuser.Id;
-            m.PayMoney = txt_PayMoney.Text.ToDecimal();
-            m.PayHour = txt_PayHour.Text.ToInt32();
-            m.EmployeesId = ddl_Saler.SelectedValue.ToInt32();
-
+            m.PayMoney = txt_PayMoney.Text.ToDecimal(0);
+            m.PayHour = txt_PayHour.Text.ToInt32(0);
+            m.EmployeesId = ddl_Saler.SelectedValue.ToInt32(0);
+            m.CardNo = txt_CardNo.Text.TrimDbDangerousChar();
             if (id > 0 && l.Count() > 0)
             {
                 //编辑
@@ -86,7 +92,10 @@ namespace Jiazheng.PayLog
                 //增加用户剩余工时
                 var l_cus = from c in dsd.ZCustomer where c.Id == m.UserId select c;
                 ZCustomer cus = l_cus.First();
+
                 cus.LeftHour += m.PayHour;
+
+                cus.CardNo = txt_CardNo.Text.TrimDbDangerousChar();
 
                 this.IsAdd = "true";
                 dsd.ZPayLog.InsertOnSubmit(m);

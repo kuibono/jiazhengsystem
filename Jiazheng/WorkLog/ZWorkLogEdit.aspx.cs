@@ -49,7 +49,7 @@ namespace Jiazheng.WorkLog
                           on em.Id equals ra.EmployeesId
                           into temp
                           from h in temp.DefaultIfEmpty()
-                          select new { em.Id, em.UserName, check = h.id !=null, Salary=h.Salary==null?0:h.Salary, WorkLogId=h.WorkLogId==null?0:h.WorkLogId };
+                          select new { em.Id, em.UserName, check = h.id != null, Salary = h.Salary == null ? 0 : h.Salary, WorkLogId = h.WorkLogId == null ? 0 : h.WorkLogId };
 
 
                 list.DataSource = ems;
@@ -173,31 +173,35 @@ namespace Jiazheng.WorkLog
             ds.SubmitChanges();
 
             //扣除金额和工时
-            if (ddl_CustomerId.SelectedValue == "0" || txt_PayMoney.Text.ToDecimal() > 0)
+            //如果是编辑 则不处理
+            if (WS.RequestInt("id") <= 0)
             {
-                //新客户直接添加支付记录  老用户也可以直接缴费
-                ZPayLog p = new ZPayLog();
-                p.OperUserId = Opuser.Id;
-                p.PayHour = txt_WorkHour.Text.ToInt32();
-                p.PayMoney = txt_PayMoney.Text.ToDecimal();
-                p.UserId = cus.Id;
-                p.UserName = txt_CustomerName.Text;
-                dsd.ZPayLog.InsertOnSubmit(p);
-            }
-            else
-            {
-                //扣除用户工时，如果剩余工时不足，则跳出错误！
-                var cl = from c in dsd.ZCustomer where c.Id == ddl_CustomerId.SelectedValue.ToInt32() select c;
-                cus = cl.First();
-                if (cus.LeftHour - txt_WorkHour.Text.ToInt32() < 0)
+                if ((ddl_CustomerId.SelectedValue == "0" || txt_PayMoney.Text.ToDecimal() > 0))
                 {
-                    Js.AlertAndGoback("客户剩余工时不足，请充值或者直接付款！");
-                    return;
+                    //新客户直接添加支付记录  老用户也可以直接缴费
+                    ZPayLog p = new ZPayLog();
+                    p.OperUserId = Opuser.Id;
+                    p.PayHour = txt_WorkHour.Text.ToInt32();
+                    p.PayMoney = txt_PayMoney.Text.ToDecimal();
+                    p.UserId = cus.Id;
+                    p.UserName = txt_CustomerName.Text;
+                    dsd.ZPayLog.InsertOnSubmit(p);
                 }
                 else
                 {
-                    cus.LeftHour -= txt_WorkHour.Text.ToInt32();
+                    //扣除用户工时，如果剩余工时不足，则跳出错误！
+                    var cl = from c in dsd.ZCustomer where c.Id == ddl_CustomerId.SelectedValue.ToInt32() select c;
+                    cus = cl.First();
+                    if (cus.LeftHour - txt_WorkHour.Text.ToInt32() < 0)
+                    {
+                        Js.AlertAndGoback("客户剩余工时不足，请充值或者直接付款！");
+                        return;
+                    }
+                    else
+                    {
+                        cus.LeftHour -= txt_WorkHour.Text.ToInt32();
 
+                    }
                 }
             }
 
@@ -208,7 +212,7 @@ namespace Jiazheng.WorkLog
 
 
 
-            for (int i=0;i<users.Length;i++)
+            for (int i = 0; i < users.Length; i++)
             {
                 ZWorkEmployeesRelation r = new ZWorkEmployeesRelation();
                 var rl = (from ra in dsd.ZWorkEmployeesRelation where ra.EmployeesId == users[i].ToInt32() && ra.WorkLogId == m.Id select ra).ToList();
@@ -225,7 +229,7 @@ namespace Jiazheng.WorkLog
                 {
                     dsd.ZWorkEmployeesRelation.InsertOnSubmit(r);
                 }
-                
+
             }
             dsd.SubmitChanges();
 
