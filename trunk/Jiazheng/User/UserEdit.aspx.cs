@@ -21,7 +21,7 @@ namespace Jiazheng.User
                 DataSysDataContext dsd=new DataSysDataContext();
 
 
-                ddl_Group.DataSource = from g in dsd.Group select g;
+                ddl_Group.DataSource = from g in dsd.Group where g.Id!=4 select g;
                 ddl_Group.DataTextField = "Name";
                 ddl_Group.DataValueField = "id";
                 ddl_Group.DataBind();

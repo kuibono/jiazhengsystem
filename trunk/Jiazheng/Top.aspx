@@ -144,14 +144,14 @@
     <table width="100%" border="0" cellpadding="0" cellspacing="0" background="skin/images/frame/topbg.gif">
         <tr>
             <td width='20%' height="60">
-                <img src="skin/images/frame/logo.gif" />
+                <img src="skin/images/frame/logo.png" />
             </td>
             <td width='80%' align="right" valign="bottom">
                 <table width="750" border="0" cellspacing="0" cellpadding="0">
                     <tr>
                         <td align="right" height="26" style="padding-right: 10px; line-height: 26px;">
-                            您好：<span class="username"><%= Opuser.UserName%></span>，欢迎使用内容管理系统！ [<a href="http://www.865171.cn"
-                                target="_blank">网站主页</a>] [<a href="" target="_blank">修改密码</a>] [<a href="javascript:parent.location.href='Tools/Exit.ashx'" target="_top">注销退出</a>]&nbsp;
+                            您好：<span class="username"><%= Opuser.UserName%></span>，欢迎使用本系统！ [<a href="welcome.htm"
+                                target="_blank">网站主页</a>] [<a href="javascript:parent.location.href='Tools/Exit.ashx'" target="_top">注销退出</a>]&nbsp;
                         </td>
                     </tr>
                     <tr>

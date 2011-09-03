@@ -33,7 +33,7 @@
 
 <tr bgcolor="#E7E7E7" class="Title">
 
-	<td height="24" colspan="5">&nbsp;群组列表&nbsp;</td>
+	<td height="24" colspan="3">&nbsp;群组列表&nbsp;</td>
 
 </tr>
 
@@ -77,7 +77,7 @@
 
 <tr bgcolor="#FAFAF1">
 
-<td height="28" colspan="5">
+<td height="28" colspan="3">
 
 	&nbsp;
 	
@@ -95,7 +95,7 @@
 
 <tr align="right" bgcolor="#EEF4EA">
 
-	<td height="36" colspan="5" align="center"><!--翻页代码 -->
+	<td height="36" colspan="3" align="center"><!--翻页代码 -->
         <cc1:AspNetPager ID="pager" runat="server" PageSize="10" AlwaysShow="true" 
             CustomInfoHTML="共%RecordCount%条记录，%CurrentPageIndex%/%PageCount%页" 
             FirstPageText="[首页]" LastPageText="[尾页]" NextPageText="[后页]" PrevPageText="[前页]" 
