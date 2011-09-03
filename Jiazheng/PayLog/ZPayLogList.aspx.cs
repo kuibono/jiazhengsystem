@@ -33,15 +33,37 @@ namespace Jiazheng.PayLog
         protected void BindData()
         {
             DataSysDataContext dsd = new DataSysDataContext();
-            var l = from m in dsd.ZPayLog
-                    where
-                        //m.Id.IndexOf(txt_Id.Text) > -1 &&
-                        //m.UserId.IndexOf(txt_UserId.Text) > -1 &&
-                        m.UserName.IndexOf(txt_UserName.Text) > -1 
-                        //m.OperUserId.IndexOf(txt_OperUserId.Text) > -1 &&
-                        //m.PayMoney.IndexOf(txt_PayMoney.Text) > -1 &&
-                        //m.PayHour.IndexOf(txt_PayHour.Text) > -1
-                    select m;
+
+            var l = from pay in dsd.ZPayLog
+                    join em in dsd.ZEmployees
+                    on pay.EmployeesId equals em.Id
+                    into newlist
+                    from ls in newlist.DefaultIfEmpty()
+                    select new
+                    {
+                        pay.Id,
+                        pay.UserId,
+                        pay.CardNo,
+                        pay.PayHour,
+                        pay.PayMoney,
+                        pay.PayTime,
+                        pay.UserName,
+                        EmployeesName=ls.UserName
+                    };
+
+            l = l.Where(p => p.CardNo.IndexOf(txt_CardNo.Text) > -1);
+            l = l.Where(p => p.EmployeesName.IndexOf(txt_EmpoyeesName.Text) > -1);
+            l = l.Where(p => p.UserName.IndexOf(txt_UserName.Text) > -1);
+
+            //var l = from m in dsd.ZPayLog
+            //        where
+            //            //m.Id.IndexOf(txt_Id.Text) > -1 &&
+            //            //m.UserId.IndexOf(txt_UserId.Text) > -1 &&
+            //            m.UserName.IndexOf(txt_UserName.Text) > -1 
+            //            //m.OperUserId.IndexOf(txt_OperUserId.Text) > -1 &&
+            //            //m.PayMoney.IndexOf(txt_PayMoney.Text) > -1 &&
+            //            //m.PayHour.IndexOf(txt_PayHour.Text) > -1
+            //        select m;
 
             if (WS.RequestInt("cid")>0)
             {

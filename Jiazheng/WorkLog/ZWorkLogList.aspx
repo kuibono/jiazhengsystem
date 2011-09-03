@@ -7,10 +7,15 @@
 <head runat="server">
     <title>服务列表</title>
     <link rel="stylesheet" type="text/css" href="../skin/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="../skin/css/jquery.autocomplete.css" />
 
     <script type="text/javascript" src="../skin/js/jquery-1.3.2.min.js"></script>
 
+    <script type="text/javascript" src="../skin/js/jquery.autocomplete.js"></script>
+
     <script type="text/javascript" src="../skin/js/common.js"></script>
+
+    <script type="text/javascript" src="../skin/js/My97DatePicker/WdatePicker.js"></script>
 
     <script type="text/javascript">
         $(function() {
@@ -21,6 +26,12 @@
                 }
                 return confirm("模块数据删除后不可恢复，并且将造成所删模块不能访问的问题，是否继续操作？");
             })
+
+            $("#txt_CustomerName").suggestTable("ZWorkLog", "CustomerName");
+            $("#txt_Tel").suggestTable("ZWorkLog", "MobilePhone");
+            $("#txt_HomeName").suggestTable("ZWorkLog", "HomeName");
+            $("#txt_WorkContent").suggestTable("ZWorkLog", "WorkContent");
+            $("#txt_Worker").suggestTable("ZEmployees", "UserName");
         })
     </script>
 
@@ -40,13 +51,13 @@
                         <td>
                             客户姓名：
                         </td>
-                        <td style="width: 160px">
+                        <td align="left">
                             <asp:TextBox ID="txt_CustomerName" runat="server"></asp:TextBox>
                         </td>
                         <td>
                             电话：
                         </td>
-                        <td style="width: 160px">
+                        <td align="left">
                             <asp:TextBox ID="txt_Tel" runat="server"></asp:TextBox>
                         </td>
                     </tr>
@@ -54,28 +65,32 @@
                         <td>
                             服务时间：
                         </td>
-                        <td style="width: 160px">
-                            <asp:TextBox ID="txt_WorkTime" runat="server"></asp:TextBox>
+                        <td align="left">
+                            <asp:TextBox ID="txt_WorkTime_s" runat="server" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"
+                                Width="70px"></asp:TextBox>
+                            ~
+                            <asp:TextBox ID="txt_WorkTime_e" runat="server" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"
+                                Width="70px"></asp:TextBox>
                         </td>
                         <td>
                             小区名称：
                         </td>
-                        <td style="width: 160px">
+                        <td align="left">
                             <asp:TextBox ID="txt_HomeName" runat="server"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            工时：
+                            工作内容：
                         </td>
-                        <td style="width: 160px">
-                            <asp:TextBox ID="txt_WorkHour" runat="server"></asp:TextBox>
+                        <td align="left">
+                            <asp:TextBox ID="txt_WorkContent" runat="server"></asp:TextBox>
                         </td>
                         <td>
-                            已经完工：
+                            保洁员：
                         </td>
-                        <td style="width: 160px">
-                            <asp:TextBox ID="txt_IsFinished" runat="server"></asp:TextBox>
+                        <td align="left">
+                            <asp:TextBox ID="txt_Worker" runat="server"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>

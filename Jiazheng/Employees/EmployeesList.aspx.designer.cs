@@ -41,13 +41,13 @@ namespace Jiazheng.Employees {
         protected global::System.Web.UI.WebControls.TextBox txt_UserName;
         
         /// <summary>
-        /// txt_Sex 控件。
+        /// rbl_Sex 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_Sex;
+        protected global::System.Web.UI.WebControls.RadioButtonList rbl_Sex;
         
         /// <summary>
         /// txt_Tel 控件。
@@ -59,13 +59,13 @@ namespace Jiazheng.Employees {
         protected global::System.Web.UI.WebControls.TextBox txt_Tel;
         
         /// <summary>
-        /// txt_WorkAble 控件。
+        /// rbl_UserType 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_WorkAble;
+        protected global::System.Web.UI.WebControls.RadioButtonList rbl_UserType;
         
         /// <summary>
         /// btn_Search 控件。

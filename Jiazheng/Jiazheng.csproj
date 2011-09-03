@@ -185,6 +185,9 @@
     <Compile Include="Employees\EmployeesList.aspx.designer.cs">
       <DependentUpon>EmployeesList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -214,13 +217,6 @@
       <DependentUpon>ZPayLogList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Salary\PaySalary.aspx.cs">
-      <DependentUpon>PaySalary.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Salary\PaySalary.aspx.designer.cs">
-      <DependentUpon>PaySalary.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Salary\SalaryList.aspx.cs">
       <DependentUpon>SalaryList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -262,6 +258,13 @@
     </Compile>
     <Compile Include="Sys\SysPartList.aspx.designer.cs">
       <DependentUpon>SysPartList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sys\SystemSetting.aspx.cs">
+      <DependentUpon>SystemSetting.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sys\SystemSetting.aspx.designer.cs">
+      <DependentUpon>SystemSetting.aspx</DependentUpon>
     </Compile>
     <Compile Include="Tools\Exist.ashx.cs">
       <DependentUpon>Exist.ashx</DependentUpon>
@@ -320,8 +323,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="skin\images\frame\Thumbs.db" />
-    <Content Include="Salary\PaySalary.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="Salary\SalaryList.aspx" />
+    <Content Include="skin\css\jquery.autocomplete.css" />
+    <Content Include="Sys\SystemSetting.aspx" />
     <Content Include="Tools\Exist.ashx" />
     <Content Include="Business\ToolEdit.aspx" />
     <Content Include="Business\ToolList.aspx" />

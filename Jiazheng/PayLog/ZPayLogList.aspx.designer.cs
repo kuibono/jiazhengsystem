@@ -32,22 +32,22 @@ namespace Jiazheng.PayLog {
         protected global::System.Web.UI.WebControls.TextBox txt_UserName;
         
         /// <summary>
-        /// txt_PayMoney 控件。
+        /// txt_CardNo 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_PayMoney;
+        protected global::System.Web.UI.WebControls.TextBox txt_CardNo;
         
         /// <summary>
-        /// txt_PayHour 控件。
+        /// txt_EmpoyeesName 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_PayHour;
+        protected global::System.Web.UI.WebControls.TextBox txt_EmpoyeesName;
         
         /// <summary>
         /// btn_Search 控件。

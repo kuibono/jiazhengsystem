@@ -32,14 +32,16 @@ namespace Jiazheng.Customer
         {
             DataSysDataContext dsd = new DataSysDataContext();
             var l = from cus in dsd.ZCustomer select cus;
-            if (rbl_Sex.SelectedValue!="")
+            l = l.Where(m => m.UserName.IndexOf(txt_Name.Text) > -1 &&
+                             m.CardNo.IndexOf(txt_CardNo.Text) > -1 &&
+                             (m.Tel.IndexOf(txt_Tel.Text) > -1 || m.MobilePhone.IndexOf(txt_Tel.Text) > -1) &&
+                             m.HomeName.IndexOf(txt_HomeName.Text) > -1
+                            );
+            if (rbl_Sex.SelectedValue != "")
             {
-                l = l.Where(m => m.UserName.IndexOf(txt_Name.Text) > -1 && m.Sex == rbl_Sex.SelectedValue && m.CardNo.IndexOf(txt_CardNo.Text) > -1 && (m.Tel.IndexOf(txt_Tel.Text) > -1 || m.MobilePhone.IndexOf(txt_Tel.Text) > -1));
+                l = l.Where(m => m.Sex == rbl_Sex.SelectedValue);
             }
-            else
-            {
-                l = l.Where(m => m.UserName.IndexOf(txt_Name.Text) > -1 && m.CardNo.IndexOf(txt_CardNo.Text) > -1 && (m.Tel.IndexOf(txt_Tel.Text) > -1 || m.MobilePhone.IndexOf(txt_Tel.Text) > -1));
-            }
+
             pager.RecordCount = l.Count();
             list.DataSource = l;
             list.DataBind();

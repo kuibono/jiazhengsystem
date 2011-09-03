@@ -32,21 +32,23 @@ namespace Jiazheng.Employees
         protected void BindData()
         {
             DataSysDataContext dsd = new DataSysDataContext();
-            var l = from m in dsd.ZEmployees
-                    where
-                        //m.Id.IndexOf(txt_Id.Text) > -1 &&
-                        m.UserNo.IndexOf(txt_UserNo.Text) > -1 &&
-                        m.UserName.IndexOf(txt_UserName.Text) > -1 &&
-                        m.Sex.IndexOf(txt_Sex.Text) > -1 &&
-                        //m.Birthday.IndexOf(txt_Birthday.Text) > -1 &&
-                        (m.Tel.IndexOf(txt_Tel.Text) > -1 || m.MobilePhone.IndexOf(txt_Tel.Text) > -1) &&
-                        //m.Address.IndexOf(txt_Address.Text) > -1 &&
-                        //m.JoinTime.IndexOf(txt_JoinTime.Text) > -1 &&
-                        m.WorkAble.IndexOf(txt_WorkAble.Text) > -1
-                        //m.SalaryDegree.IndexOf(txt_SalaryDegree.Text) > -1 &&
-                        //m.IsFree.IndexOf(txt_IsFree.Text) > -1 &&
-                        //m.Remark.IndexOf(txt_Remark.Text) > -1
-                    select m;
+            var l = from m in dsd.ZEmployees select m;
+
+            l = l.Where(p => p.UserNo.IndexOf(txt_UserNo.Text) > -1);
+            l = l.Where(p => p.UserName.IndexOf(txt_UserName.Text) > -1);
+
+            if (rbl_Sex.SelectedValue!="")
+            {
+                l = l.Where(p => p.Sex==rbl_Sex.SelectedValue);
+            }
+
+            l = l.Where(p => p.Tel.IndexOf(txt_Tel.Text) > -1 || p.MobilePhone.IndexOf(txt_Tel.Text) > -1);
+
+            if (rbl_UserType.SelectedValue!="")
+            {
+                l = l.Where(p => p.UserType == rbl_UserType.SelectedValue);
+            }
+            
             pager.RecordCount = l.Count();
             list.DataSource = l;
             list.DataBind();

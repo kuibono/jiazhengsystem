@@ -7,9 +7,9 @@
 <head runat="server">
     <title>员工列表</title>
     <link rel="stylesheet" type="text/css" href="../skin/css/base.css" />
-
+    <link rel="stylesheet" type="text/css" href="../skin/css/jquery.autocomplete.css" />
     <script type="text/javascript" src="../skin/js/jquery-1.3.2.min.js"></script>
-
+    <script type="text/javascript" src="../skin/js/jquery.autocomplete.js"></script>
     <script type="text/javascript" src="../skin/js/common.js"></script>
 
     <script type="text/javascript">
@@ -22,6 +22,11 @@
 
                 return confirm("模块数据删除后不可恢复，并且将造成所删模块不能访问的问题，是否继续操作？");
             })
+
+            $("#txt_Name").suggestTable("ZCustomer", "UserName");
+            $("#txt_CardNo").suggestTable("ZCustomer", "CardNo");
+            $("#txt_Tel").suggestTable("ZCustomer", "MobilePhone");
+            $("#txt_HomeName").suggestTable("ZCustomer", "HomeName");
         })
     </script>
 </head>

@@ -33,27 +33,34 @@ namespace Jiazheng.WorkLog
         protected void BindData()
         {
             DataSysDataContext dsd = new DataSysDataContext();
-            var l = from m in dsd.ZWorkLog
-                    where
-                        //m.Id.IndexOf(txt_Id.Text) > -1 &&
-                        //m.CustomerId.IndexOf(txt_CustomerId.Text) > -1 &&
-                        m.CustomerName.IndexOf(txt_CustomerName.Text) > -1 &&
-                        m.Tel.IndexOf(txt_Tel.Text) > -1 &&
-                        //m.MobilePhone.IndexOf(txt_MobilePhone.Text) > -1 &&
-                        //m.WorkTime.IndexOf(txt_WorkTime.Text) > -1 &&
-                        //m.WorkContent.IndexOf(txt_WorkContent.Text) > -1 &&
-                        m.HomeName.IndexOf(txt_HomeName.Text) > -1
-                    //m.Address.IndexOf(txt_Address.Text) > -1 &&
-                    //m.WorkHour.IndexOf(txt_WorkHour.Text) > -1 &&
-                    //m.EmployeesIds.IndexOf(txt_EmployeesIds.Text) > -1 &&
-                    //m.EmployeesNames.IndexOf(txt_EmployeesNames.Text) > -1 &&
-                    //m.ToolIds.IndexOf(txt_ToolIds.Text) > -1 &&
-                    //m.PayMoney.IndexOf(txt_PayMoney.Text) > -1 &&
-                    //m.IsDelete.IndexOf(txt_IsDelete.Text) > -1 &&
-                    //m.IsFinished.IndexOf(txt_IsFinished.Text) > -1 &&
-                    //m.Customerappraise.IndexOf(txt_Customerappraise.Text) > -1 &&
-                    //m.Remark.IndexOf(txt_Remark.Text) > -1
-                    select m;
+            var l = from m in dsd.ZWorkLog select m;
+
+            l = l.Where(p => p.CustomerName.IndexOf(txt_CustomerName.Text) > -1);
+            l = l.Where(p => p.Tel.IndexOf(txt_Tel.Text) > -1 || p.MobilePhone.IndexOf(txt_Tel.Text) > -1);
+            l = l.Where(p => p.HomeName.IndexOf(txt_HomeName.Text) > -1);
+            if (txt_WorkTime_e.ToDateTime().ToString("yyyy-MM-dd") != "2000-01-01" && txt_WorkTime_s.ToDateTime().ToString("yyyy-MM-dd") != "2000-01-01")
+            {
+                l = l.Where(p => p.WorkTime > Convert.ToDateTime(txt_WorkTime_s.Text) && p.WorkTime < Convert.ToDateTime(txt_WorkTime_e.Text));
+            }
+            l = l.Where(p => p.WorkContent.IndexOf(txt_WorkContent.Text) > -1);
+
+            //员工
+            var em = from r in dsd.ZWorkEmployeesRelation
+                     join e in dsd.ZEmployees.Where(p => p.UserName.IndexOf(txt_Worker.Text) > -1)
+                     on r.EmployeesId equals e.Id
+                     into emm
+
+                     from ex in emm
+                     select new { r.WorkLogId};
+
+
+            l = from work in l
+                join e in em
+                on work.Id equals e.WorkLogId
+                into www
+                from x in www
+                select work;
+
             pager.RecordCount = l.Count();
             list.DataSource = l;
             list.DataBind();
