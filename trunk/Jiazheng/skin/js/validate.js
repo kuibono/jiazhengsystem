@@ -9,15 +9,15 @@
         $("#err_" + this.attr("id")).remove();
     },
     cannotnull: function() {
-        $(this).blur(function() {
-            var values = $(this).val();
-            if (values == "") {
-                $(this).err("必填项！");
-            }
-            else {
-                $(this).clearerr();
-            }
-        });
+//        $(this).blur(function() {
+//            var values = $(this).val();
+//            if (values == "") {
+//                $(this).err("必填项！");
+//            }
+//            else {
+//                $(this).clearerr();
+//            }
+//        });
 
     },
     isTel: function() {
