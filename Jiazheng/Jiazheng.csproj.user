@@ -10,8 +10,7 @@
           <NativeDebugging>False</NativeDebugging>
           <SQLDebugging>False</SQLDebugging>
           <PublishCopyOption>RunFiles</PublishCopyOption>
-          <PublishTargetLocation>
-          </PublishTargetLocation>
+          <PublishTargetLocation>C:\Documents and Settings\Administrator\桌面\家政系统发布\</PublishTargetLocation>
           <PublishDeleteAllFiles>False</PublishDeleteAllFiles>
           <PublishCopyAppData>True</PublishCopyAppData>
           <ExternalProgram>
