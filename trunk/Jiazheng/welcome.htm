@@ -2,7 +2,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
     <title>welcome</title>
-    
+    <script type="text/javascript" src="skin/js/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="skin/js/jquery.messager.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $.getJSON("Tools/CardTip.ashx", function(json) {
+                if (json.length > 0) {
+                    var msg = "下列用户的家政卡即将到期：<br/>";
+                    for (var i = 0; i < json.length; i++) {
+                        msg += "<a href='Customer/CustomerEdit.aspx?id=" + json[i].id + "'>" + json[i].username + "</a>";
+                        if (i != json.length - 1) {
+                            msg += ",";
+                        }
+                    }
+
+                    $.messager.show('过期提醒', msg, 0);
+                }
+            })
+        })
+    </script>
 </head>
 <body style="background-color:#e4f2da">
     <br />

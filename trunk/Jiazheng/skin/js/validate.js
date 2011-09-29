@@ -24,10 +24,7 @@
         $(this).blur(function() {
             var values = $(this).val();
             reg = new RegExp(/^((\d{3,4}-)|\d{3.4}-)?\d{7,8}$/);
-            if (values.length == 0) {
-                $(this).err("必填项！");
-            }
-            else if (!reg.test(values)) {
+            if (!reg.test(values)) {
                 $(this).err("格式不正确！");
             }
             else {
@@ -39,10 +36,7 @@
         $(this).blur(function() {
             var values = $(this).val();
             reg = new RegExp(/^1[358]\d{9}$/);
-            if (values.length == 0) {
-                $(this).err("必填项！");
-            }
-            else if (!reg.test(values)) {
+            if (!reg.test(values)) {
                 $(this).err("格式不正确！");
             }
             else {
@@ -53,10 +47,7 @@
     isInt: function() {
         $(this).blur(function() {
             var values = $(this).val();
-            if (values.length == 0) {
-                $(this).err("必填项！");
-            }
-            else if (isNaN(values)) {
+            if (isNaN(values)) {
                 $(this).err("格式不正确！");
             }
             else {
@@ -68,10 +59,7 @@
         $(this).blur(function() {
             var values = $(this).val();
             reg = new RegExp(/^[-]?\d+[.]?\d*$/);
-            if (values.length == 0) {
-                $(this).err("必填项！");
-            }
-            else if (!reg.test(values)) {
+            if (!reg.test(values)) {
                 $(this).err("格式不正确！");
             }
             else {
@@ -101,10 +89,7 @@
         $(this).blur(function() {
             var values = $(this).val();
             reg = new RegExp(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-z][a-z.]{2,8}$/);
-            if (values.length == 0) {
-                $(this).err("必填项！");
-            }
-            else if (!reg.test(values)) {
+            if (!reg.test(values)) {
                 $(this).err("格式不正确！");
             }
             else {

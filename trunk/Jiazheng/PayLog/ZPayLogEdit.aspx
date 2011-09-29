@@ -64,6 +64,14 @@
         </tr>
         <tr class="itemrow">
             <td>
+                有效期:
+            </td>
+            <td>
+                <asp:TextBox ID="txt_VTime" runat="server" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"></asp:TextBox>
+            </td>
+        </tr>
+        <tr class="itemrow">
+            <td>
                 支付金额:
             </td>
             <td>

@@ -68,7 +68,10 @@ namespace Jiazheng.WorkLog
                     txt_WorkTime.Text = m.WorkTime.ToString();
                     txt_WorkContent.Text = m.WorkContent.ToString();
                     txt_HomeName.Text = m.HomeName.ToString();
-                    txt_Address.Text = m.Address.ToString();
+
+                    txt_Address_1.Text = m.Address.ToString().Split('$')[0];
+                    txt_Address_2.Text = m.Address.ToString().Split('$')[1].ToS();
+                    txt_Address_3.Text = m.Address.ToString().Split('$')[2].ToS();
                     txt_WorkHour.Text = m.WorkHour.ToString();
                     //txt_EmployeesIds.Text = m.EmployeesIds.ToString();
                     //txt_EmployeesNames.Text = m.EmployeesNames.ToString();
@@ -92,7 +95,9 @@ namespace Jiazheng.WorkLog
                         txt_Tel.Text = cus.Tel;
                         txt_MobilePhone.Text = cus.MobilePhone;
                         txt_HomeName.Text = cus.HomeName;
-                        txt_Address.Text = cus.Address;
+                        txt_Address_1.Text = cus.Address.Split('$')[0].ToS();
+                        txt_Address_2.Text = cus.Address.Split('$')[1].ToS();
+                        txt_Address_3.Text = cus.Address.Split('$')[2].ToS();
                         rbl_Sex.SetValue(cus.Sex.Split(','));
 
                         ddl_CustomerId.SelectedValue = cus.Id.ToS();
@@ -129,7 +134,7 @@ namespace Jiazheng.WorkLog
             m.WorkTime = txt_WorkTime.Text.ToDateTime();
             m.WorkContent = txt_WorkContent.Text.TrimDbDangerousChar();
             m.HomeName = txt_HomeName.Text.TrimDbDangerousChar();
-            m.Address = txt_Address.Text.TrimDbDangerousChar();
+            m.Address = txt_Address_1.Text.TrimDbDangerousChar() + "$" + txt_Address_2.Text.TrimDbDangerousChar() + "$" + txt_Address_3.Text.TrimDbDangerousChar();
             m.WorkHour = txt_WorkHour.Text.ToInt32();
             //m.EmployeesIds = cbl_EmployeesNames.GetValues();
             //m.EmployeesNames = cbl_EmployeesNames.GetTexts();
@@ -162,7 +167,7 @@ namespace Jiazheng.WorkLog
                 cus.Tel = txt_Tel.Text;
                 cus.MobilePhone = txt_MobilePhone.Text;
                 cus.HomeName = txt_HomeName.Text;
-                cus.Address = txt_Address.Text;
+                cus.Address = txt_Address_1.Text.TrimDbDangerousChar() + "$" + txt_Address_2.Text.TrimDbDangerousChar() + "$" + txt_Address_3.Text.TrimDbDangerousChar();
 
                 cus.IsReg = false;
 
@@ -172,7 +177,7 @@ namespace Jiazheng.WorkLog
 
             ds.SubmitChanges();
 
-            //扣除金额和工时
+            //扣除金额和工时2111111111111-
             //如果是编辑 则不处理
             if (WS.RequestInt("id") <= 0)
             {

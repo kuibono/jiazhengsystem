@@ -151,7 +151,7 @@
                     <tr>
                         <td align="right" height="26" style="padding-right: 10px; line-height: 26px;">
                             您好：<span class="username"><%= Opuser.UserName%></span>，欢迎使用本系统！ [<a href="welcome.htm"
-                                target="_blank">网站主页</a>] [<a href="javascript:parent.location.href='Tools/Exit.ashx'" target="_top">注销退出</a>]&nbsp;
+                                target="main">网站主页</a>] [<a href="javascript:parent.location.href='Tools/Exit.ashx'" target="_top">注销退出</a>]&nbsp;
                         </td>
                     </tr>
                     <tr>

@@ -66,7 +66,7 @@ namespace Voodoo.Business
     #endregion
 		
 		public DataSysDataContext() : 
-				base(global::Voodoo.Business.Properties.Settings.Default.RoleSysConnectionString, mappingSource)
+				base(global::Voodoo.Business.Properties.Settings.Default.RoleSysConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -183,19 +183,19 @@ namespace Voodoo.Business
 			}
 		}
 		
-		public System.Data.Linq.Table<ZPayLog> ZPayLog
-		{
-			get
-			{
-				return this.GetTable<ZPayLog>();
-			}
-		}
-		
 		public System.Data.Linq.Table<ViewPayCard> ViewPayCard
 		{
 			get
 			{
 				return this.GetTable<ViewPayCard>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ZPayLog> ZPayLog
+		{
+			get
+			{
+				return this.GetTable<ZPayLog>();
 			}
 		}
 	}
@@ -2722,260 +2722,6 @@ namespace Voodoo.Business
 		}
 	}
 	
-	[Table(Name="dbo.ZPayLog")]
-	public partial class ZPayLog : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private System.Nullable<int> _UserId;
-		
-		private string _UserName;
-		
-		private System.Nullable<int> _OperUserId;
-		
-		private System.Nullable<decimal> _PayMoney;
-		
-		private System.Nullable<int> _PayHour;
-		
-		private System.Nullable<int> _EmployeesId;
-		
-		private string _CardNo;
-		
-		private System.Nullable<System.DateTime> _PayTime;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnUserIdChanging(System.Nullable<int> value);
-    partial void OnUserIdChanged();
-    partial void OnUserNameChanging(string value);
-    partial void OnUserNameChanged();
-    partial void OnOperUserIdChanging(System.Nullable<int> value);
-    partial void OnOperUserIdChanged();
-    partial void OnPayMoneyChanging(System.Nullable<decimal> value);
-    partial void OnPayMoneyChanged();
-    partial void OnPayHourChanging(System.Nullable<int> value);
-    partial void OnPayHourChanged();
-    partial void OnEmployeesIdChanging(System.Nullable<int> value);
-    partial void OnEmployeesIdChanged();
-    partial void OnCardNoChanging(string value);
-    partial void OnCardNoChanged();
-    partial void OnPayTimeChanging(System.Nullable<System.DateTime> value);
-    partial void OnPayTimeChanged();
-    #endregion
-		
-		public ZPayLog()
-		{
-			OnCreated();
-		}
-		
-		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_UserId", DbType="Int")]
-		public System.Nullable<int> UserId
-		{
-			get
-			{
-				return this._UserId;
-			}
-			set
-			{
-				if ((this._UserId != value))
-				{
-					this.OnUserIdChanging(value);
-					this.SendPropertyChanging();
-					this._UserId = value;
-					this.SendPropertyChanged("UserId");
-					this.OnUserIdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_UserName", DbType="NVarChar(50)")]
-		public string UserName
-		{
-			get
-			{
-				return this._UserName;
-			}
-			set
-			{
-				if ((this._UserName != value))
-				{
-					this.OnUserNameChanging(value);
-					this.SendPropertyChanging();
-					this._UserName = value;
-					this.SendPropertyChanged("UserName");
-					this.OnUserNameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_OperUserId", DbType="Int")]
-		public System.Nullable<int> OperUserId
-		{
-			get
-			{
-				return this._OperUserId;
-			}
-			set
-			{
-				if ((this._OperUserId != value))
-				{
-					this.OnOperUserIdChanging(value);
-					this.SendPropertyChanging();
-					this._OperUserId = value;
-					this.SendPropertyChanged("OperUserId");
-					this.OnOperUserIdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_PayMoney", DbType="Decimal(18,2)")]
-		public System.Nullable<decimal> PayMoney
-		{
-			get
-			{
-				return this._PayMoney;
-			}
-			set
-			{
-				if ((this._PayMoney != value))
-				{
-					this.OnPayMoneyChanging(value);
-					this.SendPropertyChanging();
-					this._PayMoney = value;
-					this.SendPropertyChanged("PayMoney");
-					this.OnPayMoneyChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_PayHour", DbType="Int")]
-		public System.Nullable<int> PayHour
-		{
-			get
-			{
-				return this._PayHour;
-			}
-			set
-			{
-				if ((this._PayHour != value))
-				{
-					this.OnPayHourChanging(value);
-					this.SendPropertyChanging();
-					this._PayHour = value;
-					this.SendPropertyChanged("PayHour");
-					this.OnPayHourChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_EmployeesId", DbType="Int")]
-		public System.Nullable<int> EmployeesId
-		{
-			get
-			{
-				return this._EmployeesId;
-			}
-			set
-			{
-				if ((this._EmployeesId != value))
-				{
-					this.OnEmployeesIdChanging(value);
-					this.SendPropertyChanging();
-					this._EmployeesId = value;
-					this.SendPropertyChanged("EmployeesId");
-					this.OnEmployeesIdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_CardNo", DbType="NVarChar(50)")]
-		public string CardNo
-		{
-			get
-			{
-				return this._CardNo;
-			}
-			set
-			{
-				if ((this._CardNo != value))
-				{
-					this.OnCardNoChanging(value);
-					this.SendPropertyChanging();
-					this._CardNo = value;
-					this.SendPropertyChanged("CardNo");
-					this.OnCardNoChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_PayTime", DbType="DateTime")]
-		public System.Nullable<System.DateTime> PayTime
-		{
-			get
-			{
-				return this._PayTime;
-			}
-			set
-			{
-				if ((this._PayTime != value))
-				{
-					this.OnPayTimeChanging(value);
-					this.SendPropertyChanging();
-					this._PayTime = value;
-					this.SendPropertyChanged("PayTime");
-					this.OnPayTimeChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[Table(Name="dbo.ViewPayCard")]
 	public partial class ViewPayCard
 	{
@@ -3179,6 +2925,284 @@ namespace Voodoo.Business
 				{
 					this._SalaryDegree = value;
 				}
+			}
+		}
+	}
+	
+	[Table(Name="dbo.ZPayLog")]
+	public partial class ZPayLog : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Nullable<int> _UserId;
+		
+		private string _UserName;
+		
+		private System.Nullable<int> _OperUserId;
+		
+		private System.Nullable<decimal> _PayMoney;
+		
+		private System.Nullable<int> _PayHour;
+		
+		private System.Nullable<int> _EmployeesId;
+		
+		private string _CardNo;
+		
+		private System.Nullable<System.DateTime> _PayTime;
+		
+		private System.Nullable<System.DateTime> _VTime;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnUserIdChanging(System.Nullable<int> value);
+    partial void OnUserIdChanged();
+    partial void OnUserNameChanging(string value);
+    partial void OnUserNameChanged();
+    partial void OnOperUserIdChanging(System.Nullable<int> value);
+    partial void OnOperUserIdChanged();
+    partial void OnPayMoneyChanging(System.Nullable<decimal> value);
+    partial void OnPayMoneyChanged();
+    partial void OnPayHourChanging(System.Nullable<int> value);
+    partial void OnPayHourChanged();
+    partial void OnEmployeesIdChanging(System.Nullable<int> value);
+    partial void OnEmployeesIdChanged();
+    partial void OnCardNoChanging(string value);
+    partial void OnCardNoChanged();
+    partial void OnPayTimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnPayTimeChanged();
+    partial void OnVTimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnVTimeChanged();
+    #endregion
+		
+		public ZPayLog()
+		{
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UserId", DbType="Int")]
+		public System.Nullable<int> UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					this.OnUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._UserId = value;
+					this.SendPropertyChanged("UserId");
+					this.OnUserIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UserName", DbType="NVarChar(50)")]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this.OnUserNameChanging(value);
+					this.SendPropertyChanging();
+					this._UserName = value;
+					this.SendPropertyChanged("UserName");
+					this.OnUserNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_OperUserId", DbType="Int")]
+		public System.Nullable<int> OperUserId
+		{
+			get
+			{
+				return this._OperUserId;
+			}
+			set
+			{
+				if ((this._OperUserId != value))
+				{
+					this.OnOperUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._OperUserId = value;
+					this.SendPropertyChanged("OperUserId");
+					this.OnOperUserIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_PayMoney", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> PayMoney
+		{
+			get
+			{
+				return this._PayMoney;
+			}
+			set
+			{
+				if ((this._PayMoney != value))
+				{
+					this.OnPayMoneyChanging(value);
+					this.SendPropertyChanging();
+					this._PayMoney = value;
+					this.SendPropertyChanged("PayMoney");
+					this.OnPayMoneyChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_PayHour", DbType="Int")]
+		public System.Nullable<int> PayHour
+		{
+			get
+			{
+				return this._PayHour;
+			}
+			set
+			{
+				if ((this._PayHour != value))
+				{
+					this.OnPayHourChanging(value);
+					this.SendPropertyChanging();
+					this._PayHour = value;
+					this.SendPropertyChanged("PayHour");
+					this.OnPayHourChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_EmployeesId", DbType="Int")]
+		public System.Nullable<int> EmployeesId
+		{
+			get
+			{
+				return this._EmployeesId;
+			}
+			set
+			{
+				if ((this._EmployeesId != value))
+				{
+					this.OnEmployeesIdChanging(value);
+					this.SendPropertyChanging();
+					this._EmployeesId = value;
+					this.SendPropertyChanged("EmployeesId");
+					this.OnEmployeesIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_CardNo", DbType="NVarChar(50)")]
+		public string CardNo
+		{
+			get
+			{
+				return this._CardNo;
+			}
+			set
+			{
+				if ((this._CardNo != value))
+				{
+					this.OnCardNoChanging(value);
+					this.SendPropertyChanging();
+					this._CardNo = value;
+					this.SendPropertyChanged("CardNo");
+					this.OnCardNoChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_PayTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> PayTime
+		{
+			get
+			{
+				return this._PayTime;
+			}
+			set
+			{
+				if ((this._PayTime != value))
+				{
+					this.OnPayTimeChanging(value);
+					this.SendPropertyChanging();
+					this._PayTime = value;
+					this.SendPropertyChanged("PayTime");
+					this.OnPayTimeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_VTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> VTime
+		{
+			get
+			{
+				return this._VTime;
+			}
+			set
+			{
+				if ((this._VTime != value))
+				{
+					this.OnVTimeChanging(value);
+					this.SendPropertyChanging();
+					this._VTime = value;
+					this.SendPropertyChanged("VTime");
+					this.OnVTimeChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}

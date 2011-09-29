@@ -47,6 +47,7 @@ namespace Jiazheng.PayLog
                     txt_PayHour.Text = m.PayHour.ToString();
                     ddl_Saler.SelectedValue = m.EmployeesId.ToString();
                     txt_CardNo.Text = m.CardNo;
+                    txt_VTime.Text = m.VTime.ToS();
                 }
 
 
@@ -82,6 +83,7 @@ namespace Jiazheng.PayLog
             m.PayHour = txt_PayHour.Text.ToInt32(0);
             m.EmployeesId = ddl_Saler.SelectedValue.ToInt32(0);
             m.CardNo = txt_CardNo.Text.TrimDbDangerousChar();
+            m.VTime = txt_VTime.Text.ToDateTime();
             if (id > 0 && l.Count() > 0)
             {
                 //编辑
