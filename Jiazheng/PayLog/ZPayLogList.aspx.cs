@@ -48,7 +48,7 @@ namespace Jiazheng.PayLog
                         pay.PayMoney,
                         pay.PayTime,
                         pay.UserName,
-                        EmployeesName=ls.UserName
+                        EmployeesName = ls.UserName
                     };
 
             l = l.Where(p => p.CardNo.IndexOf(txt_CardNo.Text) > -1);
@@ -65,7 +65,7 @@ namespace Jiazheng.PayLog
             //            //m.PayHour.IndexOf(txt_PayHour.Text) > -1
             //        select m;
 
-            if (WS.RequestInt("cid")>0)
+            if (WS.RequestInt("cid") > 0)
             {
                 l = l.Where(p => p.UserId == WS.RequestInt("cid"));
             }
@@ -94,7 +94,11 @@ namespace Jiazheng.PayLog
             if (IsPostBack)
             {
                 int[] Ids = WS.RequestString("ids").Split(',').ToIntArray();
-                dsd.ZPayLog.Delete(p => p.Id.InArray(Ids));
+                foreach (int id in Ids)
+                {
+                    dsd.ZPayLog.Delete(p => p.Id == id);
+                }
+
             }
 
             base.OnDelete();

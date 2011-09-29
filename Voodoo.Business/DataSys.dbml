@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="RoleSys" Class="DataSysDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost;Initial Catalog=RoleSys;Persist Security Info=True;User ID=sa" SettingsObjectName="Voodoo.Business.Properties.Settings" SettingsPropertyName="RoleSysConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost\sql2005;Initial Catalog=RoleSys;Persist Security Info=True;User ID=sa" SettingsObjectName="Voodoo.Business.Properties.Settings" SettingsPropertyName="RoleSysConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.[Group]" Member="Group">
     <Type Name="Group">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -136,19 +136,6 @@
       <Column Name="IsDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.ZPayLog" Member="ZPayLog">
-    <Type Name="ZPayLog">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="UserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="UserName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="OperUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="PayMoney" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="PayHour" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="EmployeesId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CardNo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="PayTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.ViewPayCard" Member="ViewPayCard">
     <Type Name="ViewPayCard">
       <Column Name="UserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
@@ -162,6 +149,20 @@
       <Column Name="Sex" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="UserType" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="SalaryDegree" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ZPayLog" Member="ZPayLog">
+    <Type Name="ZPayLog">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="OperUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PayMoney" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="PayHour" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EmployeesId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CardNo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PayTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="VTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
 </Database>
