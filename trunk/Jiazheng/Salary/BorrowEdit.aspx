@@ -26,28 +26,33 @@
                 <span>新增借款</span>
             </td>
         </tr>
-                <tr class="itemrow">
+        <tr class="itemrow">
             <td>
                 员工类型:
             </td>
             <td>
-                <asp:DropDownList ID="ddl_UserType" runat="server" 
-                    onselectedindexchanged="ddl_UserType_SelectedIndexChanged" AutoPostBack="true">
+                <asp:DropDownList ID="ddl_UserType" runat="server" OnSelectedIndexChanged="ddl_UserType_SelectedIndexChanged"
+                    AutoPostBack="true">
                     <asp:ListItem Text="宣传" Value="宣传"></asp:ListItem>
                     <asp:ListItem Text="保洁" Value="保洁"></asp:ListItem>
                     <asp:ListItem Text="办公室" Value="办公室"></asp:ListItem>
                 </asp:DropDownList>
             </td>
         </tr>
-
+        <tr class="itemrow" runat="server" id="row_Fakuan">
+            <td>
+                罚款:
+            </td>
+            <td>
+                <asp:CheckBox ID="cb_IsFakuan" runat="server" Text="罚款请选择" />
+            </td>
+        </tr>
         <tr class="itemrow">
             <td>
                 员工:
             </td>
             <td>
-                
                 <asp:DropDownList ID="ddl_User" runat="server">
-                
                 </asp:DropDownList>
             </td>
         </tr>
@@ -67,8 +72,14 @@
                 <asp:TextBox ID="txt_BorrowMoney" runat="server"></asp:TextBox>
             </td>
         </tr>
-
-        
+        <tr class="itemrow">
+            <td>
+                备注:
+            </td>
+            <td>
+                <asp:TextBox ID="txt_Remark" TextMode="MultiLine" Width="250px" runat="server"></asp:TextBox>
+            </td>
+        </tr>
         <tr class="itemrow">
             <td colspan="2">
                 <asp:Button ID="btn_Save" runat="server" Text="保存" OnClick="btn_Save_Click" />
