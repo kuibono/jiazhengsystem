@@ -36,24 +36,30 @@ namespace Jiazheng.Salary
             int year = txt_Month.Text.Split('-')[0].ToInt32();
             int month = txt_Month.Text.Split('-')[1].ToInt32();
 
-            var l = dsd.ViewPayCard
-                .Where(p => 
-                    Convert.ToDateTime(p.PayTime).Year==year &&
-                    Convert.ToDateTime(p.PayTime).Month==month &&
-                    p.CardNo !=null &&
-                    p.CardNo!=""
-                    )
-                .GroupBy(p => p.EmployeesId)
-                .Select(p => new
-                {
-                    Salary = p.Sum(q => q.PayMoney),
-                    SalaryPer = p.Sum(q => q.PayMoney*SystemInfo.SalerSalaryPercent/100),
-                    EmployeesId = p.First().EmployeesId,
-                    Username = p.First().UserName,
-                    month = p.First().PayTime,
-                    BaseSalary = p.First().SalaryDegree,
-                    AllSalary = p.Sum(q => q.PayMoney * SystemInfo.SalerSalaryPercent / 100) + p.First().SalaryDegree
-                });
+            //var l = dsd.ViewPayCard
+            //    .Where(p => 
+            //        Convert.ToDateTime(p.PayTime).Year==year &&
+            //        Convert.ToDateTime(p.PayTime).Month==month &&
+            //        p.CardNo !=null &&
+            //        p.CardNo!=""
+            //        )
+            //    .GroupBy(p => p.EmployeesId)
+            //    .Select(p => new
+            //    {
+            //        Salary = p.Sum(q => q.PayMoney),
+            //        SalaryPer = p.Sum(q => q.PayMoney*SystemInfo.SalerSalaryPercent/100),
+            //        EmployeesId = p.First().EmployeesId,
+            //        Username = p.First().UserName,
+            //        month = p.First().PayTime,
+            //        BaseSalary = p.First().SalaryDegree,
+            //        AllSalary = p.Sum(q => q.PayMoney * SystemInfo.SalerSalaryPercent / 100) + p.First().SalaryDegree
+            //    });
+
+            var l = dsd.ViewXuanchuanSalary.ToList();
+            if (txt_Month.Text!="")
+            {
+                l = l.Where(p => p.月份 == txt_Month.Text).ToList();
+            }
 
 
             list.DataSource = l;

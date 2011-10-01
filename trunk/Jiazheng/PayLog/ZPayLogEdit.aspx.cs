@@ -84,6 +84,7 @@ namespace Jiazheng.PayLog
             m.EmployeesId = ddl_Saler.SelectedValue.ToInt32(0);
             m.CardNo = txt_CardNo.Text.TrimDbDangerousChar();
             m.VTime = txt_VTime.Text.ToDateTime();
+            m.PayTime = DateTime.Now;
             if (id > 0 && l.Count() > 0)
             {
                 //编辑

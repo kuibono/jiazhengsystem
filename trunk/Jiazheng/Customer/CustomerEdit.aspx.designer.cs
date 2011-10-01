@@ -68,13 +68,31 @@ namespace Jiazheng.Customer {
         protected global::System.Web.UI.WebControls.TextBox txt_HomeName;
         
         /// <summary>
-        /// txt_Address 控件。
+        /// txt_Address_0 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_Address;
+        protected global::System.Web.UI.WebControls.TextBox txt_Address_0;
+        
+        /// <summary>
+        /// txt_Address_1 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_Address_1;
+        
+        /// <summary>
+        /// txt_Address_2 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_Address_2;
         
         /// <summary>
         /// txt_IDCard 控件。

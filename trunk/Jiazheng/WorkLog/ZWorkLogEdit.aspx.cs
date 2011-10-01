@@ -70,8 +70,17 @@ namespace Jiazheng.WorkLog
                     txt_HomeName.Text = m.HomeName.ToString();
 
                     txt_Address_1.Text = m.Address.ToString().Split('$')[0];
-                    txt_Address_2.Text = m.Address.ToString().Split('$')[1].ToS();
-                    txt_Address_3.Text = m.Address.ToString().Split('$')[2].ToS();
+                    try
+                    {
+                        txt_Address_2.Text = m.Address.ToString().Split('$')[1].ToS();
+                    }
+                    catch { }
+                    try
+                    {
+                        txt_Address_3.Text = m.Address.ToString().Split('$')[2].ToS();
+                    }
+                    catch { }
+
                     txt_WorkHour.Text = m.WorkHour.ToString();
                     //txt_EmployeesIds.Text = m.EmployeesIds.ToString();
                     //txt_EmployeesNames.Text = m.EmployeesNames.ToString();
@@ -95,9 +104,25 @@ namespace Jiazheng.WorkLog
                         txt_Tel.Text = cus.Tel;
                         txt_MobilePhone.Text = cus.MobilePhone;
                         txt_HomeName.Text = cus.HomeName;
+
                         txt_Address_1.Text = cus.Address.Split('$')[0].ToS();
-                        txt_Address_2.Text = cus.Address.Split('$')[1].ToS();
-                        txt_Address_3.Text = cus.Address.Split('$')[2].ToS();
+                        try
+                        {
+                            txt_Address_2.Text = cus.Address.Split('$')[1].ToS();
+                        }
+                        catch
+                        {
+
+                        }
+                        try
+                        {
+                            txt_Address_3.Text = cus.Address.Split('$')[2].ToS();
+                        }
+                        catch
+                        {
+
+                        }
+
                         rbl_Sex.SetValue(cus.Sex.Split(','));
 
                         ddl_CustomerId.SelectedValue = cus.Id.ToS();

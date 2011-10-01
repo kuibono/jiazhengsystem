@@ -48,7 +48,8 @@ namespace Jiazheng.PayLog
                         pay.PayMoney,
                         pay.PayTime,
                         pay.UserName,
-                        EmployeesName = ls.UserName
+                        EmployeesName = ls.UserName,
+                        Tel=ls.MobilePhone
                     };
 
             l = l.Where(p => p.CardNo.IndexOf(txt_CardNo.Text) > -1);

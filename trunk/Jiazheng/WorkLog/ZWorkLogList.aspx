@@ -105,7 +105,7 @@
     </table>
     <table width="98%" border="0" cellpadding="2" cellspacing="1" align="center" class="list">
         <tr bgcolor="#EEF4EA" class="Title">
-            <td height="24" colspan="8">
+            <td height="24" colspan="10">
                 &nbsp;服务记录&nbsp;
             </td>
         </tr>
@@ -113,23 +113,29 @@
             <td width="4%">
                 选择
             </td>
-            <td width="18%">
+            <td width="8%">
                 客户姓名
             </td>
             <td width="18%">
                 电话
             </td>
             <td width="18%">
-                服务时间
+                固定时间
             </td>
             <td width="10%">
                 小区名称
             </td>
-            <td width="8%">
+            <td width="4%">
                 工时
+            </td>
+            <td width="4%">
+                备注
             </td>
             <td width="8%">
                 已经完工
+            </td>
+            <td width="18%">
+                固定员工
             </td>
             <td width="18%">
                 操作
@@ -157,9 +163,15 @@
                     <td align="center">
                         <%# Eval("WorkHour")%>
                     </td>
+                    <td align="center">
+                        <%# Eval("remark")%>
+                    </td>
                     <td style="background-color: <%# Eval("IsFinished").ToString().ToBoolean()?"green":"red"%>"
                         align="center">
                         <%# Eval("IsFinished").ToString().ToBoolean().ToChinese()%>
+                    </td>
+                    <td align="center">
+                        <%# Eval("Users")%>
                     </td>
                     <td align="center">
                         <%if (SysPartRole.AllowEdit == true)
