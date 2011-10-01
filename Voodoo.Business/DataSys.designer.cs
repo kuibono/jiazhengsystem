@@ -63,12 +63,12 @@ namespace Voodoo.Business
     partial void InsertZCard(ZCard instance);
     partial void UpdateZCard(ZCard instance);
     partial void DeleteZCard(ZCard instance);
-    partial void InsertZBorrowSalary(ZBorrowSalary instance);
-    partial void UpdateZBorrowSalary(ZBorrowSalary instance);
-    partial void DeleteZBorrowSalary(ZBorrowSalary instance);
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
+    partial void InsertZBorrowSalary(ZBorrowSalary instance);
+    partial void UpdateZBorrowSalary(ZBorrowSalary instance);
+    partial void DeleteZBorrowSalary(ZBorrowSalary instance);
     #endregion
 		
 		public DataSysDataContext() : 
@@ -205,14 +205,6 @@ namespace Voodoo.Business
 			}
 		}
 		
-		public System.Data.Linq.Table<ZBorrowSalary> ZBorrowSalary
-		{
-			get
-			{
-				return this.GetTable<ZBorrowSalary>();
-			}
-		}
-		
 		public System.Data.Linq.Table<User> User
 		{
 			get
@@ -250,6 +242,14 @@ namespace Voodoo.Business
 			get
 			{
 				return this.GetTable<ViewWorkLogList>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ZBorrowSalary> ZBorrowSalary
+		{
+			get
+			{
+				return this.GetTable<ZBorrowSalary>();
 			}
 		}
 	}
@@ -3310,188 +3310,6 @@ namespace Voodoo.Business
 		}
 	}
 	
-	[Table(Name="dbo.ZBorrowSalary")]
-	public partial class ZBorrowSalary : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private System.Nullable<System.DateTime> _BorrowTime;
-		
-		private System.Nullable<decimal> _BorrowMoney;
-		
-		private System.Nullable<int> _UserID;
-		
-		private string _UserName;
-		
-		private string _UserType;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnBorrowTimeChanging(System.Nullable<System.DateTime> value);
-    partial void OnBorrowTimeChanged();
-    partial void OnBorrowMoneyChanging(System.Nullable<decimal> value);
-    partial void OnBorrowMoneyChanged();
-    partial void OnUserIDChanging(System.Nullable<int> value);
-    partial void OnUserIDChanged();
-    partial void OnUserNameChanging(string value);
-    partial void OnUserNameChanged();
-    partial void OnUserTypeChanging(string value);
-    partial void OnUserTypeChanged();
-    #endregion
-		
-		public ZBorrowSalary()
-		{
-			OnCreated();
-		}
-		
-		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_BorrowTime", DbType="DateTime")]
-		public System.Nullable<System.DateTime> BorrowTime
-		{
-			get
-			{
-				return this._BorrowTime;
-			}
-			set
-			{
-				if ((this._BorrowTime != value))
-				{
-					this.OnBorrowTimeChanging(value);
-					this.SendPropertyChanging();
-					this._BorrowTime = value;
-					this.SendPropertyChanged("BorrowTime");
-					this.OnBorrowTimeChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_BorrowMoney", DbType="Decimal(18,2)")]
-		public System.Nullable<decimal> BorrowMoney
-		{
-			get
-			{
-				return this._BorrowMoney;
-			}
-			set
-			{
-				if ((this._BorrowMoney != value))
-				{
-					this.OnBorrowMoneyChanging(value);
-					this.SendPropertyChanging();
-					this._BorrowMoney = value;
-					this.SendPropertyChanged("BorrowMoney");
-					this.OnBorrowMoneyChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_UserID", DbType="Int")]
-		public System.Nullable<int> UserID
-		{
-			get
-			{
-				return this._UserID;
-			}
-			set
-			{
-				if ((this._UserID != value))
-				{
-					this.OnUserIDChanging(value);
-					this.SendPropertyChanging();
-					this._UserID = value;
-					this.SendPropertyChanged("UserID");
-					this.OnUserIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_UserName", DbType="NVarChar(50)")]
-		public string UserName
-		{
-			get
-			{
-				return this._UserName;
-			}
-			set
-			{
-				if ((this._UserName != value))
-				{
-					this.OnUserNameChanging(value);
-					this.SendPropertyChanging();
-					this._UserName = value;
-					this.SendPropertyChanged("UserName");
-					this.OnUserNameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_UserType", DbType="NVarChar(50)")]
-		public string UserType
-		{
-			get
-			{
-				return this._UserType;
-			}
-			set
-			{
-				if ((this._UserType != value))
-				{
-					this.OnUserTypeChanging(value);
-					this.SendPropertyChanging();
-					this._UserType = value;
-					this.SendPropertyChanged("UserType");
-					this.OnUserTypeChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[Table(Name="dbo.[User]")]
 	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -4503,6 +4321,236 @@ namespace Voodoo.Business
 				{
 					this._Remark = value;
 				}
+			}
+		}
+	}
+	
+	[Table(Name="dbo.ZBorrowSalary")]
+	public partial class ZBorrowSalary : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Nullable<System.DateTime> _BorrowTime;
+		
+		private System.Nullable<decimal> _BorrowMoney;
+		
+		private System.Nullable<int> _UserID;
+		
+		private string _UserName;
+		
+		private string _UserType;
+		
+		private string _BorrowType;
+		
+		private string _Remark;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnBorrowTimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnBorrowTimeChanged();
+    partial void OnBorrowMoneyChanging(System.Nullable<decimal> value);
+    partial void OnBorrowMoneyChanged();
+    partial void OnUserIDChanging(System.Nullable<int> value);
+    partial void OnUserIDChanged();
+    partial void OnUserNameChanging(string value);
+    partial void OnUserNameChanged();
+    partial void OnUserTypeChanging(string value);
+    partial void OnUserTypeChanged();
+    partial void OnBorrowTypeChanging(string value);
+    partial void OnBorrowTypeChanged();
+    partial void OnRemarkChanging(string value);
+    partial void OnRemarkChanged();
+    #endregion
+		
+		public ZBorrowSalary()
+		{
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_BorrowTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> BorrowTime
+		{
+			get
+			{
+				return this._BorrowTime;
+			}
+			set
+			{
+				if ((this._BorrowTime != value))
+				{
+					this.OnBorrowTimeChanging(value);
+					this.SendPropertyChanging();
+					this._BorrowTime = value;
+					this.SendPropertyChanged("BorrowTime");
+					this.OnBorrowTimeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_BorrowMoney", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> BorrowMoney
+		{
+			get
+			{
+				return this._BorrowMoney;
+			}
+			set
+			{
+				if ((this._BorrowMoney != value))
+				{
+					this.OnBorrowMoneyChanging(value);
+					this.SendPropertyChanging();
+					this._BorrowMoney = value;
+					this.SendPropertyChanged("BorrowMoney");
+					this.OnBorrowMoneyChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UserID", DbType="Int")]
+		public System.Nullable<int> UserID
+		{
+			get
+			{
+				return this._UserID;
+			}
+			set
+			{
+				if ((this._UserID != value))
+				{
+					this.OnUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._UserID = value;
+					this.SendPropertyChanged("UserID");
+					this.OnUserIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UserName", DbType="NVarChar(50)")]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this.OnUserNameChanging(value);
+					this.SendPropertyChanging();
+					this._UserName = value;
+					this.SendPropertyChanged("UserName");
+					this.OnUserNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UserType", DbType="NVarChar(50)")]
+		public string UserType
+		{
+			get
+			{
+				return this._UserType;
+			}
+			set
+			{
+				if ((this._UserType != value))
+				{
+					this.OnUserTypeChanging(value);
+					this.SendPropertyChanging();
+					this._UserType = value;
+					this.SendPropertyChanged("UserType");
+					this.OnUserTypeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_BorrowType", DbType="NVarChar(50)")]
+		public string BorrowType
+		{
+			get
+			{
+				return this._BorrowType;
+			}
+			set
+			{
+				if ((this._BorrowType != value))
+				{
+					this.OnBorrowTypeChanging(value);
+					this.SendPropertyChanging();
+					this._BorrowType = value;
+					this.SendPropertyChanged("BorrowType");
+					this.OnBorrowTypeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Remark", DbType="NVarChar(2000)")]
+		public string Remark
+		{
+			get
+			{
+				return this._Remark;
+			}
+			set
+			{
+				if ((this._Remark != value))
+				{
+					this.OnRemarkChanging(value);
+					this.SendPropertyChanging();
+					this._Remark = value;
+					this.SendPropertyChanged("Remark");
+					this.OnRemarkChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}

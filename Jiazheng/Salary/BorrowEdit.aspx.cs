@@ -27,6 +27,8 @@ namespace Jiazheng.Salary
                     //txt_UserName.Text = m.UserName.ToString();
                     ddl_User.SetValue(m.UserID.ToString().Split(','));
                     ddl_UserType.SelectedValue = m.UserType.ToString();
+                    cb_IsFakuan.Checked = m.BorrowType == "罚款";
+                    txt_Remark.Text = m.Remark;
                 }
                 else
                 {
@@ -60,6 +62,8 @@ namespace Jiazheng.Salary
             m.UserID = ddl_User.SelectedValue.ToInt32();
             m.UserName = ddl_User.SelectedItem.Text.TrimDbDangerousChar();
             m.UserType = ddl_UserType.SelectedValue.TrimDbDangerousChar();
+            m.Remark = txt_Remark.Text.TrimDbDangerousChar();
+            m.BorrowType = cb_IsFakuan.Checked ? "罚款" : "借款";
 
             if (id > 0 && l.Count() > 0)
             {
@@ -99,20 +103,23 @@ namespace Jiazheng.Salary
                     ddl_User.DataTextField = "UserName";
                     ddl_User.DataValueField = "Id";
                     ddl_User.DataBind();
-            	break;
+                    row_Fakuan.Visible = false;
+                    break;
                 case "保洁":
-                ddl_User.DataSource = from u in dsd.ZEmployees where u.UserType == "保洁" select u;
-                ddl_User.DataTextField = "UserName";
-                ddl_User.DataValueField = "Id";
-                ddl_User.DataBind();
-                break;
+                    ddl_User.DataSource = from u in dsd.ZEmployees where u.UserType == "保洁" select u;
+                    ddl_User.DataTextField = "UserName";
+                    ddl_User.DataValueField = "Id";
+                    ddl_User.DataBind();
+                    row_Fakuan.Visible = true;
+                    break;
 
                 case "办公室":
-                ddl_User.DataSource = from u in dsd.User where u.GroupId==5 select u;
-                ddl_User.DataTextField = "UserName";
-                ddl_User.DataValueField = "Id";
-                ddl_User.DataBind();
-                break;
+                    ddl_User.DataSource = from u in dsd.User where u.GroupId == 5 select u;
+                    ddl_User.DataTextField = "UserName";
+                    ddl_User.DataValueField = "Id";
+                    ddl_User.DataBind();
+                    row_Fakuan.Visible = false;
+                    break;
             }
         }
     }
