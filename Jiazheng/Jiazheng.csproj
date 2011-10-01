@@ -150,6 +150,20 @@
     <Compile Include="Business\WorkTypeList.aspx.designer.cs">
       <DependentUpon>WorkTypeList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Card\CardEdit.aspx.cs">
+      <DependentUpon>CardEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Card\CardEdit.aspx.designer.cs">
+      <DependentUpon>CardEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Card\CardList.aspx.cs">
+      <DependentUpon>CardList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Card\CardList.aspx.designer.cs">
+      <DependentUpon>CardList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Customer\CustomerEdit.aspx.cs">
       <DependentUpon>CustomerEdit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -217,6 +231,27 @@
       <DependentUpon>ZPayLogList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Salary\BorrowEdit.aspx.cs">
+      <DependentUpon>BorrowEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Salary\BorrowEdit.aspx.designer.cs">
+      <DependentUpon>BorrowEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Salary\BorrowList.aspx.cs">
+      <DependentUpon>BorrowList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Salary\BorrowList.aspx.designer.cs">
+      <DependentUpon>BorrowList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Salary\OfficerSalary.aspx.cs">
+      <DependentUpon>OfficerSalary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Salary\OfficerSalary.aspx.designer.cs">
+      <DependentUpon>OfficerSalary.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Salary\PaySalary.aspx.cs">
       <DependentUpon>PaySalary.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -333,6 +368,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="skin\images\frame\Thumbs.db" />
+    <Content Include="Card\CardEdit.aspx" />
+    <Content Include="Card\CardList.aspx" />
+    <Content Include="Salary\BorrowEdit.aspx" />
+    <Content Include="Salary\BorrowList.aspx" />
+    <Content Include="Salary\OfficerSalary.aspx" />
     <Content Include="Tools\CardTip.ashx" />
     <Content Include="Global.asax" />
     <Content Include="Salary\PaySalary.aspx" />

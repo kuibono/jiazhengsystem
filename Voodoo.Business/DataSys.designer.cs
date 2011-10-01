@@ -33,9 +33,6 @@ namespace Voodoo.Business
     partial void InsertGroup(Group instance);
     partial void UpdateGroup(Group instance);
     partial void DeleteGroup(Group instance);
-    partial void InsertUser(User instance);
-    partial void UpdateUser(User instance);
-    partial void DeleteUser(User instance);
     partial void InsertGroupMenuRelation(GroupMenuRelation instance);
     partial void UpdateGroupMenuRelation(GroupMenuRelation instance);
     partial void DeleteGroupMenuRelation(GroupMenuRelation instance);
@@ -57,12 +54,21 @@ namespace Voodoo.Business
     partial void InsertZEmployees(ZEmployees instance);
     partial void UpdateZEmployees(ZEmployees instance);
     partial void DeleteZEmployees(ZEmployees instance);
-    partial void InsertZWorkEmployeesRelation(ZWorkEmployeesRelation instance);
-    partial void UpdateZWorkEmployeesRelation(ZWorkEmployeesRelation instance);
-    partial void DeleteZWorkEmployeesRelation(ZWorkEmployeesRelation instance);
     partial void InsertZPayLog(ZPayLog instance);
     partial void UpdateZPayLog(ZPayLog instance);
     partial void DeleteZPayLog(ZPayLog instance);
+    partial void InsertZWorkEmployeesRelation(ZWorkEmployeesRelation instance);
+    partial void UpdateZWorkEmployeesRelation(ZWorkEmployeesRelation instance);
+    partial void DeleteZWorkEmployeesRelation(ZWorkEmployeesRelation instance);
+    partial void InsertZCard(ZCard instance);
+    partial void UpdateZCard(ZCard instance);
+    partial void DeleteZCard(ZCard instance);
+    partial void InsertZBorrowSalary(ZBorrowSalary instance);
+    partial void UpdateZBorrowSalary(ZBorrowSalary instance);
+    partial void DeleteZBorrowSalary(ZBorrowSalary instance);
+    partial void InsertUser(User instance);
+    partial void UpdateUser(User instance);
+    partial void DeleteUser(User instance);
     #endregion
 		
 		public DataSysDataContext() : 
@@ -100,14 +106,6 @@ namespace Voodoo.Business
 			get
 			{
 				return this.GetTable<Group>();
-			}
-		}
-		
-		public System.Data.Linq.Table<User> User
-		{
-			get
-			{
-				return this.GetTable<User>();
 			}
 		}
 		
@@ -167,14 +165,6 @@ namespace Voodoo.Business
 			}
 		}
 		
-		public System.Data.Linq.Table<ZWorkEmployeesRelation> ZWorkEmployeesRelation
-		{
-			get
-			{
-				return this.GetTable<ZWorkEmployeesRelation>();
-			}
-		}
-		
 		public System.Data.Linq.Table<ViewUserWorkLog> ViewUserWorkLog
 		{
 			get
@@ -196,6 +186,70 @@ namespace Voodoo.Business
 			get
 			{
 				return this.GetTable<ZPayLog>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ZWorkEmployeesRelation> ZWorkEmployeesRelation
+		{
+			get
+			{
+				return this.GetTable<ZWorkEmployeesRelation>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ZCard> ZCard
+		{
+			get
+			{
+				return this.GetTable<ZCard>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ZBorrowSalary> ZBorrowSalary
+		{
+			get
+			{
+				return this.GetTable<ZBorrowSalary>();
+			}
+		}
+		
+		public System.Data.Linq.Table<User> User
+		{
+			get
+			{
+				return this.GetTable<User>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ViewOfficerSalary> ViewOfficerSalary
+		{
+			get
+			{
+				return this.GetTable<ViewOfficerSalary>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ViewXuanchuanSalary> ViewXuanchuanSalary
+		{
+			get
+			{
+				return this.GetTable<ViewXuanchuanSalary>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ViewBaojieSalary> ViewBaojieSalary
+		{
+			get
+			{
+				return this.GetTable<ViewBaojieSalary>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ViewWorkLogList> ViewWorkLogList
+		{
+			get
+			{
+				return this.GetTable<ViewWorkLogList>();
 			}
 		}
 	}
@@ -311,277 +365,6 @@ namespace Voodoo.Business
 		{
 			this.SendPropertyChanging();
 			entity.Group = null;
-		}
-	}
-	
-	[Table(Name="dbo.[User]")]
-	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private string _UserName;
-		
-		private string _UserPassword;
-		
-		private System.Nullable<int> _GroupId;
-		
-		private string _Sex;
-		
-		private System.Nullable<System.DateTime> _Birthday;
-		
-		private string _Status;
-		
-		private System.Nullable<int> _Commission;
-		
-		private EntityRef<Group> _Group;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnUserNameChanging(string value);
-    partial void OnUserNameChanged();
-    partial void OnUserPasswordChanging(string value);
-    partial void OnUserPasswordChanged();
-    partial void OnGroupIdChanging(System.Nullable<int> value);
-    partial void OnGroupIdChanged();
-    partial void OnSexChanging(string value);
-    partial void OnSexChanged();
-    partial void OnBirthdayChanging(System.Nullable<System.DateTime> value);
-    partial void OnBirthdayChanged();
-    partial void OnStatusChanging(string value);
-    partial void OnStatusChanged();
-    partial void OnCommissionChanging(System.Nullable<int> value);
-    partial void OnCommissionChanged();
-    #endregion
-		
-		public User()
-		{
-			this._Group = default(EntityRef<Group>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_UserName", DbType="NVarChar(50)")]
-		public string UserName
-		{
-			get
-			{
-				return this._UserName;
-			}
-			set
-			{
-				if ((this._UserName != value))
-				{
-					this.OnUserNameChanging(value);
-					this.SendPropertyChanging();
-					this._UserName = value;
-					this.SendPropertyChanged("UserName");
-					this.OnUserNameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_UserPassword", DbType="NVarChar(50)")]
-		public string UserPassword
-		{
-			get
-			{
-				return this._UserPassword;
-			}
-			set
-			{
-				if ((this._UserPassword != value))
-				{
-					this.OnUserPasswordChanging(value);
-					this.SendPropertyChanging();
-					this._UserPassword = value;
-					this.SendPropertyChanged("UserPassword");
-					this.OnUserPasswordChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_GroupId", DbType="Int")]
-		public System.Nullable<int> GroupId
-		{
-			get
-			{
-				return this._GroupId;
-			}
-			set
-			{
-				if ((this._GroupId != value))
-				{
-					if (this._Group.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnGroupIdChanging(value);
-					this.SendPropertyChanging();
-					this._GroupId = value;
-					this.SendPropertyChanged("GroupId");
-					this.OnGroupIdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Sex", DbType="NVarChar(50)")]
-		public string Sex
-		{
-			get
-			{
-				return this._Sex;
-			}
-			set
-			{
-				if ((this._Sex != value))
-				{
-					this.OnSexChanging(value);
-					this.SendPropertyChanging();
-					this._Sex = value;
-					this.SendPropertyChanged("Sex");
-					this.OnSexChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Birthday", DbType="DateTime")]
-		public System.Nullable<System.DateTime> Birthday
-		{
-			get
-			{
-				return this._Birthday;
-			}
-			set
-			{
-				if ((this._Birthday != value))
-				{
-					this.OnBirthdayChanging(value);
-					this.SendPropertyChanging();
-					this._Birthday = value;
-					this.SendPropertyChanged("Birthday");
-					this.OnBirthdayChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Status", DbType="NVarChar(50)")]
-		public string Status
-		{
-			get
-			{
-				return this._Status;
-			}
-			set
-			{
-				if ((this._Status != value))
-				{
-					this.OnStatusChanging(value);
-					this.SendPropertyChanging();
-					this._Status = value;
-					this.SendPropertyChanged("Status");
-					this.OnStatusChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Commission", DbType="Int")]
-		public System.Nullable<int> Commission
-		{
-			get
-			{
-				return this._Commission;
-			}
-			set
-			{
-				if ((this._Commission != value))
-				{
-					this.OnCommissionChanging(value);
-					this.SendPropertyChanging();
-					this._Commission = value;
-					this.SendPropertyChanged("Commission");
-					this.OnCommissionChanged();
-				}
-			}
-		}
-		
-		[Association(Name="Group_User", Storage="_Group", ThisKey="GroupId", OtherKey="Id", IsForeignKey=true)]
-		public Group Group
-		{
-			get
-			{
-				return this._Group.Entity;
-			}
-			set
-			{
-				Group previousValue = this._Group.Entity;
-				if (((previousValue != value) 
-							|| (this._Group.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Group.Entity = null;
-						previousValue.User.Remove(this);
-					}
-					this._Group.Entity = value;
-					if ((value != null))
-					{
-						value.User.Add(this);
-						this._GroupId = value.Id;
-					}
-					else
-					{
-						this._GroupId = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Group");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 	
@@ -1189,6 +972,8 @@ namespace Voodoo.Business
 		
 		private string _Remark;
 		
+		private EntitySet<ZWorkEmployeesRelation> _ZWorkEmployeesRelation;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1235,6 +1020,7 @@ namespace Voodoo.Business
 		
 		public ZWorkLog()
 		{
+			this._ZWorkEmployeesRelation = new EntitySet<ZWorkEmployeesRelation>(new Action<ZWorkEmployeesRelation>(this.attach_ZWorkEmployeesRelation), new Action<ZWorkEmployeesRelation>(this.detach_ZWorkEmployeesRelation));
 			OnCreated();
 		}
 		
@@ -1618,6 +1404,19 @@ namespace Voodoo.Business
 			}
 		}
 		
+		[Association(Name="ZWorkLog_ZWorkEmployeesRelation", Storage="_ZWorkEmployeesRelation", ThisKey="Id", OtherKey="WorkLogId")]
+		public EntitySet<ZWorkEmployeesRelation> ZWorkEmployeesRelation
+		{
+			get
+			{
+				return this._ZWorkEmployeesRelation;
+			}
+			set
+			{
+				this._ZWorkEmployeesRelation.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1636,6 +1435,18 @@ namespace Voodoo.Business
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_ZWorkEmployeesRelation(ZWorkEmployeesRelation entity)
+		{
+			this.SendPropertyChanging();
+			entity.ZWorkLog = this;
+		}
+		
+		private void detach_ZWorkEmployeesRelation(ZWorkEmployeesRelation entity)
+		{
+			this.SendPropertyChanging();
+			entity.ZWorkLog = null;
 		}
 	}
 	
@@ -2023,6 +1834,8 @@ namespace Voodoo.Business
 		
 		private string _UserType;
 		
+		private EntitySet<ZWorkEmployeesRelation> _ZWorkEmployeesRelation;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -2059,6 +1872,7 @@ namespace Voodoo.Business
 		
 		public ZEmployees()
 		{
+			this._ZWorkEmployeesRelation = new EntitySet<ZWorkEmployeesRelation>(new Action<ZWorkEmployeesRelation>(this.attach_ZWorkEmployeesRelation), new Action<ZWorkEmployeesRelation>(this.detach_ZWorkEmployeesRelation));
 			OnCreated();
 		}
 		
@@ -2342,137 +2156,16 @@ namespace Voodoo.Business
 			}
 		}
 		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[Table(Name="dbo.ZWorkEmployeesRelation")]
-	public partial class ZWorkEmployeesRelation : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private System.Nullable<int> _EmployeesId;
-		
-		private System.Nullable<int> _WorkLogId;
-		
-		private System.Nullable<decimal> _Salary;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnEmployeesIdChanging(System.Nullable<int> value);
-    partial void OnEmployeesIdChanged();
-    partial void OnWorkLogIdChanging(System.Nullable<int> value);
-    partial void OnWorkLogIdChanged();
-    partial void OnSalaryChanging(System.Nullable<decimal> value);
-    partial void OnSalaryChanged();
-    #endregion
-		
-		public ZWorkEmployeesRelation()
-		{
-			OnCreated();
-		}
-		
-		[Column(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id
+		[Association(Name="ZEmployees_ZWorkEmployeesRelation", Storage="_ZWorkEmployeesRelation", ThisKey="Id", OtherKey="EmployeesId")]
+		public EntitySet<ZWorkEmployeesRelation> ZWorkEmployeesRelation
 		{
 			get
 			{
-				return this._id;
+				return this._ZWorkEmployeesRelation;
 			}
 			set
 			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_EmployeesId", DbType="Int")]
-		public System.Nullable<int> EmployeesId
-		{
-			get
-			{
-				return this._EmployeesId;
-			}
-			set
-			{
-				if ((this._EmployeesId != value))
-				{
-					this.OnEmployeesIdChanging(value);
-					this.SendPropertyChanging();
-					this._EmployeesId = value;
-					this.SendPropertyChanged("EmployeesId");
-					this.OnEmployeesIdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_WorkLogId", DbType="Int")]
-		public System.Nullable<int> WorkLogId
-		{
-			get
-			{
-				return this._WorkLogId;
-			}
-			set
-			{
-				if ((this._WorkLogId != value))
-				{
-					this.OnWorkLogIdChanging(value);
-					this.SendPropertyChanging();
-					this._WorkLogId = value;
-					this.SendPropertyChanged("WorkLogId");
-					this.OnWorkLogIdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Salary", DbType="Decimal(18,2)")]
-		public System.Nullable<decimal> Salary
-		{
-			get
-			{
-				return this._Salary;
-			}
-			set
-			{
-				if ((this._Salary != value))
-				{
-					this.OnSalaryChanging(value);
-					this.SendPropertyChanging();
-					this._Salary = value;
-					this.SendPropertyChanged("Salary");
-					this.OnSalaryChanged();
-				}
+				this._ZWorkEmployeesRelation.Assign(value);
 			}
 		}
 		
@@ -2494,6 +2187,18 @@ namespace Voodoo.Business
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_ZWorkEmployeesRelation(ZWorkEmployeesRelation entity)
+		{
+			this.SendPropertyChanging();
+			entity.ZEmployees = this;
+		}
+		
+		private void detach_ZWorkEmployeesRelation(ZWorkEmployeesRelation entity)
+		{
+			this.SendPropertyChanging();
+			entity.ZEmployees = null;
 		}
 	}
 	
@@ -3203,6 +2908,1601 @@ namespace Voodoo.Business
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.ZWorkEmployeesRelation")]
+	public partial class ZWorkEmployeesRelation : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private System.Nullable<int> _EmployeesId;
+		
+		private System.Nullable<int> _WorkLogId;
+		
+		private System.Nullable<decimal> _Salary;
+		
+		private EntityRef<ZEmployees> _ZEmployees;
+		
+		private EntityRef<ZWorkLog> _ZWorkLog;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnEmployeesIdChanging(System.Nullable<int> value);
+    partial void OnEmployeesIdChanged();
+    partial void OnWorkLogIdChanging(System.Nullable<int> value);
+    partial void OnWorkLogIdChanged();
+    partial void OnSalaryChanging(System.Nullable<decimal> value);
+    partial void OnSalaryChanged();
+    #endregion
+		
+		public ZWorkEmployeesRelation()
+		{
+			this._ZEmployees = default(EntityRef<ZEmployees>);
+			this._ZWorkLog = default(EntityRef<ZWorkLog>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_EmployeesId", DbType="Int")]
+		public System.Nullable<int> EmployeesId
+		{
+			get
+			{
+				return this._EmployeesId;
+			}
+			set
+			{
+				if ((this._EmployeesId != value))
+				{
+					if (this._ZEmployees.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnEmployeesIdChanging(value);
+					this.SendPropertyChanging();
+					this._EmployeesId = value;
+					this.SendPropertyChanged("EmployeesId");
+					this.OnEmployeesIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_WorkLogId", DbType="Int")]
+		public System.Nullable<int> WorkLogId
+		{
+			get
+			{
+				return this._WorkLogId;
+			}
+			set
+			{
+				if ((this._WorkLogId != value))
+				{
+					if (this._ZWorkLog.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnWorkLogIdChanging(value);
+					this.SendPropertyChanging();
+					this._WorkLogId = value;
+					this.SendPropertyChanged("WorkLogId");
+					this.OnWorkLogIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Salary", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> Salary
+		{
+			get
+			{
+				return this._Salary;
+			}
+			set
+			{
+				if ((this._Salary != value))
+				{
+					this.OnSalaryChanging(value);
+					this.SendPropertyChanging();
+					this._Salary = value;
+					this.SendPropertyChanged("Salary");
+					this.OnSalaryChanged();
+				}
+			}
+		}
+		
+		[Association(Name="ZEmployees_ZWorkEmployeesRelation", Storage="_ZEmployees", ThisKey="EmployeesId", OtherKey="Id", IsForeignKey=true)]
+		public ZEmployees ZEmployees
+		{
+			get
+			{
+				return this._ZEmployees.Entity;
+			}
+			set
+			{
+				ZEmployees previousValue = this._ZEmployees.Entity;
+				if (((previousValue != value) 
+							|| (this._ZEmployees.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ZEmployees.Entity = null;
+						previousValue.ZWorkEmployeesRelation.Remove(this);
+					}
+					this._ZEmployees.Entity = value;
+					if ((value != null))
+					{
+						value.ZWorkEmployeesRelation.Add(this);
+						this._EmployeesId = value.Id;
+					}
+					else
+					{
+						this._EmployeesId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ZEmployees");
+				}
+			}
+		}
+		
+		[Association(Name="ZWorkLog_ZWorkEmployeesRelation", Storage="_ZWorkLog", ThisKey="WorkLogId", OtherKey="Id", IsForeignKey=true)]
+		public ZWorkLog ZWorkLog
+		{
+			get
+			{
+				return this._ZWorkLog.Entity;
+			}
+			set
+			{
+				ZWorkLog previousValue = this._ZWorkLog.Entity;
+				if (((previousValue != value) 
+							|| (this._ZWorkLog.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ZWorkLog.Entity = null;
+						previousValue.ZWorkEmployeesRelation.Remove(this);
+					}
+					this._ZWorkLog.Entity = value;
+					if ((value != null))
+					{
+						value.ZWorkEmployeesRelation.Add(this);
+						this._WorkLogId = value.Id;
+					}
+					else
+					{
+						this._WorkLogId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ZWorkLog");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.ZCard")]
+	public partial class ZCard : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _CardNumber;
+		
+		private System.Nullable<int> _HourSum;
+		
+		private System.Nullable<int> _HourLeft;
+		
+		private System.Nullable<System.DateTime> _VTime;
+		
+		private string _Status;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnCardNumberChanging(string value);
+    partial void OnCardNumberChanged();
+    partial void OnHourSumChanging(System.Nullable<int> value);
+    partial void OnHourSumChanged();
+    partial void OnHourLeftChanging(System.Nullable<int> value);
+    partial void OnHourLeftChanged();
+    partial void OnVTimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnVTimeChanged();
+    partial void OnStatusChanging(string value);
+    partial void OnStatusChanged();
+    #endregion
+		
+		public ZCard()
+		{
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_CardNumber", DbType="NVarChar(50)")]
+		public string CardNumber
+		{
+			get
+			{
+				return this._CardNumber;
+			}
+			set
+			{
+				if ((this._CardNumber != value))
+				{
+					this.OnCardNumberChanging(value);
+					this.SendPropertyChanging();
+					this._CardNumber = value;
+					this.SendPropertyChanged("CardNumber");
+					this.OnCardNumberChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_HourSum", DbType="Int")]
+		public System.Nullable<int> HourSum
+		{
+			get
+			{
+				return this._HourSum;
+			}
+			set
+			{
+				if ((this._HourSum != value))
+				{
+					this.OnHourSumChanging(value);
+					this.SendPropertyChanging();
+					this._HourSum = value;
+					this.SendPropertyChanged("HourSum");
+					this.OnHourSumChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_HourLeft", DbType="Int")]
+		public System.Nullable<int> HourLeft
+		{
+			get
+			{
+				return this._HourLeft;
+			}
+			set
+			{
+				if ((this._HourLeft != value))
+				{
+					this.OnHourLeftChanging(value);
+					this.SendPropertyChanging();
+					this._HourLeft = value;
+					this.SendPropertyChanged("HourLeft");
+					this.OnHourLeftChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_VTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> VTime
+		{
+			get
+			{
+				return this._VTime;
+			}
+			set
+			{
+				if ((this._VTime != value))
+				{
+					this.OnVTimeChanging(value);
+					this.SendPropertyChanging();
+					this._VTime = value;
+					this.SendPropertyChanged("VTime");
+					this.OnVTimeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Status", DbType="NVarChar(50)")]
+		public string Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.ZBorrowSalary")]
+	public partial class ZBorrowSalary : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Nullable<System.DateTime> _BorrowTime;
+		
+		private System.Nullable<decimal> _BorrowMoney;
+		
+		private System.Nullable<int> _UserID;
+		
+		private string _UserName;
+		
+		private string _UserType;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnBorrowTimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnBorrowTimeChanged();
+    partial void OnBorrowMoneyChanging(System.Nullable<decimal> value);
+    partial void OnBorrowMoneyChanged();
+    partial void OnUserIDChanging(System.Nullable<int> value);
+    partial void OnUserIDChanged();
+    partial void OnUserNameChanging(string value);
+    partial void OnUserNameChanged();
+    partial void OnUserTypeChanging(string value);
+    partial void OnUserTypeChanged();
+    #endregion
+		
+		public ZBorrowSalary()
+		{
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_BorrowTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> BorrowTime
+		{
+			get
+			{
+				return this._BorrowTime;
+			}
+			set
+			{
+				if ((this._BorrowTime != value))
+				{
+					this.OnBorrowTimeChanging(value);
+					this.SendPropertyChanging();
+					this._BorrowTime = value;
+					this.SendPropertyChanged("BorrowTime");
+					this.OnBorrowTimeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_BorrowMoney", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> BorrowMoney
+		{
+			get
+			{
+				return this._BorrowMoney;
+			}
+			set
+			{
+				if ((this._BorrowMoney != value))
+				{
+					this.OnBorrowMoneyChanging(value);
+					this.SendPropertyChanging();
+					this._BorrowMoney = value;
+					this.SendPropertyChanged("BorrowMoney");
+					this.OnBorrowMoneyChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UserID", DbType="Int")]
+		public System.Nullable<int> UserID
+		{
+			get
+			{
+				return this._UserID;
+			}
+			set
+			{
+				if ((this._UserID != value))
+				{
+					this.OnUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._UserID = value;
+					this.SendPropertyChanged("UserID");
+					this.OnUserIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UserName", DbType="NVarChar(50)")]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this.OnUserNameChanging(value);
+					this.SendPropertyChanging();
+					this._UserName = value;
+					this.SendPropertyChanged("UserName");
+					this.OnUserNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UserType", DbType="NVarChar(50)")]
+		public string UserType
+		{
+			get
+			{
+				return this._UserType;
+			}
+			set
+			{
+				if ((this._UserType != value))
+				{
+					this.OnUserTypeChanging(value);
+					this.SendPropertyChanging();
+					this._UserType = value;
+					this.SendPropertyChanged("UserType");
+					this.OnUserTypeChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.[User]")]
+	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _UserName;
+		
+		private string _UserPassword;
+		
+		private System.Nullable<int> _GroupId;
+		
+		private string _Sex;
+		
+		private System.Nullable<System.DateTime> _Birthday;
+		
+		private string _Status;
+		
+		private System.Nullable<int> _Commission;
+		
+		private System.Nullable<decimal> _Salary;
+		
+		private EntityRef<Group> _Group;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnUserNameChanging(string value);
+    partial void OnUserNameChanged();
+    partial void OnUserPasswordChanging(string value);
+    partial void OnUserPasswordChanged();
+    partial void OnGroupIdChanging(System.Nullable<int> value);
+    partial void OnGroupIdChanged();
+    partial void OnSexChanging(string value);
+    partial void OnSexChanged();
+    partial void OnBirthdayChanging(System.Nullable<System.DateTime> value);
+    partial void OnBirthdayChanged();
+    partial void OnStatusChanging(string value);
+    partial void OnStatusChanged();
+    partial void OnCommissionChanging(System.Nullable<int> value);
+    partial void OnCommissionChanged();
+    partial void OnSalaryChanging(System.Nullable<decimal> value);
+    partial void OnSalaryChanged();
+    #endregion
+		
+		public User()
+		{
+			this._Group = default(EntityRef<Group>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UserName", DbType="NVarChar(50)")]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this.OnUserNameChanging(value);
+					this.SendPropertyChanging();
+					this._UserName = value;
+					this.SendPropertyChanged("UserName");
+					this.OnUserNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UserPassword", DbType="NVarChar(50)")]
+		public string UserPassword
+		{
+			get
+			{
+				return this._UserPassword;
+			}
+			set
+			{
+				if ((this._UserPassword != value))
+				{
+					this.OnUserPasswordChanging(value);
+					this.SendPropertyChanging();
+					this._UserPassword = value;
+					this.SendPropertyChanged("UserPassword");
+					this.OnUserPasswordChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_GroupId", DbType="Int")]
+		public System.Nullable<int> GroupId
+		{
+			get
+			{
+				return this._GroupId;
+			}
+			set
+			{
+				if ((this._GroupId != value))
+				{
+					if (this._Group.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnGroupIdChanging(value);
+					this.SendPropertyChanging();
+					this._GroupId = value;
+					this.SendPropertyChanged("GroupId");
+					this.OnGroupIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Sex", DbType="NVarChar(50)")]
+		public string Sex
+		{
+			get
+			{
+				return this._Sex;
+			}
+			set
+			{
+				if ((this._Sex != value))
+				{
+					this.OnSexChanging(value);
+					this.SendPropertyChanging();
+					this._Sex = value;
+					this.SendPropertyChanged("Sex");
+					this.OnSexChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Birthday", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Birthday
+		{
+			get
+			{
+				return this._Birthday;
+			}
+			set
+			{
+				if ((this._Birthday != value))
+				{
+					this.OnBirthdayChanging(value);
+					this.SendPropertyChanging();
+					this._Birthday = value;
+					this.SendPropertyChanged("Birthday");
+					this.OnBirthdayChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Status", DbType="NVarChar(50)")]
+		public string Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Commission", DbType="Int")]
+		public System.Nullable<int> Commission
+		{
+			get
+			{
+				return this._Commission;
+			}
+			set
+			{
+				if ((this._Commission != value))
+				{
+					this.OnCommissionChanging(value);
+					this.SendPropertyChanging();
+					this._Commission = value;
+					this.SendPropertyChanged("Commission");
+					this.OnCommissionChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Salary", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> Salary
+		{
+			get
+			{
+				return this._Salary;
+			}
+			set
+			{
+				if ((this._Salary != value))
+				{
+					this.OnSalaryChanging(value);
+					this.SendPropertyChanging();
+					this._Salary = value;
+					this.SendPropertyChanged("Salary");
+					this.OnSalaryChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Group_User", Storage="_Group", ThisKey="GroupId", OtherKey="Id", IsForeignKey=true)]
+		public Group Group
+		{
+			get
+			{
+				return this._Group.Entity;
+			}
+			set
+			{
+				Group previousValue = this._Group.Entity;
+				if (((previousValue != value) 
+							|| (this._Group.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Group.Entity = null;
+						previousValue.User.Remove(this);
+					}
+					this._Group.Entity = value;
+					if ((value != null))
+					{
+						value.User.Add(this);
+						this._GroupId = value.Id;
+					}
+					else
+					{
+						this._GroupId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Group");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.ViewOfficerSalary")]
+	public partial class ViewOfficerSalary
+	{
+		
+		private string _UserName;
+		
+		private string _月份;
+		
+		private System.Nullable<decimal> _总借款;
+		
+		private System.Nullable<decimal> _底薪;
+		
+		private System.Nullable<decimal> _应发;
+		
+		public ViewOfficerSalary()
+		{
+		}
+		
+		[Column(Storage="_UserName", DbType="NVarChar(50)")]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this._UserName = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_月份", DbType="NVarChar(101)")]
+		public string 月份
+		{
+			get
+			{
+				return this._月份;
+			}
+			set
+			{
+				if ((this._月份 != value))
+				{
+					this._月份 = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_总借款", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> 总借款
+		{
+			get
+			{
+				return this._总借款;
+			}
+			set
+			{
+				if ((this._总借款 != value))
+				{
+					this._总借款 = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_底薪", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> 底薪
+		{
+			get
+			{
+				return this._底薪;
+			}
+			set
+			{
+				if ((this._底薪 != value))
+				{
+					this._底薪 = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_应发", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> 应发
+		{
+			get
+			{
+				return this._应发;
+			}
+			set
+			{
+				if ((this._应发 != value))
+				{
+					this._应发 = value;
+				}
+			}
+		}
+	}
+	
+	[Table(Name="dbo.ViewXuanchuanSalary")]
+	public partial class ViewXuanchuanSalary
+	{
+		
+		private string _UserName;
+		
+		private System.Nullable<int> _数量;
+		
+		private string _月份;
+		
+		private System.Nullable<decimal> _借款;
+		
+		private System.Nullable<int> _提成;
+		
+		private System.Nullable<decimal> _应发;
+		
+		public ViewXuanchuanSalary()
+		{
+		}
+		
+		[Column(Storage="_UserName", DbType="NVarChar(50)")]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this._UserName = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_数量", DbType="Int")]
+		public System.Nullable<int> 数量
+		{
+			get
+			{
+				return this._数量;
+			}
+			set
+			{
+				if ((this._数量 != value))
+				{
+					this._数量 = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_月份", DbType="NVarChar(101)")]
+		public string 月份
+		{
+			get
+			{
+				return this._月份;
+			}
+			set
+			{
+				if ((this._月份 != value))
+				{
+					this._月份 = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_借款", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> 借款
+		{
+			get
+			{
+				return this._借款;
+			}
+			set
+			{
+				if ((this._借款 != value))
+				{
+					this._借款 = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_提成", DbType="Int")]
+		public System.Nullable<int> 提成
+		{
+			get
+			{
+				return this._提成;
+			}
+			set
+			{
+				if ((this._提成 != value))
+				{
+					this._提成 = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_应发", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> 应发
+		{
+			get
+			{
+				return this._应发;
+			}
+			set
+			{
+				if ((this._应发 != value))
+				{
+					this._应发 = value;
+				}
+			}
+		}
+	}
+	
+	[Table(Name="dbo.ViewBaojieSalary")]
+	public partial class ViewBaojieSalary
+	{
+		
+		private System.Nullable<int> _EmployeesId;
+		
+		private string _UserName;
+		
+		private System.Nullable<decimal> _提成;
+		
+		private string _月份;
+		
+		private System.Nullable<decimal> _借款;
+		
+		private System.Nullable<decimal> _应发;
+		
+		public ViewBaojieSalary()
+		{
+		}
+		
+		[Column(Storage="_EmployeesId", DbType="Int")]
+		public System.Nullable<int> EmployeesId
+		{
+			get
+			{
+				return this._EmployeesId;
+			}
+			set
+			{
+				if ((this._EmployeesId != value))
+				{
+					this._EmployeesId = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_UserName", DbType="NVarChar(50)")]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this._UserName = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_提成", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> 提成
+		{
+			get
+			{
+				return this._提成;
+			}
+			set
+			{
+				if ((this._提成 != value))
+				{
+					this._提成 = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_月份", DbType="NVarChar(101)")]
+		public string 月份
+		{
+			get
+			{
+				return this._月份;
+			}
+			set
+			{
+				if ((this._月份 != value))
+				{
+					this._月份 = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_借款", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> 借款
+		{
+			get
+			{
+				return this._借款;
+			}
+			set
+			{
+				if ((this._借款 != value))
+				{
+					this._借款 = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_应发", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> 应发
+		{
+			get
+			{
+				return this._应发;
+			}
+			set
+			{
+				if ((this._应发 != value))
+				{
+					this._应发 = value;
+				}
+			}
+		}
+	}
+	
+	[Table(Name="dbo.ViewWorkLogList")]
+	public partial class ViewWorkLogList
+	{
+		
+		private System.Nullable<int> _WorkLogId;
+		
+		private string _users;
+		
+		private int _Id;
+		
+		private System.Nullable<int> _CustomerId;
+		
+		private string _CustomerName;
+		
+		private string _Sex;
+		
+		private string _Tel;
+		
+		private string _MobilePhone;
+		
+		private System.Nullable<System.DateTime> _WorkTime;
+		
+		private string _WorkContent;
+		
+		private string _HomeName;
+		
+		private string _Address;
+		
+		private System.Nullable<int> _WorkHour;
+		
+		private string _EmployeesIds;
+		
+		private string _EmployeesNames;
+		
+		private string _ToolIds;
+		
+		private System.Nullable<decimal> _PayMoney;
+		
+		private System.Nullable<bool> _IsDelete;
+		
+		private System.Nullable<bool> _IsFinished;
+		
+		private System.Nullable<int> _Customerappraise;
+		
+		private string _Remark;
+		
+		public ViewWorkLogList()
+		{
+		}
+		
+		[Column(Storage="_WorkLogId", DbType="Int")]
+		public System.Nullable<int> WorkLogId
+		{
+			get
+			{
+				return this._WorkLogId;
+			}
+			set
+			{
+				if ((this._WorkLogId != value))
+				{
+					this._WorkLogId = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_users", DbType="NVarChar(MAX)")]
+		public string users
+		{
+			get
+			{
+				return this._users;
+			}
+			set
+			{
+				if ((this._users != value))
+				{
+					this._users = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_Id", DbType="Int NOT NULL")]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_CustomerId", DbType="Int")]
+		public System.Nullable<int> CustomerId
+		{
+			get
+			{
+				return this._CustomerId;
+			}
+			set
+			{
+				if ((this._CustomerId != value))
+				{
+					this._CustomerId = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_CustomerName", DbType="NVarChar(50)")]
+		public string CustomerName
+		{
+			get
+			{
+				return this._CustomerName;
+			}
+			set
+			{
+				if ((this._CustomerName != value))
+				{
+					this._CustomerName = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_Sex", DbType="VarChar(50)")]
+		public string Sex
+		{
+			get
+			{
+				return this._Sex;
+			}
+			set
+			{
+				if ((this._Sex != value))
+				{
+					this._Sex = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_Tel", DbType="NVarChar(50)")]
+		public string Tel
+		{
+			get
+			{
+				return this._Tel;
+			}
+			set
+			{
+				if ((this._Tel != value))
+				{
+					this._Tel = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_MobilePhone", DbType="NVarChar(50)")]
+		public string MobilePhone
+		{
+			get
+			{
+				return this._MobilePhone;
+			}
+			set
+			{
+				if ((this._MobilePhone != value))
+				{
+					this._MobilePhone = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_WorkTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> WorkTime
+		{
+			get
+			{
+				return this._WorkTime;
+			}
+			set
+			{
+				if ((this._WorkTime != value))
+				{
+					this._WorkTime = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_WorkContent", DbType="NVarChar(512)")]
+		public string WorkContent
+		{
+			get
+			{
+				return this._WorkContent;
+			}
+			set
+			{
+				if ((this._WorkContent != value))
+				{
+					this._WorkContent = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_HomeName", DbType="NVarChar(50)")]
+		public string HomeName
+		{
+			get
+			{
+				return this._HomeName;
+			}
+			set
+			{
+				if ((this._HomeName != value))
+				{
+					this._HomeName = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_Address", DbType="NVarChar(512)")]
+		public string Address
+		{
+			get
+			{
+				return this._Address;
+			}
+			set
+			{
+				if ((this._Address != value))
+				{
+					this._Address = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_WorkHour", DbType="Int")]
+		public System.Nullable<int> WorkHour
+		{
+			get
+			{
+				return this._WorkHour;
+			}
+			set
+			{
+				if ((this._WorkHour != value))
+				{
+					this._WorkHour = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_EmployeesIds", DbType="NVarChar(50)")]
+		public string EmployeesIds
+		{
+			get
+			{
+				return this._EmployeesIds;
+			}
+			set
+			{
+				if ((this._EmployeesIds != value))
+				{
+					this._EmployeesIds = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_EmployeesNames", DbType="NVarChar(255)")]
+		public string EmployeesNames
+		{
+			get
+			{
+				return this._EmployeesNames;
+			}
+			set
+			{
+				if ((this._EmployeesNames != value))
+				{
+					this._EmployeesNames = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_ToolIds", DbType="NVarChar(50)")]
+		public string ToolIds
+		{
+			get
+			{
+				return this._ToolIds;
+			}
+			set
+			{
+				if ((this._ToolIds != value))
+				{
+					this._ToolIds = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_PayMoney", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> PayMoney
+		{
+			get
+			{
+				return this._PayMoney;
+			}
+			set
+			{
+				if ((this._PayMoney != value))
+				{
+					this._PayMoney = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_IsDelete", DbType="Bit")]
+		public System.Nullable<bool> IsDelete
+		{
+			get
+			{
+				return this._IsDelete;
+			}
+			set
+			{
+				if ((this._IsDelete != value))
+				{
+					this._IsDelete = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_IsFinished", DbType="Bit")]
+		public System.Nullable<bool> IsFinished
+		{
+			get
+			{
+				return this._IsFinished;
+			}
+			set
+			{
+				if ((this._IsFinished != value))
+				{
+					this._IsFinished = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_Customerappraise", DbType="Int")]
+		public System.Nullable<int> Customerappraise
+		{
+			get
+			{
+				return this._Customerappraise;
+			}
+			set
+			{
+				if ((this._Customerappraise != value))
+				{
+					this._Customerappraise = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_Remark", DbType="NVarChar(2000)")]
+		public string Remark
+		{
+			get
+			{
+				return this._Remark;
+			}
+			set
+			{
+				if ((this._Remark != value))
+				{
+					this._Remark = value;
+				}
 			}
 		}
 	}

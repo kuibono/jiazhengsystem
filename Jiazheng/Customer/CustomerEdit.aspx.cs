@@ -41,7 +41,23 @@ namespace Jiazheng.Customer
             txt_Tel.Text = c.Tel;
             txt_MobilePhone.Text = c.MobilePhone;
             txt_HomeName.Text = c.HomeName;
-            txt_Address.Text = c.Address;
+            try
+            {
+                txt_Address_0.Text = c.Address.Split('$')[0];
+            }
+            catch { }
+
+            try
+            {
+                txt_Address_1.Text = c.Address.Split('$')[1];
+            }
+            catch { }
+            try
+            {
+                txt_Address_2.Text = c.Address.Split('$')[2];
+            }
+            catch { }
+            
             txt_IDCard.Text = c.IDCard;
             txt_CardNo.Text = c.CardNo;
             txt_UsedHour.Text = c.UsedHour.ToString();
@@ -81,7 +97,7 @@ namespace Jiazheng.Customer
             c.Tel = txt_Tel.Text.TrimDbDangerousChar();
             c.MobilePhone = txt_MobilePhone.Text.TrimDbDangerousChar();
             c.HomeName = txt_HomeName.Text.TrimDbDangerousChar();
-            c.Address = txt_Address.Text.TrimDbDangerousChar();
+            c.Address = txt_Address_0.Text.TrimDbDangerousChar() + "$" + txt_Address_1.Text.TrimDbDangerousChar() + "$" + txt_Address_2.Text.TrimDbDangerousChar();
             c.IDCard = txt_IDCard.Text.TrimDbDangerousChar();
             c.CardNo = txt_CardNo.Text.TrimDbDangerousChar();
             c.LeftHour = txt_LeftHour.Text.ToInt32();

@@ -25,21 +25,26 @@ namespace Jiazheng.Salary
         {
             DataSysDataContext dsd = new DataSysDataContext();
 
-            int year = txt_Month.Text.Split('-')[0].ToInt32();
-            int month = txt_Month.Text.Split('-')[1].ToInt32();
+            //int year = txt_Month.Text.Split('-')[0].ToInt32();
+            //int month = txt_Month.Text.Split('-')[1].ToInt32();
 
-            var l = dsd.ViewUserWorkLog
-                .Where(p => Convert.ToDateTime(p.WorkTime).Month == month && Convert.ToDateTime(p.WorkTime).Year == year)
-                .GroupBy(p => p.EmployeesId)
-                .Select(p => new { 
-                    Salary = p.Sum(q => q.Salary), 
-                    EmployeesId = p.First().EmployeesId, 
-                    Username = p.First().UserName, 
-                    month = p.First().WorkTime,
-                    BaseSalary=p.First().SalaryDegree,
-                    AllSalary = p.Sum(q => q.Salary) + p.First().SalaryDegree
-                });
+            //var l = dsd.ViewUserWorkLog
+            //    .Where(p => Convert.ToDateTime(p.WorkTime).Month == month && Convert.ToDateTime(p.WorkTime).Year == year)
+            //    .GroupBy(p => p.EmployeesId)
+            //    .Select(p => new { 
+            //        Salary = p.Sum(q => q.Salary), 
+            //        EmployeesId = p.First().EmployeesId, 
+            //        Username = p.First().UserName, 
+            //        month = p.First().WorkTime,
+            //        BaseSalary=p.First().SalaryDegree,
+            //        AllSalary = p.Sum(q => q.Salary) + p.First().SalaryDegree
+            //    });
 
+            var l = dsd.ViewBaojieSalary.ToList();
+            if (txt_Month.Text!="")
+            {
+                l = l.Where(p => p.月份 == txt_Month.Text).ToList();
+            }
 
             list.DataSource = l;
             list.DataBind();

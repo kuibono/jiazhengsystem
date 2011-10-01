@@ -60,10 +60,10 @@
                 月份
             </td>
             <td width="18%">
-                考勤工资
+                提成
             </td>
             <td width="18%">
-                基本工资
+                借款
             </td>
             <td width="18%">
                 最终工资
@@ -76,16 +76,16 @@
                         <%#Eval("UserName")%>
                     </td>
                     <td>
-                        <%#Eval("month").ToDateTime().ToString("yyyy-MM")%>
+                        <%#Eval("月份")%>
                     </td>
                     <td>
-                        <%#Eval("Salary")%>
+                        <%#Eval("提成")%>
                     </td>
                     <td>
-                        <%#Eval("BaseSalary")%>
+                        <%#Eval("借款")%>
                     </td>
                     <td>
-                        <%#Eval("AllSalary")%>
+                        <%#Eval("应发")%>
                     </td>
                 </tr>
             </ItemTemplate>

@@ -90,7 +90,9 @@
                 家庭地址：
             </td>
             <td>
-                <asp:TextBox ID="txt_Address" runat="server" Width="200px" TextMode="MultiLine"></asp:TextBox>
+                <asp:TextBox ID="txt_Address_0" runat="server" Width="150px"></asp:TextBox>路 交
+                <asp:TextBox ID="txt_Address_1" runat="server" Width="150px"></asp:TextBox>路 向
+                <asp:TextBox ID="txt_Address_2" runat="server" Width="150px"></asp:TextBox>米
             </td>
         </tr>
         <tr class="itemrow">

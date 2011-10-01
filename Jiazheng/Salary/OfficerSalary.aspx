@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PaySalary.aspx.cs" Inherits="Jiazheng.Salary.PaySalary" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="OfficerSalary.aspx.cs" Inherits="Jiazheng.Salary.OfficerSalary" %>
 <%@ Import Namespace="Voodoo" %>
 <%@ Register Assembly="Voodoo" Namespace="Voodoo.UI" TagPrefix="cc1" %>
 
@@ -18,35 +18,11 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="tip">
+    <div class="tip">
         <img height="14" src="../skin/images/frame/book1.gif" width="20" />
         &nbsp; 任何不谨慎的操作将造成不可恢复的损失，请谨慎操作！
     </div>
-    <table width='98%' border='0' cellpadding='1' cellspacing='1' bgcolor='#CBD8AC' align="center"
-        style="margin-top: 8px">
-        <tr bgcolor='#EEF4EA'>
-            <td background='../skin/images/wbg.gif' align='center'>
-                <table border='0' cellpadding='0' cellspacing='0'>
-                    <tr>
-                        <td>
-                            月份：
-                        </td>
-                        <td style="width: 160px">
-                            <asp:TextBox ID="txt_Month" runat="server" onfocus="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM'})"></asp:TextBox>
-                        </td>
-
-                        <td style="width: 70px">
-                            <asp:ImageButton ID="ImageButton1" ImageUrl="../skin/images/frame/search.gif" runat="server"
-                                CssClass="np" OnClick="ImageButton1_Click" />
-                        </td>
-                        <td>
-                            <asp:Button ID="btn_Export" runat="server" Text="导出" OnClick="btn_Export_Click" />
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
+    
     <table width="98%" border="0" cellpadding="2" cellspacing="1" align="center" class="list">
         <tr bgcolor="#EEF4EA" class="Title">
             <td height="24" colspan="7">
@@ -61,10 +37,7 @@
                 月份
             </td>
             <td width="18%">
-                售卡数量
-            </td>
-            <td width="18%">
-                售卡提成
+                底薪
             </td>
             <td width="18%">
                 借款
@@ -83,13 +56,10 @@
                         <%#Eval("月份")%>
                     </td>
                     <td>
-                        <%#Eval("数量")%>
+                        <%#Eval("底薪")%>
                     </td>
                     <td>
-                        <%#Eval("提成")%>
-                    </td>
-                    <td>
-                        <%#Eval("借款")%>
+                        <%#Eval("总借款")%>
                     </td>
                     <td>
                         <%#Eval("应发")%>
