@@ -28,7 +28,7 @@
     <form id="form1" runat="server">
     <div class="tip">
         <img height="14" src="../skin/images/frame/book1.gif" width="20" />
-        &nbsp; 这里填写页面说明。。。。。。。。。。
+        &nbsp; 新增、修改支付记录
     </div>
     <table align="center" border="0" cellpadding="4" cellspacing="1" class="edittable">
         <tr>
@@ -59,7 +59,9 @@
                 卡号:
             </td>
             <td>
-                <asp:TextBox ID="txt_CardNo" runat="server"></asp:TextBox>
+                <asp:DropDownList ID="ddl_Card" runat="server" AutoPostBack="True" 
+                    onselectedindexchanged="ddl_Card_SelectedIndexChanged">
+                </asp:DropDownList>
             </td>
         </tr>
         <tr class="itemrow">

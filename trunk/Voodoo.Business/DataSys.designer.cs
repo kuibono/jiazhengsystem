@@ -48,9 +48,6 @@ namespace Voodoo.Business
     partial void InsertZWorkLog(ZWorkLog instance);
     partial void UpdateZWorkLog(ZWorkLog instance);
     partial void DeleteZWorkLog(ZWorkLog instance);
-    partial void InsertZCustomer(ZCustomer instance);
-    partial void UpdateZCustomer(ZCustomer instance);
-    partial void DeleteZCustomer(ZCustomer instance);
     partial void InsertZEmployees(ZEmployees instance);
     partial void UpdateZEmployees(ZEmployees instance);
     partial void DeleteZEmployees(ZEmployees instance);
@@ -69,6 +66,18 @@ namespace Voodoo.Business
     partial void InsertZBorrowSalary(ZBorrowSalary instance);
     partial void UpdateZBorrowSalary(ZBorrowSalary instance);
     partial void DeleteZBorrowSalary(ZBorrowSalary instance);
+    partial void InsertZHandBill(ZHandBill instance);
+    partial void UpdateZHandBill(ZHandBill instance);
+    partial void DeleteZHandBill(ZHandBill instance);
+    partial void InsertZCardConsume(ZCardConsume instance);
+    partial void UpdateZCardConsume(ZCardConsume instance);
+    partial void DeleteZCardConsume(ZCardConsume instance);
+    partial void InsertZCustomer(ZCustomer instance);
+    partial void UpdateZCustomer(ZCustomer instance);
+    partial void DeleteZCustomer(ZCustomer instance);
+    partial void InsertZCustomerBorrowLog(ZCustomerBorrowLog instance);
+    partial void UpdateZCustomerBorrowLog(ZCustomerBorrowLog instance);
+    partial void DeleteZCustomerBorrowLog(ZCustomerBorrowLog instance);
     #endregion
 		
 		public DataSysDataContext() : 
@@ -149,14 +158,6 @@ namespace Voodoo.Business
 			}
 		}
 		
-		public System.Data.Linq.Table<ZCustomer> ZCustomer
-		{
-			get
-			{
-				return this.GetTable<ZCustomer>();
-			}
-		}
-		
 		public System.Data.Linq.Table<ZEmployees> ZEmployees
 		{
 			get
@@ -221,6 +222,22 @@ namespace Voodoo.Business
 			}
 		}
 		
+		public System.Data.Linq.Table<ZBorrowSalary> ZBorrowSalary
+		{
+			get
+			{
+				return this.GetTable<ZBorrowSalary>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ZHandBill> ZHandBill
+		{
+			get
+			{
+				return this.GetTable<ZHandBill>();
+			}
+		}
+		
 		public System.Data.Linq.Table<ViewXuanchuanSalary> ViewXuanchuanSalary
 		{
 			get
@@ -237,6 +254,46 @@ namespace Voodoo.Business
 			}
 		}
 		
+		public System.Data.Linq.Table<ViewBaojieWorkDetail> ViewBaojieWorkDetail
+		{
+			get
+			{
+				return this.GetTable<ViewBaojieWorkDetail>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ViewXuanchuanWorkDetail> ViewXuanchuanWorkDetail
+		{
+			get
+			{
+				return this.GetTable<ViewXuanchuanWorkDetail>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ZCardConsume> ZCardConsume
+		{
+			get
+			{
+				return this.GetTable<ZCardConsume>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ZCustomer> ZCustomer
+		{
+			get
+			{
+				return this.GetTable<ZCustomer>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ZCustomerBorrowLog> ZCustomerBorrowLog
+		{
+			get
+			{
+				return this.GetTable<ZCustomerBorrowLog>();
+			}
+		}
+		
 		public System.Data.Linq.Table<ViewWorkLogList> ViewWorkLogList
 		{
 			get
@@ -245,11 +302,11 @@ namespace Voodoo.Business
 			}
 		}
 		
-		public System.Data.Linq.Table<ZBorrowSalary> ZBorrowSalary
+		public System.Data.Linq.Table<ViewCustomerList> ViewCustomerList
 		{
 			get
 			{
-				return this.GetTable<ZBorrowSalary>();
+				return this.GetTable<ViewCustomerList>();
 			}
 		}
 	}
@@ -974,6 +1031,8 @@ namespace Voodoo.Business
 		
 		private EntitySet<ZWorkEmployeesRelation> _ZWorkEmployeesRelation;
 		
+		private EntitySet<ZCustomerBorrowLog> _ZCustomerBorrowLog;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1021,6 +1080,7 @@ namespace Voodoo.Business
 		public ZWorkLog()
 		{
 			this._ZWorkEmployeesRelation = new EntitySet<ZWorkEmployeesRelation>(new Action<ZWorkEmployeesRelation>(this.attach_ZWorkEmployeesRelation), new Action<ZWorkEmployeesRelation>(this.detach_ZWorkEmployeesRelation));
+			this._ZCustomerBorrowLog = new EntitySet<ZCustomerBorrowLog>(new Action<ZCustomerBorrowLog>(this.attach_ZCustomerBorrowLog), new Action<ZCustomerBorrowLog>(this.detach_ZCustomerBorrowLog));
 			OnCreated();
 		}
 		
@@ -1417,6 +1477,19 @@ namespace Voodoo.Business
 			}
 		}
 		
+		[Association(Name="ZWorkLog_ZCustomerBorrowLog", Storage="_ZCustomerBorrowLog", ThisKey="Id", OtherKey="WorkLogId")]
+		public EntitySet<ZCustomerBorrowLog> ZCustomerBorrowLog
+		{
+			get
+			{
+				return this._ZCustomerBorrowLog;
+			}
+			set
+			{
+				this._ZCustomerBorrowLog.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1448,355 +1521,17 @@ namespace Voodoo.Business
 			this.SendPropertyChanging();
 			entity.ZWorkLog = null;
 		}
-	}
-	
-	[Table(Name="dbo.ZCustomer")]
-	public partial class ZCustomer : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private string _UserName;
-		
-		private string _Sex;
-		
-		private string _Tel;
-		
-		private string _MobilePhone;
-		
-		private string _HomeName;
-		
-		private string _Address;
-		
-		private System.Nullable<System.DateTime> _ValidateTime;
-		
-		private string _CardNo;
-		
-		private System.Nullable<int> _UsedHour;
-		
-		private System.Nullable<int> _LeftHour;
-		
-		private string _IDCard;
-		
-		private System.Nullable<bool> _IsReg;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnUserNameChanging(string value);
-    partial void OnUserNameChanged();
-    partial void OnSexChanging(string value);
-    partial void OnSexChanged();
-    partial void OnTelChanging(string value);
-    partial void OnTelChanged();
-    partial void OnMobilePhoneChanging(string value);
-    partial void OnMobilePhoneChanged();
-    partial void OnHomeNameChanging(string value);
-    partial void OnHomeNameChanged();
-    partial void OnAddressChanging(string value);
-    partial void OnAddressChanged();
-    partial void OnValidateTimeChanging(System.Nullable<System.DateTime> value);
-    partial void OnValidateTimeChanged();
-    partial void OnCardNoChanging(string value);
-    partial void OnCardNoChanged();
-    partial void OnUsedHourChanging(System.Nullable<int> value);
-    partial void OnUsedHourChanged();
-    partial void OnLeftHourChanging(System.Nullable<int> value);
-    partial void OnLeftHourChanged();
-    partial void OnIDCardChanging(string value);
-    partial void OnIDCardChanged();
-    partial void OnIsRegChanging(System.Nullable<bool> value);
-    partial void OnIsRegChanged();
-    #endregion
-		
-		public ZCustomer()
+		private void attach_ZCustomerBorrowLog(ZCustomerBorrowLog entity)
 		{
-			OnCreated();
+			this.SendPropertyChanging();
+			entity.ZWorkLog = this;
 		}
 		
-		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
+		private void detach_ZCustomerBorrowLog(ZCustomerBorrowLog entity)
 		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_UserName", DbType="VarChar(50)")]
-		public string UserName
-		{
-			get
-			{
-				return this._UserName;
-			}
-			set
-			{
-				if ((this._UserName != value))
-				{
-					this.OnUserNameChanging(value);
-					this.SendPropertyChanging();
-					this._UserName = value;
-					this.SendPropertyChanged("UserName");
-					this.OnUserNameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Sex", DbType="VarChar(50)")]
-		public string Sex
-		{
-			get
-			{
-				return this._Sex;
-			}
-			set
-			{
-				if ((this._Sex != value))
-				{
-					this.OnSexChanging(value);
-					this.SendPropertyChanging();
-					this._Sex = value;
-					this.SendPropertyChanged("Sex");
-					this.OnSexChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Tel", DbType="VarChar(50)")]
-		public string Tel
-		{
-			get
-			{
-				return this._Tel;
-			}
-			set
-			{
-				if ((this._Tel != value))
-				{
-					this.OnTelChanging(value);
-					this.SendPropertyChanging();
-					this._Tel = value;
-					this.SendPropertyChanged("Tel");
-					this.OnTelChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_MobilePhone", DbType="VarChar(50)")]
-		public string MobilePhone
-		{
-			get
-			{
-				return this._MobilePhone;
-			}
-			set
-			{
-				if ((this._MobilePhone != value))
-				{
-					this.OnMobilePhoneChanging(value);
-					this.SendPropertyChanging();
-					this._MobilePhone = value;
-					this.SendPropertyChanged("MobilePhone");
-					this.OnMobilePhoneChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_HomeName", DbType="VarChar(50)")]
-		public string HomeName
-		{
-			get
-			{
-				return this._HomeName;
-			}
-			set
-			{
-				if ((this._HomeName != value))
-				{
-					this.OnHomeNameChanging(value);
-					this.SendPropertyChanging();
-					this._HomeName = value;
-					this.SendPropertyChanged("HomeName");
-					this.OnHomeNameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Address", DbType="NVarChar(255)")]
-		public string Address
-		{
-			get
-			{
-				return this._Address;
-			}
-			set
-			{
-				if ((this._Address != value))
-				{
-					this.OnAddressChanging(value);
-					this.SendPropertyChanging();
-					this._Address = value;
-					this.SendPropertyChanged("Address");
-					this.OnAddressChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ValidateTime", DbType="DateTime")]
-		public System.Nullable<System.DateTime> ValidateTime
-		{
-			get
-			{
-				return this._ValidateTime;
-			}
-			set
-			{
-				if ((this._ValidateTime != value))
-				{
-					this.OnValidateTimeChanging(value);
-					this.SendPropertyChanging();
-					this._ValidateTime = value;
-					this.SendPropertyChanged("ValidateTime");
-					this.OnValidateTimeChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_CardNo", DbType="NVarChar(50)")]
-		public string CardNo
-		{
-			get
-			{
-				return this._CardNo;
-			}
-			set
-			{
-				if ((this._CardNo != value))
-				{
-					this.OnCardNoChanging(value);
-					this.SendPropertyChanging();
-					this._CardNo = value;
-					this.SendPropertyChanged("CardNo");
-					this.OnCardNoChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_UsedHour", DbType="Int")]
-		public System.Nullable<int> UsedHour
-		{
-			get
-			{
-				return this._UsedHour;
-			}
-			set
-			{
-				if ((this._UsedHour != value))
-				{
-					this.OnUsedHourChanging(value);
-					this.SendPropertyChanging();
-					this._UsedHour = value;
-					this.SendPropertyChanged("UsedHour");
-					this.OnUsedHourChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_LeftHour", DbType="Int")]
-		public System.Nullable<int> LeftHour
-		{
-			get
-			{
-				return this._LeftHour;
-			}
-			set
-			{
-				if ((this._LeftHour != value))
-				{
-					this.OnLeftHourChanging(value);
-					this.SendPropertyChanging();
-					this._LeftHour = value;
-					this.SendPropertyChanged("LeftHour");
-					this.OnLeftHourChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_IDCard", DbType="NVarChar(50)")]
-		public string IDCard
-		{
-			get
-			{
-				return this._IDCard;
-			}
-			set
-			{
-				if ((this._IDCard != value))
-				{
-					this.OnIDCardChanging(value);
-					this.SendPropertyChanging();
-					this._IDCard = value;
-					this.SendPropertyChanged("IDCard");
-					this.OnIDCardChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_IsReg", DbType="Bit")]
-		public System.Nullable<bool> IsReg
-		{
-			get
-			{
-				return this._IsReg;
-			}
-			set
-			{
-				if ((this._IsReg != value))
-				{
-					this.OnIsRegChanging(value);
-					this.SendPropertyChanging();
-					this._IsReg = value;
-					this.SendPropertyChanged("IsReg");
-					this.OnIsRegChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
+			this.SendPropertyChanging();
+			entity.ZWorkLog = null;
 		}
 	}
 	
@@ -1836,6 +1571,8 @@ namespace Voodoo.Business
 		
 		private EntitySet<ZWorkEmployeesRelation> _ZWorkEmployeesRelation;
 		
+		private EntitySet<ZHandBill> _ZHandBill;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1873,6 +1610,7 @@ namespace Voodoo.Business
 		public ZEmployees()
 		{
 			this._ZWorkEmployeesRelation = new EntitySet<ZWorkEmployeesRelation>(new Action<ZWorkEmployeesRelation>(this.attach_ZWorkEmployeesRelation), new Action<ZWorkEmployeesRelation>(this.detach_ZWorkEmployeesRelation));
+			this._ZHandBill = new EntitySet<ZHandBill>(new Action<ZHandBill>(this.attach_ZHandBill), new Action<ZHandBill>(this.detach_ZHandBill));
 			OnCreated();
 		}
 		
@@ -2169,6 +1907,19 @@ namespace Voodoo.Business
 			}
 		}
 		
+		[Association(Name="ZEmployees_ZHandBill", Storage="_ZHandBill", ThisKey="Id", OtherKey="Userid")]
+		public EntitySet<ZHandBill> ZHandBill
+		{
+			get
+			{
+				return this._ZHandBill;
+			}
+			set
+			{
+				this._ZHandBill.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -2196,6 +1947,18 @@ namespace Voodoo.Business
 		}
 		
 		private void detach_ZWorkEmployeesRelation(ZWorkEmployeesRelation entity)
+		{
+			this.SendPropertyChanging();
+			entity.ZEmployees = null;
+		}
+		
+		private void attach_ZHandBill(ZHandBill entity)
+		{
+			this.SendPropertyChanging();
+			entity.ZEmployees = this;
+		}
+		
+		private void detach_ZHandBill(ZHandBill entity)
 		{
 			this.SendPropertyChanging();
 			entity.ZEmployees = null;
@@ -3146,6 +2909,10 @@ namespace Voodoo.Business
 		
 		private string _Status;
 		
+		private EntitySet<ZCardConsume> _ZCardConsume;
+		
+		private EntitySet<ZCustomer> _ZCustomer;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -3166,6 +2933,8 @@ namespace Voodoo.Business
 		
 		public ZCard()
 		{
+			this._ZCardConsume = new EntitySet<ZCardConsume>(new Action<ZCardConsume>(this.attach_ZCardConsume), new Action<ZCardConsume>(this.detach_ZCardConsume));
+			this._ZCustomer = new EntitySet<ZCustomer>(new Action<ZCustomer>(this.attach_ZCustomer), new Action<ZCustomer>(this.detach_ZCustomer));
 			OnCreated();
 		}
 		
@@ -3289,6 +3058,32 @@ namespace Voodoo.Business
 			}
 		}
 		
+		[Association(Name="ZCard_ZCardConsume", Storage="_ZCardConsume", ThisKey="Id", OtherKey="CardId")]
+		public EntitySet<ZCardConsume> ZCardConsume
+		{
+			get
+			{
+				return this._ZCardConsume;
+			}
+			set
+			{
+				this._ZCardConsume.Assign(value);
+			}
+		}
+		
+		[Association(Name="ZCard_ZCustomer", Storage="_ZCustomer", ThisKey="Id", OtherKey="CardID")]
+		public EntitySet<ZCustomer> ZCustomer
+		{
+			get
+			{
+				return this._ZCustomer;
+			}
+			set
+			{
+				this._ZCustomer.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -3307,6 +3102,30 @@ namespace Voodoo.Business
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_ZCardConsume(ZCardConsume entity)
+		{
+			this.SendPropertyChanging();
+			entity.ZCard = this;
+		}
+		
+		private void detach_ZCardConsume(ZCardConsume entity)
+		{
+			this.SendPropertyChanging();
+			entity.ZCard = null;
+		}
+		
+		private void attach_ZCustomer(ZCustomer entity)
+		{
+			this.SendPropertyChanging();
+			entity.ZCard = this;
+		}
+		
+		private void detach_ZCustomer(ZCustomer entity)
+		{
+			this.SendPropertyChanging();
+			entity.ZCard = null;
 		}
 	}
 	
@@ -3704,24 +3523,529 @@ namespace Voodoo.Business
 		}
 	}
 	
+	[Table(Name="dbo.ZBorrowSalary")]
+	public partial class ZBorrowSalary : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Nullable<System.DateTime> _BorrowTime;
+		
+		private System.Nullable<decimal> _BorrowMoney;
+		
+		private System.Nullable<int> _UserID;
+		
+		private string _UserName;
+		
+		private string _UserType;
+		
+		private string _BorrowType;
+		
+		private string _Remark;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnBorrowTimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnBorrowTimeChanged();
+    partial void OnBorrowMoneyChanging(System.Nullable<decimal> value);
+    partial void OnBorrowMoneyChanged();
+    partial void OnUserIDChanging(System.Nullable<int> value);
+    partial void OnUserIDChanged();
+    partial void OnUserNameChanging(string value);
+    partial void OnUserNameChanged();
+    partial void OnUserTypeChanging(string value);
+    partial void OnUserTypeChanged();
+    partial void OnBorrowTypeChanging(string value);
+    partial void OnBorrowTypeChanged();
+    partial void OnRemarkChanging(string value);
+    partial void OnRemarkChanged();
+    #endregion
+		
+		public ZBorrowSalary()
+		{
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_BorrowTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> BorrowTime
+		{
+			get
+			{
+				return this._BorrowTime;
+			}
+			set
+			{
+				if ((this._BorrowTime != value))
+				{
+					this.OnBorrowTimeChanging(value);
+					this.SendPropertyChanging();
+					this._BorrowTime = value;
+					this.SendPropertyChanged("BorrowTime");
+					this.OnBorrowTimeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_BorrowMoney", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> BorrowMoney
+		{
+			get
+			{
+				return this._BorrowMoney;
+			}
+			set
+			{
+				if ((this._BorrowMoney != value))
+				{
+					this.OnBorrowMoneyChanging(value);
+					this.SendPropertyChanging();
+					this._BorrowMoney = value;
+					this.SendPropertyChanged("BorrowMoney");
+					this.OnBorrowMoneyChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UserID", DbType="Int")]
+		public System.Nullable<int> UserID
+		{
+			get
+			{
+				return this._UserID;
+			}
+			set
+			{
+				if ((this._UserID != value))
+				{
+					this.OnUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._UserID = value;
+					this.SendPropertyChanged("UserID");
+					this.OnUserIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UserName", DbType="NVarChar(50)")]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this.OnUserNameChanging(value);
+					this.SendPropertyChanging();
+					this._UserName = value;
+					this.SendPropertyChanged("UserName");
+					this.OnUserNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UserType", DbType="NVarChar(50)")]
+		public string UserType
+		{
+			get
+			{
+				return this._UserType;
+			}
+			set
+			{
+				if ((this._UserType != value))
+				{
+					this.OnUserTypeChanging(value);
+					this.SendPropertyChanging();
+					this._UserType = value;
+					this.SendPropertyChanged("UserType");
+					this.OnUserTypeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_BorrowType", DbType="NVarChar(50)")]
+		public string BorrowType
+		{
+			get
+			{
+				return this._BorrowType;
+			}
+			set
+			{
+				if ((this._BorrowType != value))
+				{
+					this.OnBorrowTypeChanging(value);
+					this.SendPropertyChanging();
+					this._BorrowType = value;
+					this.SendPropertyChanged("BorrowType");
+					this.OnBorrowTypeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Remark", DbType="NVarChar(2000)")]
+		public string Remark
+		{
+			get
+			{
+				return this._Remark;
+			}
+			set
+			{
+				if ((this._Remark != value))
+				{
+					this.OnRemarkChanging(value);
+					this.SendPropertyChanging();
+					this._Remark = value;
+					this.SendPropertyChanged("Remark");
+					this.OnRemarkChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.ZHandBill")]
+	public partial class ZHandBill : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private System.Nullable<int> _DiliverCount;
+		
+		private System.Nullable<int> _ViewCount;
+		
+		private System.Nullable<int> _BackCount;
+		
+		private System.Nullable<System.DateTime> _WorkTime;
+		
+		private System.Nullable<int> _Userid;
+		
+		private string _UserName;
+		
+		private EntityRef<ZEmployees> _ZEmployees;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnDiliverCountChanging(System.Nullable<int> value);
+    partial void OnDiliverCountChanged();
+    partial void OnViewCountChanging(System.Nullable<int> value);
+    partial void OnViewCountChanged();
+    partial void OnBackCountChanging(System.Nullable<int> value);
+    partial void OnBackCountChanged();
+    partial void OnWorkTimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnWorkTimeChanged();
+    partial void OnUseridChanging(System.Nullable<int> value);
+    partial void OnUseridChanged();
+    partial void OnUserNameChanging(string value);
+    partial void OnUserNameChanged();
+    #endregion
+		
+		public ZHandBill()
+		{
+			this._ZEmployees = default(EntityRef<ZEmployees>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_DiliverCount", DbType="Int")]
+		public System.Nullable<int> DiliverCount
+		{
+			get
+			{
+				return this._DiliverCount;
+			}
+			set
+			{
+				if ((this._DiliverCount != value))
+				{
+					this.OnDiliverCountChanging(value);
+					this.SendPropertyChanging();
+					this._DiliverCount = value;
+					this.SendPropertyChanged("DiliverCount");
+					this.OnDiliverCountChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ViewCount", DbType="Int")]
+		public System.Nullable<int> ViewCount
+		{
+			get
+			{
+				return this._ViewCount;
+			}
+			set
+			{
+				if ((this._ViewCount != value))
+				{
+					this.OnViewCountChanging(value);
+					this.SendPropertyChanging();
+					this._ViewCount = value;
+					this.SendPropertyChanged("ViewCount");
+					this.OnViewCountChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_BackCount", DbType="Int")]
+		public System.Nullable<int> BackCount
+		{
+			get
+			{
+				return this._BackCount;
+			}
+			set
+			{
+				if ((this._BackCount != value))
+				{
+					this.OnBackCountChanging(value);
+					this.SendPropertyChanging();
+					this._BackCount = value;
+					this.SendPropertyChanged("BackCount");
+					this.OnBackCountChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_WorkTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> WorkTime
+		{
+			get
+			{
+				return this._WorkTime;
+			}
+			set
+			{
+				if ((this._WorkTime != value))
+				{
+					this.OnWorkTimeChanging(value);
+					this.SendPropertyChanging();
+					this._WorkTime = value;
+					this.SendPropertyChanged("WorkTime");
+					this.OnWorkTimeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Userid", DbType="Int")]
+		public System.Nullable<int> Userid
+		{
+			get
+			{
+				return this._Userid;
+			}
+			set
+			{
+				if ((this._Userid != value))
+				{
+					if (this._ZEmployees.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUseridChanging(value);
+					this.SendPropertyChanging();
+					this._Userid = value;
+					this.SendPropertyChanged("Userid");
+					this.OnUseridChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UserName", DbType="NVarChar(50)")]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this.OnUserNameChanging(value);
+					this.SendPropertyChanging();
+					this._UserName = value;
+					this.SendPropertyChanged("UserName");
+					this.OnUserNameChanged();
+				}
+			}
+		}
+		
+		[Association(Name="ZEmployees_ZHandBill", Storage="_ZEmployees", ThisKey="Userid", OtherKey="Id", IsForeignKey=true)]
+		public ZEmployees ZEmployees
+		{
+			get
+			{
+				return this._ZEmployees.Entity;
+			}
+			set
+			{
+				ZEmployees previousValue = this._ZEmployees.Entity;
+				if (((previousValue != value) 
+							|| (this._ZEmployees.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ZEmployees.Entity = null;
+						previousValue.ZHandBill.Remove(this);
+					}
+					this._ZEmployees.Entity = value;
+					if ((value != null))
+					{
+						value.ZHandBill.Add(this);
+						this._Userid = value.Id;
+					}
+					else
+					{
+						this._Userid = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ZEmployees");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[Table(Name="dbo.ViewXuanchuanSalary")]
 	public partial class ViewXuanchuanSalary
 	{
 		
+		private System.Nullable<int> _Userid;
+		
 		private string _UserName;
 		
-		private System.Nullable<int> _数量;
+		private System.Nullable<int> _发卡;
+		
+		private System.Nullable<int> _查卡;
+		
+		private System.Nullable<int> _回收;
 		
 		private string _月份;
 		
-		private System.Nullable<decimal> _借款;
+		private System.Nullable<decimal> _发卡提成;
 		
-		private System.Nullable<int> _提成;
+		private System.Nullable<decimal> _查卡提成;
+		
+		private System.Nullable<decimal> _回收提成;
+		
+		private System.Nullable<decimal> _提成;
+		
+		private decimal _借款;
 		
 		private System.Nullable<decimal> _应发;
 		
 		public ViewXuanchuanSalary()
 		{
+		}
+		
+		[Column(Storage="_Userid", DbType="Int")]
+		public System.Nullable<int> Userid
+		{
+			get
+			{
+				return this._Userid;
+			}
+			set
+			{
+				if ((this._Userid != value))
+				{
+					this._Userid = value;
+				}
+			}
 		}
 		
 		[Column(Storage="_UserName", DbType="NVarChar(50)")]
@@ -3740,18 +4064,50 @@ namespace Voodoo.Business
 			}
 		}
 		
-		[Column(Storage="_数量", DbType="Int")]
-		public System.Nullable<int> 数量
+		[Column(Storage="_发卡", DbType="Int")]
+		public System.Nullable<int> 发卡
 		{
 			get
 			{
-				return this._数量;
+				return this._发卡;
 			}
 			set
 			{
-				if ((this._数量 != value))
+				if ((this._发卡 != value))
 				{
-					this._数量 = value;
+					this._发卡 = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_查卡", DbType="Int")]
+		public System.Nullable<int> 查卡
+		{
+			get
+			{
+				return this._查卡;
+			}
+			set
+			{
+				if ((this._查卡 != value))
+				{
+					this._查卡 = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_回收", DbType="Int")]
+		public System.Nullable<int> 回收
+		{
+			get
+			{
+				return this._回收;
+			}
+			set
+			{
+				if ((this._回收 != value))
+				{
+					this._回收 = value;
 				}
 			}
 		}
@@ -3772,24 +4128,56 @@ namespace Voodoo.Business
 			}
 		}
 		
-		[Column(Storage="_借款", DbType="Decimal(38,2)")]
-		public System.Nullable<decimal> 借款
+		[Column(Storage="_发卡提成", DbType="Decimal(13,2)")]
+		public System.Nullable<decimal> 发卡提成
 		{
 			get
 			{
-				return this._借款;
+				return this._发卡提成;
 			}
 			set
 			{
-				if ((this._借款 != value))
+				if ((this._发卡提成 != value))
 				{
-					this._借款 = value;
+					this._发卡提成 = value;
 				}
 			}
 		}
 		
-		[Column(Storage="_提成", DbType="Int")]
-		public System.Nullable<int> 提成
+		[Column(Storage="_查卡提成", DbType="Decimal(13,2)")]
+		public System.Nullable<decimal> 查卡提成
+		{
+			get
+			{
+				return this._查卡提成;
+			}
+			set
+			{
+				if ((this._查卡提成 != value))
+				{
+					this._查卡提成 = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_回收提成", DbType="Decimal(13,2)")]
+		public System.Nullable<decimal> 回收提成
+		{
+			get
+			{
+				return this._回收提成;
+			}
+			set
+			{
+				if ((this._回收提成 != value))
+				{
+					this._回收提成 = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_提成", DbType="Decimal(15,2)")]
+		public System.Nullable<decimal> 提成
 		{
 			get
 			{
@@ -3800,6 +4188,22 @@ namespace Voodoo.Business
 				if ((this._提成 != value))
 				{
 					this._提成 = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_借款", DbType="Decimal(38,2) NOT NULL")]
+		public decimal 借款
+		{
+			get
+			{
+				return this._借款;
+			}
+			set
+			{
+				if ((this._借款 != value))
+				{
+					this._借款 = value;
 				}
 			}
 		}
@@ -3834,6 +4238,8 @@ namespace Voodoo.Business
 		private string _月份;
 		
 		private System.Nullable<decimal> _借款;
+		
+		private System.Nullable<decimal> _罚款;
 		
 		private System.Nullable<decimal> _应发;
 		
@@ -3921,6 +4327,22 @@ namespace Voodoo.Business
 			}
 		}
 		
+		[Column(Storage="_罚款", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> 罚款
+		{
+			get
+			{
+				return this._罚款;
+			}
+			set
+			{
+				if ((this._罚款 != value))
+				{
+					this._罚款 = value;
+				}
+			}
+		}
+		
 		[Column(Storage="_应发", DbType="Decimal(38,2)")]
 		public System.Nullable<decimal> 应发
 		{
@@ -3934,6 +4356,1185 @@ namespace Voodoo.Business
 				{
 					this._应发 = value;
 				}
+			}
+		}
+	}
+	
+	[Table(Name="dbo.ViewBaojieWorkDetail")]
+	public partial class ViewBaojieWorkDetail
+	{
+		
+		private System.Nullable<decimal> _工时;
+		
+		private string _保洁员;
+		
+		private System.Nullable<System.DateTime> _时间;
+		
+		private string _任务;
+		
+		private string _日期;
+		
+		private System.Nullable<decimal> _金额;
+		
+		public ViewBaojieWorkDetail()
+		{
+		}
+		
+		[Column(Storage="_工时", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> 工时
+		{
+			get
+			{
+				return this._工时;
+			}
+			set
+			{
+				if ((this._工时 != value))
+				{
+					this._工时 = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_保洁员", DbType="NVarChar(50)")]
+		public string 保洁员
+		{
+			get
+			{
+				return this._保洁员;
+			}
+			set
+			{
+				if ((this._保洁员 != value))
+				{
+					this._保洁员 = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_时间", DbType="DateTime")]
+		public System.Nullable<System.DateTime> 时间
+		{
+			get
+			{
+				return this._时间;
+			}
+			set
+			{
+				if ((this._时间 != value))
+				{
+					this._时间 = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_任务", DbType="NVarChar(2051)")]
+		public string 任务
+		{
+			get
+			{
+				return this._任务;
+			}
+			set
+			{
+				if ((this._任务 != value))
+				{
+					this._任务 = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_日期", DbType="NVarChar(101)")]
+		public string 日期
+		{
+			get
+			{
+				return this._日期;
+			}
+			set
+			{
+				if ((this._日期 != value))
+				{
+					this._日期 = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_金额", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> 金额
+		{
+			get
+			{
+				return this._金额;
+			}
+			set
+			{
+				if ((this._金额 != value))
+				{
+					this._金额 = value;
+				}
+			}
+		}
+	}
+	
+	[Table(Name="dbo.ViewXuanchuanWorkDetail")]
+	public partial class ViewXuanchuanWorkDetail
+	{
+		
+		private System.Nullable<int> _发卡;
+		
+		private System.Nullable<int> _查卡;
+		
+		private System.Nullable<int> _回收;
+		
+		private System.Nullable<decimal> _发卡提成;
+		
+		private System.Nullable<decimal> _查卡提成;
+		
+		private System.Nullable<decimal> _回收提成;
+		
+		private System.Nullable<decimal> _总计;
+		
+		private string _宣传员;
+		
+		private System.Nullable<System.DateTime> _时间;
+		
+		private string _日期;
+		
+		private string _类型;
+		
+		private string _备注;
+		
+		public ViewXuanchuanWorkDetail()
+		{
+		}
+		
+		[Column(Storage="_发卡", DbType="Int")]
+		public System.Nullable<int> 发卡
+		{
+			get
+			{
+				return this._发卡;
+			}
+			set
+			{
+				if ((this._发卡 != value))
+				{
+					this._发卡 = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_查卡", DbType="Int")]
+		public System.Nullable<int> 查卡
+		{
+			get
+			{
+				return this._查卡;
+			}
+			set
+			{
+				if ((this._查卡 != value))
+				{
+					this._查卡 = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_回收", DbType="Int")]
+		public System.Nullable<int> 回收
+		{
+			get
+			{
+				return this._回收;
+			}
+			set
+			{
+				if ((this._回收 != value))
+				{
+					this._回收 = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_发卡提成", DbType="Decimal(13,2)")]
+		public System.Nullable<decimal> 发卡提成
+		{
+			get
+			{
+				return this._发卡提成;
+			}
+			set
+			{
+				if ((this._发卡提成 != value))
+				{
+					this._发卡提成 = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_查卡提成", DbType="Decimal(13,2)")]
+		public System.Nullable<decimal> 查卡提成
+		{
+			get
+			{
+				return this._查卡提成;
+			}
+			set
+			{
+				if ((this._查卡提成 != value))
+				{
+					this._查卡提成 = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_回收提成", DbType="Decimal(13,2)")]
+		public System.Nullable<decimal> 回收提成
+		{
+			get
+			{
+				return this._回收提成;
+			}
+			set
+			{
+				if ((this._回收提成 != value))
+				{
+					this._回收提成 = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_总计", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> 总计
+		{
+			get
+			{
+				return this._总计;
+			}
+			set
+			{
+				if ((this._总计 != value))
+				{
+					this._总计 = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_宣传员", DbType="NVarChar(50)")]
+		public string 宣传员
+		{
+			get
+			{
+				return this._宣传员;
+			}
+			set
+			{
+				if ((this._宣传员 != value))
+				{
+					this._宣传员 = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_时间", DbType="DateTime")]
+		public System.Nullable<System.DateTime> 时间
+		{
+			get
+			{
+				return this._时间;
+			}
+			set
+			{
+				if ((this._时间 != value))
+				{
+					this._时间 = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_日期", DbType="NVarChar(101)")]
+		public string 日期
+		{
+			get
+			{
+				return this._日期;
+			}
+			set
+			{
+				if ((this._日期 != value))
+				{
+					this._日期 = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_类型", DbType="VarChar(4) NOT NULL", CanBeNull=false)]
+		public string 类型
+		{
+			get
+			{
+				return this._类型;
+			}
+			set
+			{
+				if ((this._类型 != value))
+				{
+					this._类型 = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_备注", DbType="NVarChar(2000)")]
+		public string 备注
+		{
+			get
+			{
+				return this._备注;
+			}
+			set
+			{
+				if ((this._备注 != value))
+				{
+					this._备注 = value;
+				}
+			}
+		}
+	}
+	
+	[Table(Name="dbo.ZCardConsume")]
+	public partial class ZCardConsume : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private System.Nullable<int> _CardId;
+		
+		private string _CardNo;
+		
+		private System.Nullable<decimal> _ConsumeHour;
+		
+		private System.Nullable<System.DateTime> _ConsumeTime;
+		
+		private EntityRef<ZCard> _ZCard;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnCardIdChanging(System.Nullable<int> value);
+    partial void OnCardIdChanged();
+    partial void OnCardNoChanging(string value);
+    partial void OnCardNoChanged();
+    partial void OnConsumeHourChanging(System.Nullable<decimal> value);
+    partial void OnConsumeHourChanged();
+    partial void OnConsumeTimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnConsumeTimeChanged();
+    #endregion
+		
+		public ZCardConsume()
+		{
+			this._ZCard = default(EntityRef<ZCard>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_CardId", DbType="Int")]
+		public System.Nullable<int> CardId
+		{
+			get
+			{
+				return this._CardId;
+			}
+			set
+			{
+				if ((this._CardId != value))
+				{
+					if (this._ZCard.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCardIdChanging(value);
+					this.SendPropertyChanging();
+					this._CardId = value;
+					this.SendPropertyChanged("CardId");
+					this.OnCardIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_CardNo", DbType="NVarChar(50)")]
+		public string CardNo
+		{
+			get
+			{
+				return this._CardNo;
+			}
+			set
+			{
+				if ((this._CardNo != value))
+				{
+					this.OnCardNoChanging(value);
+					this.SendPropertyChanging();
+					this._CardNo = value;
+					this.SendPropertyChanged("CardNo");
+					this.OnCardNoChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ConsumeHour", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> ConsumeHour
+		{
+			get
+			{
+				return this._ConsumeHour;
+			}
+			set
+			{
+				if ((this._ConsumeHour != value))
+				{
+					this.OnConsumeHourChanging(value);
+					this.SendPropertyChanging();
+					this._ConsumeHour = value;
+					this.SendPropertyChanged("ConsumeHour");
+					this.OnConsumeHourChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ConsumeTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ConsumeTime
+		{
+			get
+			{
+				return this._ConsumeTime;
+			}
+			set
+			{
+				if ((this._ConsumeTime != value))
+				{
+					this.OnConsumeTimeChanging(value);
+					this.SendPropertyChanging();
+					this._ConsumeTime = value;
+					this.SendPropertyChanged("ConsumeTime");
+					this.OnConsumeTimeChanged();
+				}
+			}
+		}
+		
+		[Association(Name="ZCard_ZCardConsume", Storage="_ZCard", ThisKey="CardId", OtherKey="Id", IsForeignKey=true)]
+		public ZCard ZCard
+		{
+			get
+			{
+				return this._ZCard.Entity;
+			}
+			set
+			{
+				ZCard previousValue = this._ZCard.Entity;
+				if (((previousValue != value) 
+							|| (this._ZCard.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ZCard.Entity = null;
+						previousValue.ZCardConsume.Remove(this);
+					}
+					this._ZCard.Entity = value;
+					if ((value != null))
+					{
+						value.ZCardConsume.Add(this);
+						this._CardId = value.Id;
+					}
+					else
+					{
+						this._CardId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ZCard");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.ZCustomer")]
+	public partial class ZCustomer : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _UserName;
+		
+		private string _Sex;
+		
+		private string _Tel;
+		
+		private string _MobilePhone;
+		
+		private string _HomeName;
+		
+		private string _Address;
+		
+		private System.Nullable<System.DateTime> _ValidateTime;
+		
+		private System.Nullable<int> _CardID;
+		
+		private string _CardNo;
+		
+		private System.Nullable<int> _UsedHour;
+		
+		private System.Nullable<int> _LeftHour;
+		
+		private string _IDCard;
+		
+		private System.Nullable<bool> _IsReg;
+		
+		private EntityRef<ZCard> _ZCard;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnUserNameChanging(string value);
+    partial void OnUserNameChanged();
+    partial void OnSexChanging(string value);
+    partial void OnSexChanged();
+    partial void OnTelChanging(string value);
+    partial void OnTelChanged();
+    partial void OnMobilePhoneChanging(string value);
+    partial void OnMobilePhoneChanged();
+    partial void OnHomeNameChanging(string value);
+    partial void OnHomeNameChanged();
+    partial void OnAddressChanging(string value);
+    partial void OnAddressChanged();
+    partial void OnValidateTimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnValidateTimeChanged();
+    partial void OnCardIDChanging(System.Nullable<int> value);
+    partial void OnCardIDChanged();
+    partial void OnCardNoChanging(string value);
+    partial void OnCardNoChanged();
+    partial void OnUsedHourChanging(System.Nullable<int> value);
+    partial void OnUsedHourChanged();
+    partial void OnLeftHourChanging(System.Nullable<int> value);
+    partial void OnLeftHourChanged();
+    partial void OnIDCardChanging(string value);
+    partial void OnIDCardChanged();
+    partial void OnIsRegChanging(System.Nullable<bool> value);
+    partial void OnIsRegChanged();
+    #endregion
+		
+		public ZCustomer()
+		{
+			this._ZCard = default(EntityRef<ZCard>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UserName", DbType="VarChar(50)")]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this.OnUserNameChanging(value);
+					this.SendPropertyChanging();
+					this._UserName = value;
+					this.SendPropertyChanged("UserName");
+					this.OnUserNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Sex", DbType="VarChar(50)")]
+		public string Sex
+		{
+			get
+			{
+				return this._Sex;
+			}
+			set
+			{
+				if ((this._Sex != value))
+				{
+					this.OnSexChanging(value);
+					this.SendPropertyChanging();
+					this._Sex = value;
+					this.SendPropertyChanged("Sex");
+					this.OnSexChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Tel", DbType="VarChar(50)")]
+		public string Tel
+		{
+			get
+			{
+				return this._Tel;
+			}
+			set
+			{
+				if ((this._Tel != value))
+				{
+					this.OnTelChanging(value);
+					this.SendPropertyChanging();
+					this._Tel = value;
+					this.SendPropertyChanged("Tel");
+					this.OnTelChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_MobilePhone", DbType="VarChar(50)")]
+		public string MobilePhone
+		{
+			get
+			{
+				return this._MobilePhone;
+			}
+			set
+			{
+				if ((this._MobilePhone != value))
+				{
+					this.OnMobilePhoneChanging(value);
+					this.SendPropertyChanging();
+					this._MobilePhone = value;
+					this.SendPropertyChanged("MobilePhone");
+					this.OnMobilePhoneChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_HomeName", DbType="VarChar(50)")]
+		public string HomeName
+		{
+			get
+			{
+				return this._HomeName;
+			}
+			set
+			{
+				if ((this._HomeName != value))
+				{
+					this.OnHomeNameChanging(value);
+					this.SendPropertyChanging();
+					this._HomeName = value;
+					this.SendPropertyChanged("HomeName");
+					this.OnHomeNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Address", DbType="NVarChar(255)")]
+		public string Address
+		{
+			get
+			{
+				return this._Address;
+			}
+			set
+			{
+				if ((this._Address != value))
+				{
+					this.OnAddressChanging(value);
+					this.SendPropertyChanging();
+					this._Address = value;
+					this.SendPropertyChanged("Address");
+					this.OnAddressChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ValidateTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ValidateTime
+		{
+			get
+			{
+				return this._ValidateTime;
+			}
+			set
+			{
+				if ((this._ValidateTime != value))
+				{
+					this.OnValidateTimeChanging(value);
+					this.SendPropertyChanging();
+					this._ValidateTime = value;
+					this.SendPropertyChanged("ValidateTime");
+					this.OnValidateTimeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_CardID", DbType="Int")]
+		public System.Nullable<int> CardID
+		{
+			get
+			{
+				return this._CardID;
+			}
+			set
+			{
+				if ((this._CardID != value))
+				{
+					if (this._ZCard.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCardIDChanging(value);
+					this.SendPropertyChanging();
+					this._CardID = value;
+					this.SendPropertyChanged("CardID");
+					this.OnCardIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_CardNo", DbType="NVarChar(50)")]
+		public string CardNo
+		{
+			get
+			{
+				return this._CardNo;
+			}
+			set
+			{
+				if ((this._CardNo != value))
+				{
+					this.OnCardNoChanging(value);
+					this.SendPropertyChanging();
+					this._CardNo = value;
+					this.SendPropertyChanged("CardNo");
+					this.OnCardNoChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UsedHour", DbType="Int")]
+		public System.Nullable<int> UsedHour
+		{
+			get
+			{
+				return this._UsedHour;
+			}
+			set
+			{
+				if ((this._UsedHour != value))
+				{
+					this.OnUsedHourChanging(value);
+					this.SendPropertyChanging();
+					this._UsedHour = value;
+					this.SendPropertyChanged("UsedHour");
+					this.OnUsedHourChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_LeftHour", DbType="Int")]
+		public System.Nullable<int> LeftHour
+		{
+			get
+			{
+				return this._LeftHour;
+			}
+			set
+			{
+				if ((this._LeftHour != value))
+				{
+					this.OnLeftHourChanging(value);
+					this.SendPropertyChanging();
+					this._LeftHour = value;
+					this.SendPropertyChanged("LeftHour");
+					this.OnLeftHourChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IDCard", DbType="NVarChar(50)")]
+		public string IDCard
+		{
+			get
+			{
+				return this._IDCard;
+			}
+			set
+			{
+				if ((this._IDCard != value))
+				{
+					this.OnIDCardChanging(value);
+					this.SendPropertyChanging();
+					this._IDCard = value;
+					this.SendPropertyChanged("IDCard");
+					this.OnIDCardChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IsReg", DbType="Bit")]
+		public System.Nullable<bool> IsReg
+		{
+			get
+			{
+				return this._IsReg;
+			}
+			set
+			{
+				if ((this._IsReg != value))
+				{
+					this.OnIsRegChanging(value);
+					this.SendPropertyChanging();
+					this._IsReg = value;
+					this.SendPropertyChanged("IsReg");
+					this.OnIsRegChanged();
+				}
+			}
+		}
+		
+		[Association(Name="ZCard_ZCustomer", Storage="_ZCard", ThisKey="CardID", OtherKey="Id", IsForeignKey=true)]
+		public ZCard ZCard
+		{
+			get
+			{
+				return this._ZCard.Entity;
+			}
+			set
+			{
+				ZCard previousValue = this._ZCard.Entity;
+				if (((previousValue != value) 
+							|| (this._ZCard.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ZCard.Entity = null;
+						previousValue.ZCustomer.Remove(this);
+					}
+					this._ZCard.Entity = value;
+					if ((value != null))
+					{
+						value.ZCustomer.Add(this);
+						this._CardID = value.Id;
+					}
+					else
+					{
+						this._CardID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ZCard");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.ZCustomerBorrowLog")]
+	public partial class ZCustomerBorrowLog : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private System.Nullable<int> _WorkLogId;
+		
+		private System.Nullable<decimal> _BorrowHour;
+		
+		private System.Nullable<System.DateTime> _BorrowTime;
+		
+		private System.Nullable<bool> _HasPay;
+		
+		private System.Nullable<System.DateTime> _PayTime;
+		
+		private EntityRef<ZWorkLog> _ZWorkLog;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnWorkLogIdChanging(System.Nullable<int> value);
+    partial void OnWorkLogIdChanged();
+    partial void OnBorrowHourChanging(System.Nullable<decimal> value);
+    partial void OnBorrowHourChanged();
+    partial void OnBorrowTimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnBorrowTimeChanged();
+    partial void OnHasPayChanging(System.Nullable<bool> value);
+    partial void OnHasPayChanged();
+    partial void OnPayTimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnPayTimeChanged();
+    #endregion
+		
+		public ZCustomerBorrowLog()
+		{
+			this._ZWorkLog = default(EntityRef<ZWorkLog>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_WorkLogId", DbType="Int")]
+		public System.Nullable<int> WorkLogId
+		{
+			get
+			{
+				return this._WorkLogId;
+			}
+			set
+			{
+				if ((this._WorkLogId != value))
+				{
+					if (this._ZWorkLog.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnWorkLogIdChanging(value);
+					this.SendPropertyChanging();
+					this._WorkLogId = value;
+					this.SendPropertyChanged("WorkLogId");
+					this.OnWorkLogIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_BorrowHour", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> BorrowHour
+		{
+			get
+			{
+				return this._BorrowHour;
+			}
+			set
+			{
+				if ((this._BorrowHour != value))
+				{
+					this.OnBorrowHourChanging(value);
+					this.SendPropertyChanging();
+					this._BorrowHour = value;
+					this.SendPropertyChanged("BorrowHour");
+					this.OnBorrowHourChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_BorrowTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> BorrowTime
+		{
+			get
+			{
+				return this._BorrowTime;
+			}
+			set
+			{
+				if ((this._BorrowTime != value))
+				{
+					this.OnBorrowTimeChanging(value);
+					this.SendPropertyChanging();
+					this._BorrowTime = value;
+					this.SendPropertyChanged("BorrowTime");
+					this.OnBorrowTimeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_HasPay", DbType="Bit")]
+		public System.Nullable<bool> HasPay
+		{
+			get
+			{
+				return this._HasPay;
+			}
+			set
+			{
+				if ((this._HasPay != value))
+				{
+					this.OnHasPayChanging(value);
+					this.SendPropertyChanging();
+					this._HasPay = value;
+					this.SendPropertyChanged("HasPay");
+					this.OnHasPayChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_PayTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> PayTime
+		{
+			get
+			{
+				return this._PayTime;
+			}
+			set
+			{
+				if ((this._PayTime != value))
+				{
+					this.OnPayTimeChanging(value);
+					this.SendPropertyChanging();
+					this._PayTime = value;
+					this.SendPropertyChanged("PayTime");
+					this.OnPayTimeChanged();
+				}
+			}
+		}
+		
+		[Association(Name="ZWorkLog_ZCustomerBorrowLog", Storage="_ZWorkLog", ThisKey="WorkLogId", OtherKey="Id", IsForeignKey=true)]
+		public ZWorkLog ZWorkLog
+		{
+			get
+			{
+				return this._ZWorkLog.Entity;
+			}
+			set
+			{
+				ZWorkLog previousValue = this._ZWorkLog.Entity;
+				if (((previousValue != value) 
+							|| (this._ZWorkLog.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ZWorkLog.Entity = null;
+						previousValue.ZCustomerBorrowLog.Remove(this);
+					}
+					this._ZWorkLog.Entity = value;
+					if ((value != null))
+					{
+						value.ZCustomerBorrowLog.Add(this);
+						this._WorkLogId = value.Id;
+					}
+					else
+					{
+						this._WorkLogId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ZWorkLog");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -3983,6 +5584,8 @@ namespace Voodoo.Business
 		private System.Nullable<int> _Customerappraise;
 		
 		private string _Remark;
+		
+		private System.Nullable<decimal> _borrowHour;
 		
 		public ViewWorkLogList()
 		{
@@ -4323,58 +5926,63 @@ namespace Voodoo.Business
 				}
 			}
 		}
+		
+		[Column(Storage="_borrowHour", DbType="Decimal(38,2)")]
+		public System.Nullable<decimal> borrowHour
+		{
+			get
+			{
+				return this._borrowHour;
+			}
+			set
+			{
+				if ((this._borrowHour != value))
+				{
+					this._borrowHour = value;
+				}
+			}
+		}
 	}
 	
-	[Table(Name="dbo.ZBorrowSalary")]
-	public partial class ZBorrowSalary : INotifyPropertyChanging, INotifyPropertyChanged
+	[Table(Name="dbo.ViewCustomerList")]
+	public partial class ViewCustomerList
 	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private int _Id;
 		
-		private System.Nullable<System.DateTime> _BorrowTime;
-		
-		private System.Nullable<decimal> _BorrowMoney;
-		
-		private System.Nullable<int> _UserID;
-		
 		private string _UserName;
 		
-		private string _UserType;
+		private string _Sex;
 		
-		private string _BorrowType;
+		private string _Tel;
 		
-		private string _Remark;
+		private string _MobilePhone;
 		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnBorrowTimeChanging(System.Nullable<System.DateTime> value);
-    partial void OnBorrowTimeChanged();
-    partial void OnBorrowMoneyChanging(System.Nullable<decimal> value);
-    partial void OnBorrowMoneyChanged();
-    partial void OnUserIDChanging(System.Nullable<int> value);
-    partial void OnUserIDChanged();
-    partial void OnUserNameChanging(string value);
-    partial void OnUserNameChanged();
-    partial void OnUserTypeChanging(string value);
-    partial void OnUserTypeChanged();
-    partial void OnBorrowTypeChanging(string value);
-    partial void OnBorrowTypeChanged();
-    partial void OnRemarkChanging(string value);
-    partial void OnRemarkChanged();
-    #endregion
+		private string _HomeName;
 		
-		public ZBorrowSalary()
+		private string _Address;
+		
+		private System.Nullable<System.DateTime> _ValidateTime;
+		
+		private System.Nullable<int> _CardID;
+		
+		private string _CardNo;
+		
+		private System.Nullable<int> _UsedHour;
+		
+		private System.Nullable<int> _LeftHour;
+		
+		private string _IDCard;
+		
+		private System.Nullable<bool> _IsReg;
+		
+		private decimal _BorrowMoney;
+		
+		public ViewCustomerList()
 		{
-			OnCreated();
 		}
 		
-		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[Column(Storage="_Id", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
 		public int Id
 		{
 			get
@@ -4385,76 +5993,12 @@ namespace Voodoo.Business
 			{
 				if ((this._Id != value))
 				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
 					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_BorrowTime", DbType="DateTime")]
-		public System.Nullable<System.DateTime> BorrowTime
-		{
-			get
-			{
-				return this._BorrowTime;
-			}
-			set
-			{
-				if ((this._BorrowTime != value))
-				{
-					this.OnBorrowTimeChanging(value);
-					this.SendPropertyChanging();
-					this._BorrowTime = value;
-					this.SendPropertyChanged("BorrowTime");
-					this.OnBorrowTimeChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_BorrowMoney", DbType="Decimal(18,2)")]
-		public System.Nullable<decimal> BorrowMoney
-		{
-			get
-			{
-				return this._BorrowMoney;
-			}
-			set
-			{
-				if ((this._BorrowMoney != value))
-				{
-					this.OnBorrowMoneyChanging(value);
-					this.SendPropertyChanging();
-					this._BorrowMoney = value;
-					this.SendPropertyChanged("BorrowMoney");
-					this.OnBorrowMoneyChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_UserID", DbType="Int")]
-		public System.Nullable<int> UserID
-		{
-			get
-			{
-				return this._UserID;
-			}
-			set
-			{
-				if ((this._UserID != value))
-				{
-					this.OnUserIDChanging(value);
-					this.SendPropertyChanging();
-					this._UserID = value;
-					this.SendPropertyChanged("UserID");
-					this.OnUserIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_UserName", DbType="NVarChar(50)")]
+		[Column(Storage="_UserName", DbType="VarChar(50)")]
 		public string UserName
 		{
 			get
@@ -4465,92 +6009,216 @@ namespace Voodoo.Business
 			{
 				if ((this._UserName != value))
 				{
-					this.OnUserNameChanging(value);
-					this.SendPropertyChanging();
 					this._UserName = value;
-					this.SendPropertyChanged("UserName");
-					this.OnUserNameChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_UserType", DbType="NVarChar(50)")]
-		public string UserType
+		[Column(Storage="_Sex", DbType="VarChar(50)")]
+		public string Sex
 		{
 			get
 			{
-				return this._UserType;
+				return this._Sex;
 			}
 			set
 			{
-				if ((this._UserType != value))
+				if ((this._Sex != value))
 				{
-					this.OnUserTypeChanging(value);
-					this.SendPropertyChanging();
-					this._UserType = value;
-					this.SendPropertyChanged("UserType");
-					this.OnUserTypeChanged();
+					this._Sex = value;
 				}
 			}
 		}
 		
-		[Column(Storage="_BorrowType", DbType="NVarChar(50)")]
-		public string BorrowType
+		[Column(Storage="_Tel", DbType="VarChar(50)")]
+		public string Tel
 		{
 			get
 			{
-				return this._BorrowType;
+				return this._Tel;
 			}
 			set
 			{
-				if ((this._BorrowType != value))
+				if ((this._Tel != value))
 				{
-					this.OnBorrowTypeChanging(value);
-					this.SendPropertyChanging();
-					this._BorrowType = value;
-					this.SendPropertyChanged("BorrowType");
-					this.OnBorrowTypeChanged();
+					this._Tel = value;
 				}
 			}
 		}
 		
-		[Column(Storage="_Remark", DbType="NVarChar(2000)")]
-		public string Remark
+		[Column(Storage="_MobilePhone", DbType="VarChar(50)")]
+		public string MobilePhone
 		{
 			get
 			{
-				return this._Remark;
+				return this._MobilePhone;
 			}
 			set
 			{
-				if ((this._Remark != value))
+				if ((this._MobilePhone != value))
 				{
-					this.OnRemarkChanging(value);
-					this.SendPropertyChanging();
-					this._Remark = value;
-					this.SendPropertyChanged("Remark");
-					this.OnRemarkChanged();
+					this._MobilePhone = value;
 				}
 			}
 		}
 		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
+		[Column(Storage="_HomeName", DbType="VarChar(50)")]
+		public string HomeName
 		{
-			if ((this.PropertyChanging != null))
+			get
 			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
+				return this._HomeName;
+			}
+			set
+			{
+				if ((this._HomeName != value))
+				{
+					this._HomeName = value;
+				}
 			}
 		}
 		
-		protected virtual void SendPropertyChanged(String propertyName)
+		[Column(Storage="_Address", DbType="NVarChar(255)")]
+		public string Address
 		{
-			if ((this.PropertyChanged != null))
+			get
 			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+				return this._Address;
+			}
+			set
+			{
+				if ((this._Address != value))
+				{
+					this._Address = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_ValidateTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ValidateTime
+		{
+			get
+			{
+				return this._ValidateTime;
+			}
+			set
+			{
+				if ((this._ValidateTime != value))
+				{
+					this._ValidateTime = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_CardID", DbType="Int")]
+		public System.Nullable<int> CardID
+		{
+			get
+			{
+				return this._CardID;
+			}
+			set
+			{
+				if ((this._CardID != value))
+				{
+					this._CardID = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_CardNo", DbType="NVarChar(50)")]
+		public string CardNo
+		{
+			get
+			{
+				return this._CardNo;
+			}
+			set
+			{
+				if ((this._CardNo != value))
+				{
+					this._CardNo = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_UsedHour", DbType="Int")]
+		public System.Nullable<int> UsedHour
+		{
+			get
+			{
+				return this._UsedHour;
+			}
+			set
+			{
+				if ((this._UsedHour != value))
+				{
+					this._UsedHour = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_LeftHour", DbType="Int")]
+		public System.Nullable<int> LeftHour
+		{
+			get
+			{
+				return this._LeftHour;
+			}
+			set
+			{
+				if ((this._LeftHour != value))
+				{
+					this._LeftHour = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_IDCard", DbType="NVarChar(50)")]
+		public string IDCard
+		{
+			get
+			{
+				return this._IDCard;
+			}
+			set
+			{
+				if ((this._IDCard != value))
+				{
+					this._IDCard = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_IsReg", DbType="Bit")]
+		public System.Nullable<bool> IsReg
+		{
+			get
+			{
+				return this._IsReg;
+			}
+			set
+			{
+				if ((this._IsReg != value))
+				{
+					this._IsReg = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_BorrowMoney", DbType="Decimal(38,2) NOT NULL")]
+		public decimal BorrowMoney
+		{
+			get
+			{
+				return this._BorrowMoney;
+			}
+			set
+			{
+				if ((this._BorrowMoney != value))
+				{
+					this._BorrowMoney = value;
+				}
 			}
 		}
 	}

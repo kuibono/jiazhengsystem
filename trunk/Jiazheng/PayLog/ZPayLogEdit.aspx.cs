@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 
 using Voodoo;
 using Voodoo.Business;
+using Voodoo.LinqExt;
 
 namespace Jiazheng.PayLog
 {
@@ -27,7 +28,7 @@ namespace Jiazheng.PayLog
                 ddl_Cus.SelectedValue = "0";
 
 
-                ddl_Saler.DataSource = from l in dsd.ZEmployees where l.UserType == "宣传" select l;
+                ddl_Saler.DataSource = from l in dsd.ZEmployees select l;
                 ddl_Saler.DataTextField = "UserName";
                 ddl_Saler.DataValueField = "id";
                 ddl_Saler.DataBind();
@@ -35,6 +36,12 @@ namespace Jiazheng.PayLog
                 ddl_Saler.Items.Add(new ListItem("--请选择--", "0"));
                 ddl_Saler.SelectedValue = "0";
 
+                ddl_Card.DataSource = from l in dsd.ZCard where l.Status == "未开通" select l;
+                ddl_Card.DataTextField = "CardNumber";
+                ddl_Card.DataValueField = "CardNumber";
+                ddl_Card.DataBind();
+                ddl_Card.Items.Add(new ListItem("--请选择--", "0"));
+                ddl_Card.SelectedValue = "0";
 
                 ZPayLog m = new ZPayLog();
                 if (WS.RequestInt("id") > 0)
@@ -46,7 +53,7 @@ namespace Jiazheng.PayLog
                     txt_PayMoney.Text = m.PayMoney.ToString();
                     txt_PayHour.Text = m.PayHour.ToString();
                     ddl_Saler.SelectedValue = m.EmployeesId.ToString();
-                    txt_CardNo.Text = m.CardNo;
+                    ddl_Card.SetValue(m.CardNo.Split(','));
                     txt_VTime.Text = m.VTime.ToS();
                 }
 
@@ -82,7 +89,7 @@ namespace Jiazheng.PayLog
             m.PayMoney = txt_PayMoney.Text.ToDecimal(0);
             m.PayHour = txt_PayHour.Text.ToInt32(0);
             m.EmployeesId = ddl_Saler.SelectedValue.ToInt32(0);
-            m.CardNo = txt_CardNo.Text.TrimDbDangerousChar();
+            m.CardNo = ddl_Card.SelectedValue;
             m.VTime = txt_VTime.Text.ToDateTime();
             m.PayTime = DateTime.Now;
             if (id > 0 && l.Count() > 0)
@@ -97,8 +104,17 @@ namespace Jiazheng.PayLog
                 ZCustomer cus = l_cus.First();
 
                 cus.LeftHour += m.PayHour;
+                cus.CardID = ddl_Card.SelectedValue.ToInt32();
+                cus.CardNo = ddl_Card.SelectedItem.Text;
 
-                cus.CardNo = txt_CardNo.Text.TrimDbDangerousChar();
+                var card = (from list in dsd.ZCard where list.CardNumber == ddl_Card.SelectedValue select list).First();
+                card.VTime = txt_VTime.Text.ToDateTime();
+                card.Status = "已开通";
+
+
+
+
+                ddl_Card.SetValue(cus.CardNo.Split(','));
 
                 this.IsAdd = "true";
                 dsd.ZPayLog.InsertOnSubmit(m);
@@ -118,6 +134,13 @@ namespace Jiazheng.PayLog
         protected void btn_Save_Click(object sender, EventArgs e)
         {
             OnEdit();
+        }
+
+        protected void ddl_Card_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataSysDataContext dsd = new DataSysDataContext();
+            var c = (from l in dsd.ZCard where l.CardNumber == ddl_Card.SelectedValue select l).First();
+            txt_PayHour.Text = c.HourLeft.ToString();
         }
 
 

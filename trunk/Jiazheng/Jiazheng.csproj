@@ -150,6 +150,13 @@
     <Compile Include="Business\WorkTypeList.aspx.designer.cs">
       <DependentUpon>WorkTypeList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Card\CardConsumeList.aspx.cs">
+      <DependentUpon>CardConsumeList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Card\CardConsumeList.aspx.designer.cs">
+      <DependentUpon>CardConsumeList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Card\CardEdit.aspx.cs">
       <DependentUpon>CardEdit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -201,6 +208,20 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HandBill\HandBillEdit.aspx.cs">
+      <DependentUpon>HandBillEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HandBill\HandBillEdit.aspx.designer.cs">
+      <DependentUpon>HandBillEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HandBill\HandBillList.aspx.cs">
+      <DependentUpon>HandBillList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HandBill\HandBillList.aspx.designer.cs">
+      <DependentUpon>HandBillList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -317,6 +338,9 @@
     <Compile Include="Tools\Exit.ashx.cs">
       <DependentUpon>Exit.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Tools\PayBorrowHour.ashx.cs">
+      <DependentUpon>PayBorrowHour.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Tools\Suggest.ashx.cs">
       <DependentUpon>Suggest.ashx</DependentUpon>
     </Compile>
@@ -368,8 +392,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="skin\images\frame\Thumbs.db" />
+    <Content Include="Tools\PayBorrowHour.ashx" />
+    <Content Include="Card\CardConsumeList.aspx" />
     <Content Include="Card\CardEdit.aspx" />
     <Content Include="Card\CardList.aspx" />
+    <Content Include="HandBill\HandBillEdit.aspx" />
+    <Content Include="HandBill\HandBillList.aspx" />
     <Content Include="Salary\BorrowEdit.aspx" />
     <Content Include="Salary\BorrowList.aspx" />
     <Content Include="Salary\OfficerSalary.aspx" />

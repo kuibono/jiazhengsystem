@@ -58,8 +58,13 @@ namespace Jiazheng.Sys
             }
             if (IsPostBack)
             {
+
                 int[] Ids = WS.RequestString("ids").Split(',').ToIntArray();
-                dsd.Group.Delete(p => p.Id.InArray(Ids));
+                foreach (int id in Ids)
+                {
+                    dsd.Group.Delete(p => p.Id == id);
+                }
+
             }
 
             base.OnDelete();

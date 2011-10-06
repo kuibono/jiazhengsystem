@@ -55,10 +55,10 @@ namespace Jiazheng.Salary
             //        AllSalary = p.Sum(q => q.PayMoney * SystemInfo.SalerSalaryPercent / 100) + p.First().SalaryDegree
             //    });
 
-            var l = dsd.ViewXuanchuanSalary.ToList();
+            var l = dsd.ViewXuanchuanWorkDetail.ToList();
             if (txt_Month.Text!="")
             {
-                l = l.Where(p => p.月份 == txt_Month.Text).ToList();
+                l = l.Where(p => p.日期 == txt_Month.Text).ToList();
             }
 
 
@@ -87,27 +87,13 @@ namespace Jiazheng.Salary
         {
             DataSysDataContext dsd = new DataSysDataContext();
 
-            int year = txt_Month.Text.Split('-')[0].ToInt32();
-            int month = txt_Month.Text.Split('-')[1].ToInt32();
+            var l = dsd.ViewXuanchuanWorkDetail.ToList();
+            if (txt_Month.Text != "")
+            {
+                l = l.Where(p => p.日期 == txt_Month.Text).ToList();
+            }
 
-            var l = dsd.ViewPayCard
-                .Where(p =>
-                    Convert.ToDateTime(p.PayTime).Year == year &&
-                    Convert.ToDateTime(p.PayTime).Month == month &&
-                    p.CardNo != null &&
-                    p.CardNo != ""
-                    )
-                .GroupBy(p => p.EmployeesId)
-                .Select(p => new
-                {
-                    售卡金额 = p.Sum(q => q.PayMoney),
-                    售卡提成 = p.Sum(q => q.PayMoney * SystemInfo.SalerSalaryPercent / 100),
-                    //EmployeesId = p.First().EmployeesId,
-                    员工姓名 = p.First().UserName,
-                    时间 = p.First().PayTime,
-                    底薪 = p.First().SalaryDegree,
-                    工资总额 = p.Sum(q => q.PayMoney * SystemInfo.SalerSalaryPercent / 100) + p.First().SalaryDegree
-                });
+            
             Response.Clear();
             Voodoo.IO.ExcelHelper.ResponseExcel(l.ToDataTable(p => new object[] { l }), txt_Month.Text + "-Baojie");
             Response.End();

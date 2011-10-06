@@ -62,7 +62,11 @@ namespace Jiazheng.Business
             if (IsPostBack)
             {
                 int[] Ids = WS.RequestString("ids").Split(',').ToIntArray();
-                dsd.ZTools.Delete(p => p.Id.InArray(Ids));
+                foreach (int id in Ids)
+                {
+                    dsd.ZTools.Delete(p => p.Id==id);
+                }
+                
             }
 
             base.OnDelete();

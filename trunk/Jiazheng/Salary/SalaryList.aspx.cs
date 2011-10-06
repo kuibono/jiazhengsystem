@@ -40,12 +40,14 @@ namespace Jiazheng.Salary
             //        AllSalary = p.Sum(q => q.Salary) + p.First().SalaryDegree
             //    });
 
-            var l = dsd.ViewBaojieSalary.ToList();
+            var l = dsd.ViewBaojieWorkDetail.ToList();
             if (txt_Month.Text!="")
             {
-                l = l.Where(p => p.月份 == txt_Month.Text).ToList();
+                l = l.Where(p => p.日期 == txt_Month.Text).ToList();
             }
-
+            l = l.OrderByDescending(p => p.保洁员).ToList();
+            l = l.OrderByDescending(p => p.日期).ToList();
+            
             list.DataSource = l;
             list.DataBind();
         }

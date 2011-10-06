@@ -179,6 +179,17 @@ namespace Jiazheng.WorkLog
             {
                 this.IsAdd = "true";
                 dsd.ZWorkLog.InsertOnSubmit(m);
+
+                //增加借款记录
+                if (txt_BorrowHour.Text.ToDecimal()>0)
+                {
+                    ZCustomerBorrowLog cb = new ZCustomerBorrowLog();
+                    cb.BorrowHour = txt_BorrowHour.Text.ToDecimal();
+                    cb.BorrowTime = DateTime.Now;
+                    cb.HasPay = false;
+                    cb.WorkLogId = m.Id;
+                    m.ZCustomerBorrowLog.Add(cb);
+                }
             }
 
             //如果是新客户 则添加客户信息到系统中
@@ -230,7 +241,17 @@ namespace Jiazheng.WorkLog
                     else
                     {
                         cus.LeftHour -= txt_WorkHour.Text.ToInt32();
+                        ZCardConsume cc = new ZCardConsume();
+                        cc.CardId = cus.CardID;
+                        cc.CardNo = cus.CardNo;
+                        cc.ConsumeHour = txt_WorkHour.Text.ToInt32();
+                        cc.ConsumeTime = DateTime.Now;
+                        //dsd.ZCardConsume.InsertOnSubmit(cc);
 
+                        ZCard card = (from list in dsd.ZCard where list.CardNumber == cus.CardNo select list).First();
+                        card.HourLeft -= txt_WorkHour.Text.ToInt32();
+
+                        card.ZCardConsume.Add(cc);
                     }
                 }
             }

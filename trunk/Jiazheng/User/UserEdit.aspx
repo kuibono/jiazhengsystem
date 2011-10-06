@@ -77,6 +77,14 @@
         </tr>
         <tr class="itemrow">
             <td width="25%">
+                底薪：
+            </td>
+            <td width="75%">
+                <asp:TextBox ID="txt_Salary" runat="server" Width="200px"></asp:TextBox>
+            </td>
+        </tr>
+        <tr class="itemrow">
+            <td width="25%">
                 用户状态：：
             </td>
             <td width="75%">

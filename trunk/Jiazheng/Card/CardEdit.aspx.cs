@@ -67,6 +67,13 @@ namespace Jiazheng.Card
             }
             else
             {
+                if ((from e in dsd.ZCard where e.CardNumber==txt_CardNumber.Text select e).Count()>0)
+                {
+                    Js.AlertAndGoback("对不起，这个卡号已经存在于系统中，请填写其他卡号。");
+                    return;
+                }
+                m.HourLeft = m.HourSum;
+
                 this.IsAdd = "true";
                 dsd.ZCard.InsertOnSubmit(m);
             }

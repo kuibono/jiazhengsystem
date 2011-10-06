@@ -24,7 +24,7 @@ namespace Jiazheng.User
                 DataSysDataContext dsd = new DataSysDataContext();
 
 
-                ddl_Group.DataSource = from g in dsd.Group where g.Id!=4 select g;
+                ddl_Group.DataSource = from g in dsd.Group where g.Id != 4 select g;
                 ddl_Group.DataTextField = "Name";
                 ddl_Group.DataValueField = "id";
                 ddl_Group.DataBind();
@@ -32,8 +32,8 @@ namespace Jiazheng.User
                 ddl_Group.SelectedValue = "";
                 BindData();
             }
-            
-            
+
+
         }
 
         protected void BindData()
@@ -41,8 +41,8 @@ namespace Jiazheng.User
             DataSysDataContext dsd = new DataSysDataContext();
             var l = from u in dsd.User
                     from g in dsd.Group
-                    where u.GroupId == g.Id && u.GroupId!=4
-                        && u.UserName.IndexOf(txt_Name.Text)>-1
+                    where u.GroupId == g.Id && u.GroupId != 4
+                        && u.UserName.IndexOf(txt_Name.Text) > -1
                     select new { u.Id, u.Sex, u.Status, u.UserName, u.Birthday, GroupName = g.Name };
             pager.RecordCount = l.Count();
             list.DataSource = l;
@@ -67,7 +67,11 @@ namespace Jiazheng.User
             if (IsPostBack)
             {
                 int[] Ids = WS.RequestString("ids").Split(',').ToIntArray();
-                dsd.User.Delete(p => p.Id.InArray(Ids));
+                foreach (int id in Ids)
+                {
+                    dsd.User.Delete(p => p.Id == id);
+                }
+
             }
 
             base.OnDelete();

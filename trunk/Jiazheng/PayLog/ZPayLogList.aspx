@@ -8,10 +8,13 @@
     <title>支付记录列表</title>
     <link rel="stylesheet" type="text/css" href="../skin/css/base.css" />
     <link rel="stylesheet" type="text/css" href="../skin/css/jquery.autocomplete.css" />
+
     <script type="text/javascript" src="../skin/js/jquery-1.3.2.min.js"></script>
 
     <script type="text/javascript" src="../skin/js/common.js"></script>
+
     <script type="text/javascript" src="../skin/js/jquery.autocomplete.js"></script>
+
     <script type="text/javascript">
         $(function() {
             $("#btn_Del").click(function() {
@@ -56,7 +59,7 @@
                     </tr>
                     <tr>
                         <td>
-                            宣传人：
+                            售卡人：
                         </td>
                         <td style="width: 160px">
                             <asp:TextBox ID="txt_EmpoyeesName" runat="server"></asp:TextBox>
@@ -72,7 +75,7 @@
     </table>
     <table width="98%" border="0" cellpadding="2" cellspacing="1" align="center" class="list">
         <tr bgcolor="#EEF4EA" class="Title">
-            <td height="24" colspan="8">
+            <td height="24" colspan="9">
                 &nbsp;支付记录列表&nbsp;
             </td>
         </tr>
@@ -80,15 +83,17 @@
             <td width="4%">
                 选择
             </td>
-            
+            <td width="10%">
+                客户姓名
+            </td>
+            <td width="10%">
+                电话
+            </td>
             <td width="10%">
                 卡号
             </td>
             <td width="10%">
-                宣传人
-            </td>
-            <td width="10%">
-                客户姓名
+                售卡人
             </td>
             <td width="10%">
                 支付金额
@@ -99,7 +104,6 @@
             <td width="10%">
                 充值日期
             </td>
-
             <td width="10%">
                 操作
             </td>
@@ -110,15 +114,17 @@
                     <td align="center">
                         <input name="ids" type="checkbox" id="ids" value="<%#Eval("Id") %>" class="np">
                     </td>
-                    
+                    <td align="center">
+                        <%# Eval("UserName")%>
+                    </td>
+                    <td align="center">
+                        <%# Eval("CusTel")%>
+                    </td>
                     <td align="center">
                         <%# Eval("CardNo")%>
                     </td>
-                     <td align="center">
-                        <%# Eval("Tel")%>
-                    </td>
                     <td align="center">
-                        <%# Eval("UserName")%>
+                        <%# Eval("EmployeesName")%>
                     </td>
                     <td align="center">
                         <%# Eval("PayMoney")%>
@@ -129,7 +135,6 @@
                     <td align="center">
                         <%# Eval("PayTime").ToDateTime().ToString("yyyy-MM-dd")%>
                     </td>
-                   
                     <td align="center">
                         <%if (SysPartRole.AllowEdit == true)
                           { %>
@@ -145,7 +150,7 @@
             </ItemTemplate>
         </asp:Repeater>
         <tr bgcolor="#FAFAF1">
-            <td colspan="8" height="28">
+            <td colspan="9" height="28">
                 &nbsp;
                 <input id="Button1" type="button" value="新增" onclick="location.href='ZPayLogEdit.aspx'"
                     class="coolbg" />
@@ -155,7 +160,7 @@
             </td>
         </tr>
         <tr>
-            <td colspan="8" align="center">
+            <td colspan="9" align="center">
                 <cc1:AspNetPager ID="pager" runat="server" PageSize="10" AlwaysShow="true" CustomInfoHTML="共%RecordCount%条记录，%CurrentPageIndex%/%PageCount%页"
                     FirstPageText="[首页]" LastPageText="[尾页]" NextPageText="[后页]" PrevPageText="[前页]"
                     ShowCustomInfoSection="Left" OnPageChanged="pager_PageChanged" />

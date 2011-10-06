@@ -30,7 +30,7 @@ namespace Voodoo.Business.Properties {
             "sa;Password=kuibono4264269")]
         public string RoleSysConnectionString {
             get {
-                return ((string)(this["RoleSysConnectionString"]));
+                return ((string)(System.Configuration.ConfigurationManager.ConnectionStrings["Voodoo.Business.Properties.Settings.RoleSysConnectionString"].ToString()));
             }
         }
         
@@ -41,7 +41,7 @@ namespace Voodoo.Business.Properties {
             "User ID=sa;Password=kuibono4264269")]
         public string RoleSysConnectionString1 {
             get {
-                return ((string)(this["RoleSysConnectionString1"]));
+                return ((string)(System.Configuration.ConfigurationManager.ConnectionStrings["Voodoo.Business.Properties.Settings.RoleSysConnectionString"].ToString()));
             }
         }
     }

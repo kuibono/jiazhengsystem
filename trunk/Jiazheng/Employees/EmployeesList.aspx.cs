@@ -73,11 +73,15 @@ namespace Jiazheng.Employees
             if (IsPostBack)
             {
                 int[] Ids = WS.RequestString("ids").Split(',').ToIntArray();
-                dsd.ZEmployees.Delete(p => p.Id.InArray(Ids));
+                foreach (int id in Ids)
+                {
+                    dsd.ZEmployees.Delete(p => p.Id==id);
+                }
+                
             }
 
             base.OnDelete();
-            Js.AlertAndChangUrl("删除成功！", "ZEmployeesList.aspx");
+            Js.AlertAndChangUrl("删除成功！", "EmployeesList.aspx");
         }
 
         protected void btn_Del_Click(object sender, EventArgs e)
