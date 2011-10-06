@@ -17,8 +17,8 @@
         $(function() {
             $("#txt_UserName").cannotnull();
 
-            $("#txt_Tel").isTel();
-            $("#txt_MobilePhone").isMobile();
+            $("#txt_Tel").isMobileOrTel();
+            $("#txt_MobilePhone").isMobileOrTel();
 
             
             $("#form1").checkForm();
@@ -108,7 +108,7 @@
                 会员卡号：
             </td>
             <td>
-                <asp:TextBox ID="txt_CardNo" runat="server" Width="200px"></asp:TextBox>
+                <asp:TextBox ID="txt_CardNo" runat="server" Width="200px" Enabled="false"></asp:TextBox>
             </td>
         </tr>
         <tr class="itemrow">

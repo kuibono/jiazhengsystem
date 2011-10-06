@@ -15,7 +15,7 @@
           <PublishCopyOption>RunFiles</PublishCopyOption>
           <PublishTargetLocation>C:\Documents and Settings\Administrator\桌面\家政系统发布\</PublishTargetLocation>
           <PublishDeleteAllFiles>False</PublishDeleteAllFiles>
-          <PublishCopyAppData>True</PublishCopyAppData>
+          <PublishCopyAppData>False</PublishCopyAppData>
           <ExternalProgram>
           </ExternalProgram>
           <StartExternalURL>

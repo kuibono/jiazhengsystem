@@ -36,6 +36,7 @@ namespace Jiazheng.User
                 txt_Pass.Text = user.UserPassword;
                 rbl_Sex.SelectedValue = user.Sex;
                 txt_Birthday.Text = user.Birthday.ToDateTime().ToString("yyyy-MM-dd");
+                txt_Salary.Text = user.Salary.ToString();
                 
                 rbl_Status.SelectedValue = user.Status;
                 ddl_Group.SelectedValue = user.GroupId.ToString();
@@ -76,6 +77,7 @@ namespace Jiazheng.User
             user.Status = rbl_Status.SelectedValue;
             user.UserName = txt_UserName.Text.TrimDbDangerousChar();
             user.UserPassword = Voodoo.Security.Encrypt.Md5(txt_Pass.Text);
+            user.Salary = txt_Salary.Text.ToDecimal();
 
             if (id > 0)
             {

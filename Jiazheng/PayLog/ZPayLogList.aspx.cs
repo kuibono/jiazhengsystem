@@ -51,10 +51,29 @@ namespace Jiazheng.PayLog
                         EmployeesName = ls.UserName,
                         Tel=ls.MobilePhone
                     };
+            var lw = from lv in l
+                     join cus in dsd.ZCustomer
+                     on lv.UserId equals cus.Id
+                     into newlist
+                     from ls in newlist.DefaultIfEmpty()
+                     select new
+                     {
+                         lv.Id,
+                         lv.UserId,
+                         lv.CardNo,
+                         lv.PayHour,
+                         lv.PayMoney,
+                         lv.PayTime,
+                         lv.UserName,
+                         lv.EmployeesName,
+                         lv.Tel,
+                         CusTel = ls.MobilePhone + " " + ls.Tel
+                     };
 
-            l = l.Where(p => p.CardNo.IndexOf(txt_CardNo.Text) > -1);
-            l = l.Where(p => p.EmployeesName.IndexOf(txt_EmpoyeesName.Text) > -1);
-            l = l.Where(p => p.UserName.IndexOf(txt_UserName.Text) > -1);
+
+            lw = lw.Where(p => p.CardNo.IndexOf(txt_CardNo.Text) > -1);
+            lw = lw.Where(p => p.EmployeesName.IndexOf(txt_EmpoyeesName.Text) > -1);
+            lw = lw.Where(p => p.UserName.IndexOf(txt_UserName.Text) > -1);
 
             //var l = from m in dsd.ZPayLog
             //        where
@@ -68,11 +87,11 @@ namespace Jiazheng.PayLog
 
             if (WS.RequestInt("cid") > 0)
             {
-                l = l.Where(p => p.UserId == WS.RequestInt("cid"));
+                lw = lw.Where(p => p.UserId == WS.RequestInt("cid"));
             }
 
-            pager.RecordCount = l.Count();
-            list.DataSource = l;
+            pager.RecordCount = lw.Count();
+            list.DataSource = lw;
             list.DataBind();
         }
 

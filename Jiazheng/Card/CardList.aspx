@@ -72,25 +72,25 @@
             </td>
         </tr>
         <tr align="center" bgcolor="#FAFAF1" class="Header">
-            <td width="4%">
+            <td>
                 选择
             </td>
-            <td width="18%">
+            <td>
                 卡号
             </td>
-            <td width="18%">
+            <td>
                 总工时
             </td>
-            <td width="18%">
+            <td>
                 剩余工时
             </td>
-            <td width="18%">
+            <td>
                 过期时间
             </td>
-            <td width="18%">
+            <td>
                 状态
             </td>
-            <td width="18%">
+            <td>
                 操作
             </td>
         </tr>
@@ -116,6 +116,7 @@
                         <%# Eval("Status")%>
                     </td>
                     <td align="center">
+                        <a href="CardConsumeList.aspx?cardno=<%# Eval("CardNumber")%>">减工时明细</a>
                         <%if (SysPartRole.AllowEdit == true)
                           { %>
                         <a href="CardEdit.aspx?id=<%#Eval("id")%>">编辑</a> |

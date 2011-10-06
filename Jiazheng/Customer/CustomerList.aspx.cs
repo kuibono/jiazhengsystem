@@ -31,7 +31,7 @@ namespace Jiazheng.Customer
         protected void BindData()
         {
             DataSysDataContext dsd = new DataSysDataContext();
-            var l = from cus in dsd.ZCustomer select cus;
+            var l = from cus in dsd.ViewCustomerList select cus;
             l = l.Where(m => m.UserName.IndexOf(txt_Name.Text) > -1 &&
                              m.CardNo.IndexOf(txt_CardNo.Text) > -1 &&
                              (m.Tel.IndexOf(txt_Tel.Text) > -1 || m.MobilePhone.IndexOf(txt_Tel.Text) > -1) &&
@@ -77,11 +77,16 @@ namespace Jiazheng.Customer
             {
 
                 dsd.SysPart.Delete(p => p.Id == WS.RequestInt("id"));
+
             }
             if (IsPostBack)
             {
                 int[] Ids = WS.RequestString("ids").Split(',').ToIntArray();
-                dsd.User.Delete(p => p.Id.InArray(Ids));
+                foreach (int id in Ids)
+                {
+                    dsd.ZCustomer.Delete(p => p.Id == id);
+                }
+
             }
 
             base.OnDelete();

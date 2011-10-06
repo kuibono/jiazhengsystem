@@ -19,14 +19,13 @@ namespace Jiazheng.Tools
 
             StringBuilder sb = new StringBuilder();
             sb.Append("([");
-            
-            var cards = (from c in dsd.ZPayLog where Convert.ToDateTime(c.VTime).AddDays(2) >= DateTime.Now select c).ToList();
+
+            var cards = (from c in dsd.ZCard where Convert.ToDateTime(c.VTime).AddDays(2) <= DateTime.Now && Convert.ToDateTime(c.VTime) > DateTime.Now select c).ToList();
 
             foreach (var c in cards)
             {
                 sb.Append("{");
-                sb.Append("username:\"" + c.UserName + "\",");
-                sb.Append("id:\"" + c.UserId + "\"");
+                sb.Append("card:\"" + c.CardNumber + "\"");
                 sb.Append("},");
             }
             sb = sb.TrimEnd(',');

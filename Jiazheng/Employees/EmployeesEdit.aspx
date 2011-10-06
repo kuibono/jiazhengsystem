@@ -134,7 +134,7 @@
                 工资级别：
             </td>
             <td>
-                <asp:TextBox ID="txt_SalaryDegree" runat="server"></asp:TextBox>元/月
+                <asp:TextBox ID="txt_SalaryDegree" runat="server"></asp:TextBox>元/小时
             </td>
         </tr>
         <tr class="itemrow">

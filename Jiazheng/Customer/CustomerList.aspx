@@ -1,15 +1,18 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CustomerList.aspx.cs" Inherits="Jiazheng.Customer.CustomerList" %>
+
 <%@ Import Namespace="Voodoo" %>
 <%@ Register Assembly="Voodoo" Namespace="Voodoo.UI" TagPrefix="cc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" >
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>员工列表</title>
     <link rel="stylesheet" type="text/css" href="../skin/css/base.css" />
     <link rel="stylesheet" type="text/css" href="../skin/css/jquery.autocomplete.css" />
+
     <script type="text/javascript" src="../skin/js/jquery-1.3.2.min.js"></script>
+
     <script type="text/javascript" src="../skin/js/jquery.autocomplete.js"></script>
+
     <script type="text/javascript" src="../skin/js/common.js"></script>
 
     <script type="text/javascript">
@@ -29,6 +32,7 @@
             $("#txt_HomeName").suggestTable("ZCustomer", "HomeName");
         })
     </script>
+
 </head>
 <body>
     <form id="form1" runat="server">
@@ -42,12 +46,11 @@
             <td background='../skin/images/wbg.gif' align='center'>
                 <table border='0' cellpadding='0' cellspacing='0'>
                     <tr>
-                    
                         <td>
-                            姓名：
+                            卡号：
                         </td>
-                        <td style="width: 160px">
-                            <asp:TextBox ID="txt_Name" runat="server"></asp:TextBox>
+                        <td>
+                            <asp:TextBox ID="txt_CardNo" runat="server"></asp:TextBox>
                         </td>
                         <td>
                             性别：
@@ -60,18 +63,18 @@
                             </asp:RadioButtonList>
                         </td>
                         <td>
-                            卡号：
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txt_CardNo" runat="server"></asp:TextBox>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
                             电话：
                         </td>
                         <td style="width: 160px">
                             <asp:TextBox ID="txt_Tel" runat="server"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            姓名：
+                        </td>
+                        <td style="width: 160px">
+                            <asp:TextBox ID="txt_Name" runat="server"></asp:TextBox>
                         </td>
                         <td>
                             小区：
@@ -80,7 +83,6 @@
                             <asp:TextBox ID="txt_HomeName" runat="server"></asp:TextBox>
                         </td>
                         <td>
-                            
                         </td>
                         <td>
                             <asp:ImageButton ID="ImageButton1" ImageUrl="../skin/images/frame/search.gif" runat="server"
@@ -93,7 +95,7 @@
     </table>
     <table width="98%" border="0" cellpadding="2" cellspacing="1" align="center" class="list">
         <tr bgcolor="#EEF4EA" class="Title">
-            <td height="24" colspan="7">
+            <td height="24" colspan="9">
                 &nbsp;客户列表&nbsp;
             </td>
         </tr>
@@ -102,13 +104,19 @@
                 选择
             </td>
             <td>
+                卡号
+            </td>
+            <td>
                 姓名
+            </td>
+            <td width="18%">
+                电话
             </td>
             <td width="8%">
                 性别
             </td>
-            <td width="18%">
-                电话
+            <td width="8%">
+                所欠工时
             </td>
             <td width="18%">
                 小区
@@ -127,24 +135,33 @@
                         <input name="ids" type="checkbox" id="ids" value="<%#Eval("Id") %>" class="np">
                     </td>
                     <td align="center">
+                        <a href="../Card/CardList.aspx?cardno=<%#Eval("CardNo")%>">
+                            <%#Eval("CardNo")%></a>
+                    </td>
+                    <td align="center">
                         <%#Eval("UserName")%>
+                    </td>
+                    <td align="center">
+                        <%#Eval("Tel")%>
+                        <%#Eval("MobilePhone")%>
                     </td>
                     <td align="center">
                         <%#Eval("Sex")%>
                     </td>
                     <td align="center">
-                        <%#Eval("Tel")%> <%#Eval("MobilePhone")%>
+                        <%#Eval("BorrowMoney")%>
+                        <%#Eval("BorrowMoney").ToDecimal() >= 1 ? " <a href='../Tools/PayBorrowHour.ashx?id="+ Eval("Id")  +"'>[还清]</a>" : ""%>
                     </td>
                     <td align="center">
                         <%#Eval("HomeName")%>
                     </td>
-                    <td style="background-color:<%# Eval("IsReg").ToString().ToBoolean()?"green":"red"%>"  align="center">
+                    <td style="background-color: <%# Eval("IsReg").ToString().ToBoolean()?"green":"red"%>"
+                        align="center">
                         <%#Eval("IsReg").ToString().ToBoolean().ToChinese()%>
                     </td>
                     <td>
-                        <a href="../WorkLog/ZWorkLogEdit.aspx?uid=<%#Eval("id")%>">新增服务</a> |
-                        
-                        <a href="../PayLog/ZPayLogList.aspx?cid=<%#Eval("id")%>">支付记录</a> |
+                        <a href="../WorkLog/ZWorkLogEdit.aspx?uid=<%#Eval("id")%>">新增服务</a> | <a href="../PayLog/ZPayLogList.aspx?cid=<%#Eval("id")%>">
+                            支付记录</a> |
                         <%if (SysPartRole.AllowEdit == true)
                           { %>
                         <a href="CustomerEdit.aspx?id=<%#Eval("id")%>">编辑</a> |
@@ -159,7 +176,7 @@
             </ItemTemplate>
         </asp:Repeater>
         <tr bgcolor="#FAFAF1">
-            <td height="28" colspan="7">
+            <td height="28" colspan="9">
                 &nbsp;
                 <input id="Button1" type="button" value="新增" onclick="location.href='CustomerEdit.aspx'"
                     class="coolbg" />
@@ -169,11 +186,11 @@
             </td>
         </tr>
         <tr align="right" bgcolor="#EEF4EA">
-            <td height="36" colspan="7" align="center">
+            <td height="36" colspan="9" align="center">
                 <!--翻页代码 -->
                 <cc1:AspNetPager ID="pager" runat="server" PageSize="10" AlwaysShow="true" CustomInfoHTML="共%RecordCount%条记录，%CurrentPageIndex%/%PageCount%页"
                     FirstPageText="[首页]" LastPageText="[尾页]" NextPageText="[后页]" PrevPageText="[前页]"
-                    ShowCustomInfoSection="Left" onpagechanged="pager_PageChanged" />
+                    ShowCustomInfoSection="Left" OnPageChanged="pager_PageChanged" />
             </td>
         </tr>
     </table>

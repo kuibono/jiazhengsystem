@@ -105,7 +105,7 @@
     </table>
     <table width="98%" border="0" cellpadding="2" cellspacing="1" align="center" class="list">
         <tr bgcolor="#EEF4EA" class="Title">
-            <td height="24" colspan="10">
+            <td height="24" colspan="11">
                 &nbsp;服务记录&nbsp;
             </td>
         </tr>
@@ -128,6 +128,7 @@
             <td width="4%">
                 工时
             </td>
+
             <td width="4%">
                 备注
             </td>
@@ -163,6 +164,7 @@
                     <td align="center">
                         <%# Eval("WorkHour")%>
                     </td>
+
                     <td align="center">
                         <%# Eval("remark")%>
                     </td>

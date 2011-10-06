@@ -35,7 +35,7 @@ namespace Jiazheng.Sys
 
             pager.RecordCount = sp.Count();
 
-            list.DataSource = sp.Skip(pager.PageSize * (pager.CurrentPageIndex-1)).Take(pager.PageSize);
+            list.DataSource = sp.Skip(pager.PageSize * (pager.CurrentPageIndex - 1)).Take(pager.PageSize);
             list.DataBind();
 
 
@@ -60,7 +60,11 @@ namespace Jiazheng.Sys
             if (IsPostBack)
             {
                 int[] Ids = WS.RequestString("ids").Split(',').ToIntArray();
-                dsd.SysPart.Delete(p => p.Id.InArray(Ids));
+                foreach (int id in Ids)
+                {
+                    dsd.SysPart.Delete(p => p.Id == id);
+                }
+
             }
 
             base.OnDelete();

@@ -24,7 +24,7 @@
         $(this).blur(function() {
             var values = $(this).val();
             reg = new RegExp(/^((\d{3,4}-)|\d{3.4}-)?\d{7,8}$/);
-            if (!reg.test(values)) {
+            if (!reg.test(values) && values!="") {
                 $(this).err("格式不正确！");
             }
             else {
@@ -36,7 +36,7 @@
         $(this).blur(function() {
             var values = $(this).val();
             reg = new RegExp(/^1[358]\d{9}$/);
-            if (!reg.test(values)) {
+            if (!reg.test(values) && values != "") {
                 $(this).err("格式不正确！");
             }
             else {
@@ -44,10 +44,24 @@
             }
         })
     },
+    isMobileOrTel: function() {
+        $(this).blur(function() {
+            var values = $(this).val();
+            reg = new RegExp(/^1[358]\d{9}$/);
+            reg2 = new RegExp(/^((\d{3,4}-)|\d{3.4}-)?\d{7,8}$/);
+            if (!reg.test(values) && !reg2.test(values) && values != "") {
+                $(this).err("格式不正确！");
+            }
+            else {
+                $(this).clearerr();
+            }
+        })
+    },
+    
     isInt: function() {
         $(this).blur(function() {
             var values = $(this).val();
-            if (isNaN(values)) {
+            if (isNaN(values) && values != "") {
                 $(this).err("格式不正确！");
             }
             else {
@@ -59,7 +73,7 @@
         $(this).blur(function() {
             var values = $(this).val();
             reg = new RegExp(/^[-]?\d+[.]?\d*$/);
-            if (!reg.test(values)) {
+            if (!reg.test(values) && values != "") {
                 $(this).err("格式不正确！");
             }
             else {
@@ -69,7 +83,7 @@
     },
     len: function(min, max) {
         var values = $(this).val();
-        if (values.length > max || values.length < min) {
+        if ((values.length > max || values.length < min) && values!="") {
             $(this).err("长度必须在" + min + "-" + max + "之间！");
         }
         else {
@@ -89,7 +103,7 @@
         $(this).blur(function() {
             var values = $(this).val();
             reg = new RegExp(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-z][a-z.]{2,8}$/);
-            if (!reg.test(values)) {
+            if (!reg.test(values) && values != "") {
                 $(this).err("格式不正确！");
             }
             else {

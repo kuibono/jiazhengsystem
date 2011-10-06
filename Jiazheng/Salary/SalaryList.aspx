@@ -60,38 +60,38 @@
                 月份
             </td>
             <td width="18%">
-                提成
+                任务
             </td>
             <td width="18%">
-                借款
+                工时
             </td>
             <td width="18%">
-                罚款
+                时间
             </td>
             <td width="18%">
-                最终工资
+                金额
             </td>
         </tr>
         <asp:Repeater ID="list" runat="server">
             <ItemTemplate>
                 <tr align='center'>
                     <td>
-                        <%#Eval("UserName")%>
+                        <%#Eval("保洁员")%>
                     </td>
                     <td>
-                        <%#Eval("月份")%>
+                        <%#Eval("日期")%>
                     </td>
                     <td>
-                        <%#Eval("提成")%>
+                        <%#Eval("任务")%>
                     </td>
                     <td>
-                        <%#Eval("借款")%>
+                        <%#Eval("工时")%>
                     </td>
                     <td>
-                        <%#Eval("罚款")%>
+                        <%#Eval("时间")%>
                     </td>
                     <td>
-                        <%#Eval("应发")%>
+                        <%#Eval("金额")%>
                     </td>
                 </tr>
             </ItemTemplate>

@@ -16,6 +16,11 @@ namespace Jiazheng.Card
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (WS.RequestString("cardno")!="")
+            {
+                txt_CardNumber.Text = WS.RequestString("cardno");
+            }
+            
 
             if (!IsPostBack)
             {
@@ -37,12 +42,12 @@ namespace Jiazheng.Card
                     where
                         //m.Id.IndexOf(txt_Id.Text) > -1 &&
                         m.CardNumber.IndexOf(txt_CardNumber.Text) > -1
-                        //m.HourSum.IndexOf(txt_HourSum.Text) > -1 &&
-                        //m.HourLeft.IndexOf(txt_HourLeft.Text) > -1 &&
-                        //m.VTime.IndexOf(txt_VTime.Text) > -1 &&
-                        //m.Status.IndexOf(txt_Status.Text) > -1
+                    //m.HourSum.IndexOf(txt_HourSum.Text) > -1 &&
+                    //m.HourLeft.IndexOf(txt_HourLeft.Text) > -1 &&
+                    //m.VTime.IndexOf(txt_VTime.Text) > -1 &&
+                    //m.Status.IndexOf(txt_Status.Text) > -1
                     select m;
-            if (ddl_Status.SelectedValue!="")
+            if (ddl_Status.SelectedValue != "")
             {
                 l = l.Where(p => p.Status == ddl_Status.SelectedValue);
             }
@@ -60,21 +65,34 @@ namespace Jiazheng.Card
 
         public override void OnDelete()
         {
-            DataSysDataContext dsd = new DataSysDataContext();
-
-            if (WS.RequestString("action") == "delete" && WS.RequestInt("id") > 0 && !IsPostBack)
+            try
             {
+                DataSysDataContext dsd = new DataSysDataContext();
 
-                dsd.ZCard.Delete(p => p.Id == WS.RequestInt("id"));
+                if (WS.RequestString("action") == "delete" && WS.RequestInt("id") > 0 && !IsPostBack)
+                {
+
+                    dsd.ZCard.Delete(p => p.Id == WS.RequestInt("id"));
+                }
+                if (IsPostBack)
+                {
+                    int[] Ids = WS.RequestString("ids").Split(',').ToIntArray();
+
+                    foreach (int id in Ids)
+                    {
+                        dsd.ZCard.Delete(p => p.Id == id);
+                    }
+                }
+
+                base.OnDelete();
+                Js.AlertAndChangUrl("删除成功！", "CardList.aspx");
             }
-            if (IsPostBack)
+            catch (System.Exception e)
             {
-                int[] Ids = WS.RequestString("ids").Split(',').ToIntArray();
-                dsd.ZCard.Delete(p => p.Id.InArray(Ids));
+                Js.AlertAndChangUrl("该卡不能删除！", "CardList.aspx");
             }
-
-            base.OnDelete();
-            Js.AlertAndChangUrl("删除成功！", "ZCardList.aspx");
+            
+           
         }
 
         protected void btn_Del_Click(object sender, EventArgs e)

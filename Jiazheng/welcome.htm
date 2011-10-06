@@ -6,11 +6,11 @@
     <script type="text/javascript" src="skin/js/jquery.messager.js"></script>
     <script type="text/javascript">
         $(function() {
-            $.getJSON("Tools/CardTip.ashx", function(json) {
+            $.getJSON("Tools/CardTip.ashx?jsoncallback=?", function(json) {
                 if (json.length > 0) {
-                    var msg = "下列用户的家政卡即将到期：<br/>";
+                    var msg = "下列家政卡即将到期：<br/>";
                     for (var i = 0; i < json.length; i++) {
-                        msg += "<a href='Customer/CustomerEdit.aspx?id=" + json[i].id + "'>" + json[i].username + "</a>";
+                        msg += "<a href='Card/CardList.aspx?cardno=" + json[i].card + "'>" + json[i].card + "</a>";
                         if (i != json.length - 1) {
                             msg += ",";
                         }

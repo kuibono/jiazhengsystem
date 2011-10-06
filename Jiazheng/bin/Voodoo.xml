@@ -37,13 +37,20 @@
             <param name="self"></param>
             <param name="v">要选中的数组</param>
         </member>
-        <member name="M:Voodoo.WebControl.GetValues(System.Web.UI.WebControls.CheckBoxList)">
+        <member name="M:Voodoo.WebControl.GetValues(System.Web.UI.WebControls.ListControl)">
             <summary>
             获取CheckBoxList的选中值
             </summary>
             <param name="self"></param>
             <returns>返回带逗号的字符串</returns>
             <example>返回1,2,3,4这种字符串</example>
+        </member>
+        <member name="M:Voodoo.WebControl.GetCheckedIndex(System.Web.UI.WebControls.ListControl)">
+            <summary>
+            获取CheckBoxList选中项的序号
+            </summary>
+            <param name="self"></param>
+            <returns></returns>
         </member>
         <member name="M:Voodoo.WebControl.ToXML(System.Data.DataTable,System.String,System.String)">
             <summary>
@@ -69,6 +76,36 @@
             <param name="dt"></param>
             <param name="DataTextField"></param>
             <param name="DataValueField"></param>
+        </member>
+        <member name="M:Voodoo.WebControl.ResponseResult(System.Web.UI.HtmlControls.HtmlForm)">
+            <summary>
+            输出AjaxForm的结果
+            </summary>
+            <param name="form"></param>
+        </member>
+        <member name="M:Voodoo.WebControl.ResponseResult(System.Web.UI.HtmlControls.HtmlForm,System.String)">
+            <summary>
+            输出AjaxForm的结果
+            </summary>
+            <param name="form"></param>
+            <param name="result"></param>
+        </member>
+        <member name="M:Voodoo.WebControl.ResponseResult(System.Web.UI.HtmlControls.HtmlForm,System.String,System.String)">
+            <summary>
+            输出AjaxForm的结果 并且进行跳转
+            </summary>
+            <param name="form"></param>
+            <param name="result">结果消息</param>
+            <param name="Url">跳转地址</param>
+        </member>
+        <member name="M:Voodoo.WebControl.AddRow(System.Data.DataTable,System.String,System.String,System.String)">
+            <summary>
+            私有方法
+            </summary>
+            <param name="dt"></param>
+            <param name="c1"></param>
+            <param name="c2"></param>
+            <param name="c3"></param>
         </member>
         <member name="T:Voodoo.WS">
             <summary>
@@ -1273,6 +1310,11 @@ end
             </summary>
             <returns>输出 表单提交HTML文本</returns>
         </member>
+        <member name="T:Voodoo.other.City">
+            <summary>
+            省市区县关系
+            </summary>
+        </member>
         <member name="M:Voodoo.myDouble.ToFix(System.Decimal,System.Int32)">
             <summary>
             精确到小数点后digit位
@@ -1794,6 +1836,14 @@ end
             <param name="s">单词</param>
             <returns></returns>
         </member>
+        <member name="M:Voodoo.string.FindString(System.String,System.String)">
+            <summary>
+            通过正则表达式在字符串里面查找子字符串
+            </summary>
+            <param name="str"></param>
+            <param name="pattern">表达式</param>
+            <returns></returns>
+        </member>
         <member name="M:Voodoo.string.GetElementByTagName(System.String,System.String)">
             <summary>
             GetElementByTagName
@@ -1817,6 +1867,15 @@ end
             <param name="s"></param>
             <returns></returns>
         </member>
+        <member name="M:Voodoo.string.Click(Voodoo.Net.WebInfo,System.String,System.Text.Encoding)">
+            <summary>
+            点击访问WebInfo的某项内容
+            </summary>
+            <param name="web"></param>
+            <param name="parttern">正则表达式</param>
+            <param name="encode">页面编码</param>
+            <returns></returns>
+        </member>
         <member name="P:Voodoo.string.guid">
             <summary>
             返回随机字符串guid
@@ -1837,6 +1896,29 @@ end
             <param name="r3_Amt"></param>
             <param name="r4_Cur"></param>
             <param name="hmac"></param>
+        </member>
+        <member name="M:Voodoo.Net.Connection.Kaixin001.#ctor(System.String,System.String)">
+            <summary>
+            类初始化
+            </summary>
+            <param name="userName">账号</param>
+            <param name="passWord">密码</param>
+        </member>
+        <member name="M:Voodoo.Net.Connection.Kaixin001.GetUserInfo">
+            <summary>
+            获取用户信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Voodoo.Net.Connection.Kaixin001.UserName">
+            <summary>
+            用户账号
+            </summary>
+        </member>
+        <member name="P:Voodoo.Net.Connection.Kaixin001.PassWord">
+            <summary>
+            用户密码
+            </summary>
         </member>
         <member name="F:Voodoo.UI.StoredProcForm.components">
             <summary>
@@ -1929,6 +2011,29 @@ end
         <member name="P:Voodoo.Net.TopicInfo.Url">
             <summary>
             文章地址
+            </summary>
+        </member>
+        <member name="M:Voodoo.Net.Connection.Google.#ctor(System.String,System.String)">
+            <summary>
+            类初始化
+            </summary>
+            <param name="userName">账号</param>
+            <param name="passWord">密码</param>
+        </member>
+        <member name="M:Voodoo.Net.Connection.Google.GetUserInfo">
+            <summary>
+            获取用户信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Voodoo.Net.Connection.Google.UserName">
+            <summary>
+            用户账号
+            </summary>
+        </member>
+        <member name="P:Voodoo.Net.Connection.Google.PassWord">
+            <summary>
+            用户密码
             </summary>
         </member>
         <member name="T:Voodoo.LinqExt.PartialEvaluator.Nominator">
@@ -2054,6 +2159,43 @@ end
             </summary>
             <param name="m_fileName">文件全路径</param>
             <returns></returns>
+        </member>
+        <member name="T:Voodoo.UI.VDropDownList">
+            <summary>
+            带验证功能的DropDownList
+            </summary>
+        </member>
+        <member name="M:Voodoo.UI.VDropDownList.OnPreRender(System.EventArgs)">
+            <summary>
+            注册css和脚本
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="P:Voodoo.UI.VDropDownList.EnableValidate">
+            <summary>
+            启用验证
+            </summary>
+        </member>
+        <member name="P:Voodoo.UI.VDropDownList.EnableNull">
+            <summary>
+            允许内容为空
+            </summary>
+        </member>
+        <member name="M:Voodoo.UI.VCheckBox.OnPreRender(System.EventArgs)">
+            <summary>
+            注册css和脚本
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="P:Voodoo.UI.VCheckBox.EnableValidate">
+            <summary>
+            启用验证
+            </summary>
+        </member>
+        <member name="P:Voodoo.UI.VCheckBox.EnableNull">
+            <summary>
+            允许内容为空
+            </summary>
         </member>
         <member name="F:Voodoo.UI.PageIndexBoxForm.components">
             <summary>
@@ -2208,6 +2350,47 @@ end
             <param name="itemCount"></param>
             <param name="PageSize"></param>
             <returns></returns>
+        </member>
+        <member name="T:Voodoo.UI.VTextBox">
+            <summary>
+            带验证功能的文本框
+            </summary>
+        </member>
+        <member name="M:Voodoo.UI.VTextBox.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Voodoo.UI.VTextBox.OnPreRender(System.EventArgs)">
+            <summary>
+            注册css和脚本
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="P:Voodoo.UI.VTextBox.EnableValidate">
+            <summary>
+            启用验证
+            </summary>
+        </member>
+        <member name="P:Voodoo.UI.VTextBox.EnableNull">
+            <summary>
+            允许内容为空
+            </summary>
+        </member>
+        <member name="P:Voodoo.UI.VTextBox.Language">
+            <summary>
+            提示信息的语言
+            </summary>
+        </member>
+        <member name="T:Voodoo.UI.VTextBox.ValidateType">
+            <summary>
+            验证类型 enum
+            </summary>
+        </member>
+        <member name="T:Voodoo.UI.VTextBox.ValidateLanguage">
+            <summary>
+            语言
+            </summary>
         </member>
         <member name="T:Voodoo.Address">
             <summary>
@@ -3691,6 +3874,29 @@ end
             备注
             </summary>
         </member>
+        <member name="M:Voodoo.Net.Connection.QQ.#ctor(System.String,System.String)">
+            <summary>
+            类初始化
+            </summary>
+            <param name="userName">账号</param>
+            <param name="passWord">密码</param>
+        </member>
+        <member name="M:Voodoo.Net.Connection.QQ.GetUserInfo">
+            <summary>
+            获取用户信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Voodoo.Net.Connection.QQ.UserName">
+            <summary>
+            用户账号
+            </summary>
+        </member>
+        <member name="P:Voodoo.Net.Connection.QQ.PassWord">
+            <summary>
+            用户密码
+            </summary>
+        </member>
         <!-- 对于成员“M:Voodoo.myRegex.FindText(System.String,System.String,System.String)”忽略有格式错误的 XML 注释 -->
         <member name="T:Voodoo.Pay.YeePay.HttpUtils">
             <summary>
@@ -3875,6 +4081,27 @@ end
         <member name="P:Voodoo.JsonProperty.Number">
             <summary>
             数值
+            </summary>
+        </member>
+        <member name="T:Voodoo.UI.VListBox">
+            <summary>
+            带验证功能的ListBox控件
+            </summary>
+        </member>
+        <member name="M:Voodoo.UI.VListBox.OnPreRender(System.EventArgs)">
+            <summary>
+            注册css和脚本
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="P:Voodoo.UI.VListBox.EnableValidate">
+            <summary>
+            启用验证
+            </summary>
+        </member>
+        <member name="P:Voodoo.UI.VListBox.EnableNull">
+            <summary>
+            允许内容为空
             </summary>
         </member>
         <member name="T:Voodoo.UI.ShowPageIndexBox">
@@ -4122,7 +4349,7 @@ end
             <param name="encode"></param>
             <returns></returns>
         </member>
-        <member name="M:Voodoo.Net.Url.PostGetCookieAndHtml(System.Collections.Specialized.NameValueCollection,System.String,System.Text.Encoding,System.Net.CookieContainer,System.String)">
+        <member name="M:Voodoo.Net.Url.PostGetCookieAndHtml(System.Collections.Specialized.NameValueCollection,System.String,System.Text.Encoding,System.Net.CookieContainer,System.Net.CookieCollection,System.String)">
             <summary>
             提交数据获取Cookie和Html
             </summary>
@@ -4185,6 +4412,29 @@ end
         <!-- 对于成员“M:Voodoo.Net.robot.QQ.Encrypt(System.String,System.String)”忽略有格式错误的 XML 注释 -->
         <!-- 对于成员“M:Voodoo.Net.robot.QQ.md5_3(System.String)”忽略有格式错误的 XML 注释 -->
         <!-- 对于成员“M:Voodoo.Net.robot.QQ.md5(System.String)”忽略有格式错误的 XML 注释 -->
+        <member name="M:Voodoo.Net.Connection.Sina.#ctor(System.String,System.String)">
+            <summary>
+            类初始化
+            </summary>
+            <param name="userName">账号</param>
+            <param name="passWord">密码</param>
+        </member>
+        <member name="M:Voodoo.Net.Connection.Sina.GetUserInfo">
+            <summary>
+            获取用户信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Voodoo.Net.Connection.Sina.UserName">
+            <summary>
+            用户账号
+            </summary>
+        </member>
+        <member name="P:Voodoo.Net.Connection.Sina.PassWord">
+            <summary>
+            用户密码
+            </summary>
+        </member>
         <member name="F:Voodoo.Data.DbHelper.OracleHelper.Conn">
             <summary>
             数据库连接
@@ -4665,6 +4915,52 @@ end
             <param name="methodname">方法名</param>
             <param name="args">参数</param>
             <returns></returns>
+        </member>
+        <member name="M:Voodoo.Net.Connection.RenRen.#ctor(System.String,System.String)">
+            <summary>
+            类初始化
+            </summary>
+            <param name="userName">账号</param>
+            <param name="passWord">密码</param>
+        </member>
+        <member name="M:Voodoo.Net.Connection.RenRen.GetUserInfo">
+            <summary>
+            获取用户信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Voodoo.Net.Connection.RenRen.log">
+            <summary>
+            用户登录，私有
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Voodoo.Net.Connection.RenRen.UserName">
+            <summary>
+            用户账号
+            </summary>
+        </member>
+        <member name="P:Voodoo.Net.Connection.RenRen.PassWord">
+            <summary>
+            用户密码
+            </summary>
+        </member>
+        <member name="M:Voodoo.Net.Connection.Baidu.#ctor(System.String,System.String)">
+            <summary>
+            类初始化
+            </summary>
+            <param name="userName">账号</param>
+            <param name="passWord">密码</param>
+        </member>
+        <member name="P:Voodoo.Net.Connection.Baidu.UserName">
+            <summary>
+            用户账号
+            </summary>
+        </member>
+        <member name="P:Voodoo.Net.Connection.Baidu.PassWord">
+            <summary>
+            用户密码
+            </summary>
         </member>
         <member name="M:Voodoo.Cookies.Cookies.GetCookie(System.String)">
             <summary>
@@ -5533,6 +5829,18 @@ end
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="M:Voodoo.UI.AjaxForm.IsCallBack">
+            <summary>
+            判断是否是回传时间
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Voodoo.UI.AjaxForm.OnPreRender(System.EventArgs)">
+            <summary>
+            注册css和脚本
+            </summary>
+            <param name="e"></param>
+        </member>
         <member name="T:Voodoo.Pay.AliPay.Alipay_Function">
             <summary>
             功能：支付宝接口公用函数类
@@ -5655,6 +5963,14 @@ end
              </summary>
              <param name="collection"></param>
              <returns></returns>
+        </member>
+        <member name="M:Voodoo.obj.Exist(System.Net.CookieCollection,System.Net.Cookie)">
+            <summary>
+            判断指定CookieCollection是否存在指定的Cookie
+            </summary>
+            <param name="cookieCollection"></param>
+            <param name="cookie"></param>
+            <returns></returns>
         </member>
         <member name="M:Voodoo.obj.ToList``1(System.Data.DataTable)">
             <summary>
@@ -5841,7 +6157,7 @@ end
             <param name="Path">文件路径（相对）</param>
             <param name="fileContent">文件内容</param>
         </member>
-        <member name="M:Voodoo.IO.File.AppendLine(System.String,System.String,System.String)">
+        <member name="M:Voodoo.IO.File.AppendLine(System.String,System.String,System.String,System.String)">
             <summary>
             在文件尾部写入文本
             </summary>

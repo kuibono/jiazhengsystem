@@ -27,22 +27,23 @@
             $(".salary").isDouble();
 
             $("#txt_HomeName").suggestTable("ZCustomer", "HomeName");
-            
-            $(".user").click(function(){
-                if($(this).attr("checked")==true)
-                {
+
+            $(".user").click(function() {
+                if ($(this).attr("checked") == true) {
                     //$(this).parents("tr").find("input:text").attr("disabled",false)
-                    $("#salary_"+$(this).val()).attr("disabled",false)
+                    $("#salary_" + $(this).val()).attr("disabled", false)
                 }
-                else
-                {
+                else {
                     //$(this).parents("tr.itemrow").find("input:text").attr("disabled",true)
                     //$(this).parents("tr.itemrow").find("input:text").val("0.00");
-                    $("#salary_"+$(this).val()).attr("disabled",true)
-                    $("#salary_"+$(this).val()).val("0.00");
+                    $("#salary_" + $(this).val()).attr("disabled", true)
+                    $("#salary_" + $(this).val()).val("0.00");
                 }
             })
 
+            $("#userSelect :checkbox").click(function() {
+                $("#userSelect :text:enabled").val(parseFloat($("#txt_WorkHour").val()) / $("#userSelect :text:enabled").size());
+            })
         })
     </script>
 
@@ -149,13 +150,21 @@
         </tr>
         <tr class="itemrow">
             <td>
+                欠工时:
+            </td>
+            <td>
+                <asp:TextBox ID="txt_BorrowHour" runat="server" Text="0"></asp:TextBox>
+            </td>
+        </tr>
+        <tr class="itemrow">
+            <td>
                 服务员工:
             </td>
             <td>
-                <table border="0" cellpadding="4" cellspacing="1" class="edittable">
+                <table border="0" cellpadding="4" cellspacing="1" class="edittable" id="userSelect">
                     <tr class='editheader'>
                         <td width="120">保洁员工</td>
-                        <td>提成工资</td>
+                        <td>单个工时</td>
                     </tr>
                     <asp:Repeater ID="list" runat="server">
                         <ItemTemplate>

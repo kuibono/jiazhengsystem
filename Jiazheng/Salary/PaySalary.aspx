@@ -49,57 +49,87 @@
     </table>
     <table width="98%" border="0" cellpadding="2" cellspacing="1" align="center" class="list">
         <tr bgcolor="#EEF4EA" class="Title">
-            <td height="24" colspan="7">
-                &nbsp;用户列表&nbsp;
+            <td height="24" colspan="11">
+                &nbsp;宣传工资结算&nbsp;
             </td>
         </tr>
         <tr align="center" bgcolor="#FAFAF1" class="Header">
-            <td width="18%">
+            <td>
                 员工
             </td>
-            <td width="18%">
+            <td>
                 月份
             </td>
-            <td width="18%">
-                售卡数量
+            <td>
+                发卡数量
             </td>
-            <td width="18%">
-                售卡提成
+            <td>
+                查卡数量
             </td>
-            <td width="18%">
-                借款
+            <td>
+                回收数量
             </td>
-            <td width="18%">
-                最终工资
+            <td>
+                发卡提成
+            </td>
+            <td>
+                查卡提成
+            </td>
+            <td>
+                回收提成
+            </td>
+            <td>
+                总额
+            </td>
+            <td>
+                类型
+            </td>
+            <td>
+                备注
             </td>
         </tr>
         <asp:Repeater ID="list" runat="server">
             <ItemTemplate>
                 <tr align='center'>
                     <td>
-                        <%#Eval("UserName")%>
+                        <%#Eval("宣传员")%>
                     </td>
                     <td>
-                        <%#Eval("月份")%>
+                        <%#Eval("日期")%>
                     </td>
                     <td>
-                        <%#Eval("数量")%>
+                        <%#Eval("发卡")%>
                     </td>
                     <td>
-                        <%#Eval("提成")%>
+                        <%#Eval("查卡")%>
                     </td>
                     <td>
-                        <%#Eval("借款")%>
+                        <%#Eval("回收")%>
                     </td>
                     <td>
-                        <%#Eval("应发")%>
+                        <%#Eval("发卡提成")%>
+                    </td>
+                    <td>
+                        <%#Eval("查卡提成")%>
+                    </td>
+                    <td>
+                        <%#Eval("回收提成")%>
+                    </td>
+                    <td>
+                        <%#Eval("总计")%>
+                    </td>
+                    <td>
+                        <%#Eval("类型")%>
+                    </td>
+                    <td>
+                        <%#Eval("备注")%>
                     </td>
                 </tr>
             </ItemTemplate>
         </asp:Repeater>
 
         <tr align="right" bgcolor="#EEF4EA">
-            <td height="36" colspan="7" align="center">
+            <td height="36" colspan="11" align="center">
                 <!--翻页代码 -->
                 <cc1:AspNetPager ID="pager" runat="server" PageSize="10" AlwaysShow="true" CustomInfoHTML="共%RecordCount%条记录，%CurrentPageIndex%/%PageCount%页"
                     FirstPageText="[首页]" LastPageText="[尾页]" NextPageText="[后页]" PrevPageText="[前页]"

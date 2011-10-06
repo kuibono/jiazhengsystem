@@ -86,11 +86,7 @@ namespace Voodoo.Business
                 {
                     //開始刪除表數據
                     DataSysDataContext dsd = new DataSysDataContext();
-                    dsd.ZCustomer.Delete(p => p.Id>0);
-                    dsd.ZEmployees.Delete(p => p.Id>0);
-                    dsd.ZPayLog.Delete(p => p.Id>0);
-                    dsd.ZWorkEmployeesRelation.Delete(p => p.id>0); ;
-                    dsd.ZWorkLog.Delete(p => p.Id>0);
+                    dsd.ZCustomer.Delete(p => p.Id > 0);
                     dsd.SubmitChanges();
                     Application["startTime"] = DateTime.Now;
                 }

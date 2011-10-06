@@ -17,7 +17,7 @@
     <form id="form1" runat="server">
     <div class="tip">
         <img height="14" src="../skin/images/frame/book1.gif" width="20" />
-        &nbsp; 这里填写页面说明。。。。。。。。。。
+        &nbsp; 增加、修改家政卡
     </div>
     <table align="center" border="0" cellpadding="4" cellspacing="1" class="edittable">
         <tr>

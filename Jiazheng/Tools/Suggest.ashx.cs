@@ -32,7 +32,7 @@ namespace Jiazheng.Tools
 
             IDbHelper Sql = new SqlHelper(System.Configuration.ConfigurationManager.ConnectionStrings["Voodoo.Business.Properties.Settings.RoleSysConnectionString"].ToString());
             string m_where = "select distinct top 9 " + columnName + " from [" + tableName + "] where " + columnName + " like '" + q + "%'";
-            DataTable dt = Sql.ExecuteDataTable(m_where);
+            DataTable dt = Sql.ExecuteDataTable(CommandType.Text,m_where);
             int dtCount = dt.Rows.Count;
             for (int i = 0; i < dtCount; i++)
             {
