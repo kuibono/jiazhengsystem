@@ -22,10 +22,10 @@ namespace Jiazheng.WorkLog
 
 
 
-                cbl_ToolIds.DataSource = from l in dsd.ZTools select l;
-                cbl_ToolIds.DataTextField = "Name";
-                cbl_ToolIds.DataValueField = "id";
-                cbl_ToolIds.DataBind();
+                //cbl_ToolIds.DataSource = from l in dsd.ZTools select l;
+                //cbl_ToolIds.DataTextField = "Name";
+                //cbl_ToolIds.DataValueField = "id";
+                //cbl_ToolIds.DataBind();
 
 
                 ddl_CustomerId.DataSource = from l in dsd.ZCustomer select new { name = l.UserName + "-" + l.HomeName, l.Id };
@@ -86,7 +86,9 @@ namespace Jiazheng.WorkLog
                     //txt_EmployeesNames.Text = m.EmployeesNames.ToString();
                     //cbl_EmployeesNames.SetValue(m.EmployeesIds.Split(','));
                     //txt_ToolIds.Text = m.ToolIds.ToString();
-                    cbl_ToolIds.SetValue(m.ToolIds.Split(','));
+                    //cbl_ToolIds.SetValue(m.ToolIds.Split(','));
+                    txt_Tools.Text = m.ToolIds.ToS();
+
                     txt_PayMoney.Text = m.PayMoney.ToString();
                     cb_IsDelete.Checked = m.IsDelete.ToBoolean();
                     cb_IsFinished.Checked = m.IsFinished.ToBoolean();
@@ -163,7 +165,8 @@ namespace Jiazheng.WorkLog
             m.WorkHour = txt_WorkHour.Text.ToInt32();
             //m.EmployeesIds = cbl_EmployeesNames.GetValues();
             //m.EmployeesNames = cbl_EmployeesNames.GetTexts();
-            m.ToolIds = cbl_ToolIds.GetValues();
+            //m.ToolIds = cbl_ToolIds.GetValues();
+            m.ToolIds = txt_Tools.Text.TrimDbDangerousChar();
             m.PayMoney = txt_PayMoney.Text.ToDecimal();
             m.IsDelete = cb_IsDelete.Checked;
             m.IsFinished = cb_IsFinished.Checked;
