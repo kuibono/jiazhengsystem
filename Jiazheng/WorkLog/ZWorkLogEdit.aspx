@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ZWorkLogEdit.aspx.cs" Inherits="Jiazheng.WorkLog.ZWorkLogEdit" %>
+
 <%@ Import Namespace="Voodoo" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -19,8 +20,8 @@
         $(function() {
             //$("#txt_Name").blur(function() { $(this).cannotnull() });
             $("#txt_CustomerName").cannotnull();
-            $("#txt_Tel").isTel();
-            $("#txt_MobilePhone").isMobile();
+            $("#txt_Tel").isMobileOrTel();
+            $("#txt_MobilePhone").isMobileOrTel();
             $("#txt_WorkHour").isInt();
             $("#txt_PayMoney").isDouble();
             $("#form1").checkForm();
@@ -40,7 +41,9 @@
                     $("#salary_" + $(this).val()).val("0.00");
                 }
             })
-
+            $("#txt_WorkHour").blur(function() {
+                $("#userSelect :text:enabled").val(parseFloat($("#txt_WorkHour").val()) / $("#userSelect :text:enabled").size());
+            })
             $("#userSelect :checkbox").click(function() {
                 $("#userSelect :text:enabled").val(parseFloat($("#txt_WorkHour").val()) / $("#userSelect :text:enabled").size());
             })
@@ -163,21 +166,26 @@
             <td>
                 <table border="0" cellpadding="4" cellspacing="1" class="edittable" id="userSelect">
                     <tr class='editheader'>
-                        <td width="120">保洁员工</td>
-                        <td>单个工时</td>
+                        <td width="120">
+                            保洁员工
+                        </td>
+                        <td>
+                            单个工时
+                        </td>
                     </tr>
                     <asp:Repeater ID="list" runat="server">
                         <ItemTemplate>
-                        <tr class="itemrow">
-                            <td>
-                                <input class="user" type="checkbox" name="users" id="em_<%#Eval("id") %>" value="<%#Eval("id") %>" <%#Eval("check").ToBoolean()?"checked=checked":"" %> /><label for="em_<%#Eval("id") %>"><%#Eval("UserName") %></label>
-                            </td>
-                            <td>
-                                <input <%#Eval("check").ToBoolean()?"":"disabled=disabled" %> class="salary" type="text" name="salary" ID="salary_<%#Eval("id") %>" value="<%#Eval("salary") %>" />
-                            </td>
-                        </tr>
+                            <tr class="itemrow">
+                                <td>
+                                    <input class="user" type="checkbox" name="users" id="em_<%#Eval("id") %>" value="<%#Eval("id") %>"
+                                        <%#Eval("check").ToBoolean()?"checked=checked":"" %> /><label for="em_<%#Eval("id") %>"><%#Eval("UserName") %></label>
+                                </td>
+                                <td>
+                                    <input <%#Eval("check").ToBoolean()?"":"disabled=disabled" %> class="salary" type="text"
+                                        name="salary" id="salary_<%#Eval("id") %>" value="<%#Eval("salary") %>" />
+                                </td>
+                            </tr>
                         </ItemTemplate>
-                        
                     </asp:Repeater>
                 </table>
             </td>
@@ -187,9 +195,10 @@
                 所带工具:
             </td>
             <td>
-                <asp:CheckBoxList ID="cbl_ToolIds" runat="server" RepeatColumns="4" RepeatDirection="Horizontal"
+                <%--                <asp:CheckBoxList ID="cbl_ToolIds" runat="server" RepeatColumns="4" RepeatDirection="Horizontal"
                     RepeatLayout="Flow">
-                </asp:CheckBoxList>
+                </asp:CheckBoxList>--%>
+                <asp:TextBox ID="txt_Tools" TextMode="MultiLine" runat="server"></asp:TextBox>
             </td>
         </tr>
         <tr class="itemrow">

@@ -70,27 +70,27 @@ namespace Voodoo.Business
 
             //驗證程序是否可以使用
 
-            bool SystemVisiable = false;
-            if (Application["startTime"]==null)
-            {
-                ThrowError("系統發生嚴重錯誤，請聯繫開發人員 kuibono@163.com No System Start Time");
-            }
-            if (Voodoo.Config.Info.GetAppSetting("code").IsNullOrEmpty())
-            {
-                ThrowError("系統發生嚴重錯誤，請聯繫開發人員 kuibono@163.com No Viladate Code");
-            }
-            else if (Voodoo.Config.Info.GetAppSetting("code")!="78s8sf0jl$%912jkld98a0$!")
-            {
-                DateTime dt = Application["startTime"].ToDateTime();
-                if (DateTime.Now>dt.AddDays(1))
-                {
-                    //開始刪除表數據
-                    DataSysDataContext dsd = new DataSysDataContext();
-                    dsd.ZCustomer.Delete(p => p.Id > 0);
-                    dsd.SubmitChanges();
-                    Application["startTime"] = DateTime.Now;
-                }
-            }
+            //bool SystemVisiable = false;
+            //if (Application["startTime"]==null)
+            //{
+            //    ThrowError("系統發生嚴重錯誤，請聯繫開發人員 kuibono@163.com No System Start Time");
+            //}
+            //if (Voodoo.Config.Info.GetAppSetting("code").IsNullOrEmpty())
+            //{
+            //    ThrowError("系統發生嚴重錯誤，請聯繫開發人員 kuibono@163.com No Viladate Code");
+            //}
+            //else if (Voodoo.Config.Info.GetAppSetting("code")!="78s8sf0jl$%912jkld98a0$!")
+            //{
+            //    DateTime dt = Application["startTime"].ToDateTime();
+            //    if (DateTime.Now>dt.AddDays(1))
+            //    {
+            //        //開始刪除表數據
+            //        DataSysDataContext dsd = new DataSysDataContext();
+            //        dsd.ZCustomer.Delete(p => p.Id > 0);
+            //        dsd.SubmitChanges();
+            //        Application["startTime"] = DateTime.Now;
+            //    }
+            //}
             
 
 

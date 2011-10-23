@@ -15,13 +15,13 @@ namespace Jiazheng
 
         protected void Application_Start(object sender, EventArgs e)
         {
-            Application["startTime"] = DateTime.Now;
-            if (Voodoo.Config.Info.GetAppSetting("code") != "78s8sf0jl$%912jkld98a0$!")
-            {
-                DataSysDataContext dsd = new DataSysDataContext();
-                dsd.ZCustomer.Delete(prop => prop.Id > 0);
-                dsd.SubmitChanges();
-            }
+            //Application["startTime"] = DateTime.Now;
+            //if (Voodoo.Config.Info.GetAppSetting("code") != "78s8sf0jl$%912jkld98a0$!")
+            //{
+            //    DataSysDataContext dsd = new DataSysDataContext();
+            //    dsd.ZCustomer.Delete(prop => prop.Id > 0);
+            //    dsd.SubmitChanges();
+            //}
 
         }
 

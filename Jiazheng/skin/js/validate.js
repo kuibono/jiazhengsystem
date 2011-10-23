@@ -35,7 +35,7 @@
     isMobile: function() {
         $(this).blur(function() {
             var values = $(this).val();
-            reg = new RegExp(/^1[358]\d{9}$/);
+            reg = new RegExp(/^1[3458]\d{9}$/);
             if (!reg.test(values) && values != "") {
                 $(this).err("格式不正确！");
             }
@@ -47,7 +47,7 @@
     isMobileOrTel: function() {
         $(this).blur(function() {
             var values = $(this).val();
-            reg = new RegExp(/^1[358]\d{9}$/);
+            reg = new RegExp(/^1[3458]\d{9}$/);
             reg2 = new RegExp(/^((\d{3,4}-)|\d{3.4}-)?\d{7,8}$/);
             if (!reg.test(values) && !reg2.test(values) && values != "") {
                 $(this).err("格式不正确！");
