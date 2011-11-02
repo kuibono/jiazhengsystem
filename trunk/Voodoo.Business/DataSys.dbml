@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="RoleSys" Class="DataSysDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost\sql2005;Initial Catalog=RoleSys;Persist Security Info=True;User ID=sa" SettingsObjectName="Voodoo.Business.Properties.Settings" SettingsPropertyName="RoleSysConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost;Initial Catalog=RoleSys;Persist Security Info=True;User ID=sa" SettingsObjectName="Voodoo.Business.Properties.Settings" SettingsPropertyName="RoleSysConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.[Group]" Member="Group">
     <Type Name="Group">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -39,31 +39,6 @@
     <Type Name="ZWorkType">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ZWorkLog" Member="ZWorkLog">
-    <Type Name="ZWorkLog">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="CustomerId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Sex" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Tel" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="MobilePhone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="WorkTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="WorkContent" Type="System.String" DbType="NVarChar(512)" CanBeNull="true" />
-      <Column Name="HomeName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Address" Type="System.String" DbType="NVarChar(512)" CanBeNull="true" />
-      <Column Name="WorkHour" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="EmployeesIds" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="EmployeesNames" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ToolIds" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="PayMoney" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="IsDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="IsFinished" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Customerappraise" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Remark" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
-      <Association Name="ZWorkLog_ZWorkEmployeesRelation" Member="ZWorkEmployeesRelation" ThisKey="Id" OtherKey="WorkLogId" Type="ZWorkEmployeesRelation" />
-      <Association Name="ZWorkLog_ZCustomerBorrowLog" Member="ZCustomerBorrowLog" ThisKey="Id" OtherKey="WorkLogId" Type="ZCustomerBorrowLog" />
     </Type>
   </Table>
   <Table Name="dbo.ZEmployees" Member="ZEmployees">
@@ -139,18 +114,6 @@
       <Column Name="Salary" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
       <Association Name="ZEmployees_ZWorkEmployeesRelation" Member="ZEmployees" ThisKey="EmployeesId" OtherKey="Id" Type="ZEmployees" IsForeignKey="true" />
       <Association Name="ZWorkLog_ZWorkEmployeesRelation" Member="ZWorkLog" ThisKey="WorkLogId" OtherKey="Id" Type="ZWorkLog" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ZCard" Member="ZCard">
-    <Type Name="ZCard">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="CardNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="HourSum" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="HourLeft" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="VTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Status" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Association Name="ZCard_ZCardConsume" Member="ZCardConsume" ThisKey="Id" OtherKey="CardId" Type="ZCardConsume" />
-      <Association Name="ZCard_ZCustomer" Member="ZCustomer" ThisKey="Id" OtherKey="CardID" Type="ZCustomer" />
     </Type>
   </Table>
   <Table Name="dbo.[User]" Member="User">
@@ -263,25 +226,6 @@
       <Association Name="ZCard_ZCardConsume" Member="ZCard" ThisKey="CardId" OtherKey="Id" Type="ZCard" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.ZCustomer" Member="ZCustomer">
-    <Type Name="ZCustomer">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="UserName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Sex" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Tel" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="MobilePhone" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="HomeName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Address" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ValidateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CardID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CardNo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="UsedHour" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="LeftHour" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="IDCard" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="IsReg" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Association Name="ZCard_ZCustomer" Member="ZCard" ThisKey="CardID" OtherKey="Id" Type="ZCard" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.ZCustomerBorrowLog" Member="ZCustomerBorrowLog">
     <Type Name="ZCustomerBorrowLog">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -291,6 +235,31 @@
       <Column Name="HasPay" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="PayTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Association Name="ZWorkLog_ZCustomerBorrowLog" Member="ZWorkLog" ThisKey="WorkLogId" OtherKey="Id" Type="ZWorkLog" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ZWorkLog" Member="ZWorkLog">
+    <Type Name="ZWorkLog">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Sex" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Tel" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MobilePhone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="WorkTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="WorkContent" Type="System.String" DbType="NVarChar(512)" CanBeNull="true" />
+      <Column Name="HomeName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(512)" CanBeNull="true" />
+      <Column Name="WorkHour" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="EmployeesIds" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="EmployeesNames" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ToolIds" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PayMoney" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="IsDelete" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsFinished" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Customerappraise" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Remark" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Association Name="ZWorkLog_ZWorkEmployeesRelation" Member="ZWorkEmployeesRelation" ThisKey="Id" OtherKey="WorkLogId" Type="ZWorkEmployeesRelation" />
+      <Association Name="ZWorkLog_ZCustomerBorrowLog" Member="ZCustomerBorrowLog" ThisKey="Id" OtherKey="WorkLogId" Type="ZCustomerBorrowLog" />
     </Type>
   </Table>
   <Table Name="dbo.ViewWorkLogList" Member="ViewWorkLogList">
@@ -307,7 +276,7 @@
       <Column Name="WorkContent" Type="System.String" DbType="NVarChar(512)" CanBeNull="true" />
       <Column Name="HomeName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Address" Type="System.String" DbType="NVarChar(512)" CanBeNull="true" />
-      <Column Name="WorkHour" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WorkHour" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
       <Column Name="EmployeesIds" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="EmployeesNames" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="ToolIds" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
@@ -317,6 +286,24 @@
       <Column Name="Customerappraise" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Remark" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
       <Column Name="borrowHour" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ZCustomer" Member="ZCustomer">
+    <Type Name="ZCustomer">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Sex" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Tel" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MobilePhone" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="HomeName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ValidateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CardID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CardNo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="UsedHour" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="LeftHour" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="IDCard" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="IsReg" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.ViewCustomerList" Member="ViewCustomerList">
@@ -331,11 +318,22 @@
       <Column Name="ValidateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="CardID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CardNo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="UsedHour" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="LeftHour" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UsedHour" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="LeftHour" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
       <Column Name="IDCard" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="IsReg" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="BorrowMoney" Type="System.Decimal" DbType="Decimal(38,2) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ZCard" Member="ZCard">
+    <Type Name="ZCard">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CardNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HourSum" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="HourLeft" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="VTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="ZCard_ZCardConsume" Member="ZCardConsume" ThisKey="Id" OtherKey="CardId" Type="ZCardConsume" />
     </Type>
   </Table>
 </Database>

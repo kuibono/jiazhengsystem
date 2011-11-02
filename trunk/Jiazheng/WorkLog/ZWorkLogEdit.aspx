@@ -41,12 +41,12 @@
                     $("#salary_" + $(this).val()).val("0.00");
                 }
             })
-            $("#txt_WorkHour").blur(function() {
-                $("#userSelect :text:enabled").val(parseFloat($("#txt_WorkHour").val()) / $("#userSelect :text:enabled").size());
-            })
-            $("#userSelect :checkbox").click(function() {
-                $("#userSelect :text:enabled").val(parseFloat($("#txt_WorkHour").val()) / $("#userSelect :text:enabled").size());
-            })
+//            $("#txt_WorkHour").blur(function() {
+//                $("#userSelect :text:enabled").val(parseFloat($("#txt_WorkHour").val()) / $("#userSelect :text:enabled").size());
+//            })
+//            $("#userSelect :checkbox").click(function() {
+//                $("#userSelect :text:enabled").val(parseFloat($("#txt_WorkHour").val()) / $("#userSelect :text:enabled").size());
+//            })
         })
     </script>
 
@@ -153,10 +153,18 @@
         </tr>
         <tr class="itemrow">
             <td>
-                欠工时:
+                客户欠工时:
             </td>
             <td>
                 <asp:TextBox ID="txt_BorrowHour" runat="server" Text="0"></asp:TextBox>
+            </td>
+        </tr>
+        <tr class="itemrow">
+            <td>
+                公司欠工时:
+            </td>
+            <td>
+                <asp:TextBox ID="txt_BorrowHour_Company" runat="server" Text="0"></asp:TextBox>
             </td>
         </tr>
         <tr class="itemrow">
