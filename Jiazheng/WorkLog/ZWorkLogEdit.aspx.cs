@@ -142,6 +142,13 @@ namespace Jiazheng.WorkLog
 
         public override void OnEdit()
         {
+
+            if (txt_BorrowHour.Text.ToDecimal() > 0 && txt_BorrowHour_Company.Text.ToDecimal() > 0)
+            {
+                Js.Alert("到底谁欠啊？看清楚了再写！");
+                return;
+            }
+
             string[] users = WS.RequestString("users").Split(',');
             string[] salarys = WS.RequestString("salary").Split(',');
 
@@ -162,7 +169,7 @@ namespace Jiazheng.WorkLog
             m.WorkContent = txt_WorkContent.Text.TrimDbDangerousChar();
             m.HomeName = txt_HomeName.Text.TrimDbDangerousChar();
             m.Address = txt_Address_1.Text.TrimDbDangerousChar() + "$" + txt_Address_2.Text.TrimDbDangerousChar() + "$" + txt_Address_3.Text.TrimDbDangerousChar();
-            m.WorkHour = txt_WorkHour.Text.ToInt32();
+            m.WorkHour = txt_WorkHour.Text.ToDecimal();
             //m.EmployeesIds = cbl_EmployeesNames.GetValues();
             //m.EmployeesNames = cbl_EmployeesNames.GetTexts();
             //m.ToolIds = cbl_ToolIds.GetValues();
@@ -187,7 +194,15 @@ namespace Jiazheng.WorkLog
                 if (txt_BorrowHour.Text.ToDecimal()>0)
                 {
                     ZCustomerBorrowLog cb = new ZCustomerBorrowLog();
-                    cb.BorrowHour = txt_BorrowHour.Text.ToDecimal();
+
+                    if (txt_BorrowHour.Text.ToDecimal() > 0)
+                    {
+                        cb.BorrowHour = txt_BorrowHour.Text.ToDecimal();
+                    }
+                    else if (txt_BorrowHour_Company.Text.ToDecimal() > 0)
+                    {
+                        cb.BorrowHour = txt_BorrowHour_Company.Text.ToDecimal();
+                    }
                     cb.BorrowTime = DateTime.Now;
                     cb.HasPay = false;
                     cb.WorkLogId = m.Id;
@@ -236,23 +251,23 @@ namespace Jiazheng.WorkLog
                     //扣除用户工时，如果剩余工时不足，则跳出错误！
                     var cl = from c in dsd.ZCustomer where c.Id == ddl_CustomerId.SelectedValue.ToInt32() select c;
                     cus = cl.First();
-                    if (cus.LeftHour - txt_WorkHour.Text.ToInt32() < 0)
+                    if (cus.LeftHour - txt_WorkHour.Text.ToDecimal() < 0)
                     {
                         Js.AlertAndGoback("客户剩余工时不足，请充值或者直接付款！");
                         return;
                     }
                     else
                     {
-                        cus.LeftHour -= txt_WorkHour.Text.ToInt32();
+                        cus.LeftHour -= txt_WorkHour.Text.ToDecimal();
                         ZCardConsume cc = new ZCardConsume();
                         cc.CardId = cus.CardID;
                         cc.CardNo = cus.CardNo;
-                        cc.ConsumeHour = txt_WorkHour.Text.ToInt32();
+                        cc.ConsumeHour = txt_WorkHour.Text.ToDecimal();
                         cc.ConsumeTime = DateTime.Now;
                         //dsd.ZCardConsume.InsertOnSubmit(cc);
 
                         ZCard card = (from list in dsd.ZCard where list.CardNumber == cus.CardNo select list).First();
-                        card.HourLeft -= txt_WorkHour.Text.ToInt32();
+                        card.HourLeft -= txt_WorkHour.Text.ToDecimal();
 
                         card.ZCardConsume.Add(cc);
                     }

@@ -32,7 +32,6 @@ E:\代码\jiazhengsystem\Jiazheng\bin\Jiazheng.dll
 E:\代码\jiazhengsystem\Jiazheng\bin\Jiazheng.pdb
 E:\代码\jiazhengsystem\Jiazheng\bin\Voodoo.Business.dll
 E:\代码\jiazhengsystem\Jiazheng\bin\Voodoo.dll
-E:\代码\jiazhengsystem\Jiazheng\bin\System.Data.SQLite.dll
 E:\代码\jiazhengsystem\Jiazheng\bin\MySql.Data.dll
 E:\代码\jiazhengsystem\Jiazheng\bin\NPOI.dll
 E:\代码\jiazhengsystem\Jiazheng\bin\Voodoo.pdb

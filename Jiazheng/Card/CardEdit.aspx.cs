@@ -55,8 +55,8 @@ namespace Jiazheng.Card
                 m = l.First();
             }
             m.CardNumber = txt_CardNumber.Text.TrimDbDangerousChar();
-            m.HourSum = txt_HourSum.Text.ToInt32();
-            m.HourLeft = txt_HourLeft.Text.ToInt32();
+            m.HourSum = txt_HourSum.Text.ToDecimal();
+            m.HourLeft = txt_HourLeft.Text.ToDecimal();
             m.VTime = txt_VTime.Text.ToDateTime();
             m.Status = ddl_Status.SelectedValue.TrimDbDangerousChar();
 

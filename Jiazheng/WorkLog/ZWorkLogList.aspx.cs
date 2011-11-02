@@ -44,52 +44,7 @@ namespace Jiazheng.WorkLog
             }
             l = l.Where(p => p.WorkContent.IndexOf(txt_WorkContent.Text) > -1);
 
-            //员工
-            //var em = from r in dsd.ZWorkEmployeesRelation
-            //         join e in dsd.ZEmployees.Where(p => p.UserName.IndexOf(txt_Worker.Text) > -1)
-            //         on r.EmployeesId equals e.Id
-            //         into emm
 
-            //         from ex in emm
-            //         select new { r.WorkLogId,ex.UserName};
-            
-            //dsd.ZWorkLog.First().ZWorkEmployeesRelation.First().ZEmployees.
-
-            //l = from work in l
-            //    join e in em
-            //    on work.Id equals e.WorkLogId
-            //    into www
-            //    from x in www
-            //    select work;
-
-            //var ls = from work in l
-            //    join e in em
-            //    on work.Id equals e.WorkLogId
-            //    into www
-            //    from x in www
-            //    select new
-            //    {
-            //        work.Address,
-            //        work.Customerappraise,
-            //        work.CustomerId,
-            //        work.CustomerName,
-            //        work.EmployeesIds,
-            //        work.EmployeesNames,
-            //        work.HomeName,
-            //        work.Id,
-            //        work.IsDelete,
-            //        work.IsFinished,
-            //        work.MobilePhone,
-            //        work.PayMoney,
-            //        work.Remark,
-            //        work.Sex,
-            //        work.Tel,
-            //        work.ToolIds,
-            //        work.WorkContent,
-            //        work.WorkHour,
-            //        work.WorkTime,
-            //        Users = x.UserName
-            //    };
             l = l.Where(p => p.users.IndexOf(txt_Worker.Text)>-1);
 
             pager.RecordCount = l.Count();
